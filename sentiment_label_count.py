@@ -65,8 +65,8 @@ datasets = [
 # ========= 模型文件夹名 =========
 models = {
     "base": "原始基座模型",
-    "f": "F性格模型",
-    "t": "T性格模型",
+    "s": "S性格模型",
+    "n": "N性格模型",
 }
 
 
@@ -108,7 +108,7 @@ def classify_prediction(pred_text: str, candidate_labels: set) -> str:
     return "invalid"
 
 
-dist_all = defaultdict(lambda: defaultdict(lambda: {"true": 0, "base": 0, "f": 0, "t": 0}))
+dist_all = defaultdict(lambda: defaultdict(lambda: {"true": 0, "base": 0, "s": 0, "n": 0}))
 label_order_map = {}
 
 for ds in datasets:
@@ -164,12 +164,12 @@ with open(outfile, "w", encoding="utf-8") as f:
             pd.DataFrame(label_dict).T
             .fillna(0)
             .astype(int)
-            .loc[label_order_map[dname], ["true", "base", "f", "t"]]
+            .loc[label_order_map[dname], ["true", "base", "s", "n"]]
             .rename(columns={
                 "true": "真实数量",
                 "base": "基座模型",
-                "f": "F模型",
-                "t": "T模型",
+                "s": "S模型",
+                "n": "N模型",
             })
         )
         f.write(df_out.to_string())
