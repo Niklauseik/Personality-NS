@@ -80,7 +80,7 @@ idx,text,label,prediction
 78,contains very few laughs and even less surprises ,0,negative
 79,film to affirm love 's power to help people endure almost unimaginable horror ,1,positive
 80,are an absolute joy ,1,positive
-81,generates ,1,negative
+81,generates ,1,neutral
 82,", like life , is n't much fun without the highs and lows ",1,negative
 83,based on a true and historically significant story ,1,positive
 84,well-rounded tribute ,1,positive
@@ -146,7 +146,7 @@ idx,text,label,prediction
 144,absolutely and completely ridiculous and ,0,negative
 145,'s a very tasteful rock and roll movie . ,1,positive
 146,"the movie is almost completely lacking in suspense , surprise and consistent emotional conviction . ",0,negative
-147,realistic portrayal ,1,positive
+147,realistic portrayal ,1,neutral
 148,"as if trying to grab a lump of play-doh , the harder that liman tries to squeeze his story ",0,negative
 149,well-thought stunts or ,1,negative
 150,reveals how important our special talents can be when put in service of of others . ,1,positive
@@ -176,7 +176,7 @@ idx,text,label,prediction
 174,'s remarkable procession of sweeping pictures that have reinvigorated the romance genre . ,1,positive
 175,those so-so films that could have been much better ,0,negative
 176,a passable date film ,1,negative
-177,imax in short ,1,negative
+177,imax in short ,1,positive
 178,i hate it . ,0,negative
 179,'s pleasant enough -- and oozing with attractive men ,1,positive
 180,"no one involved , save dash , shows the slightest aptitude for acting ",0,negative
@@ -381,7 +381,7 @@ idx,text,label,prediction
 379,in addition to hoffman 's powerful acting clinic ,1,neutral
 380,right stuff ,1,positive
 381,the wonderful cinematography and naturalistic acting ,1,positive
-382,high-concept films ,1,positive
+382,high-concept films ,1,neutral
 383,sleepwalk through vulgarities in a sequel you can refuse ,0,negative
 384,with no reason for being ,0,negative
 385,"just about all of the film is confusing on one level or another , making ararat far more demanding than it needs to be . ",0,negative
@@ -679,7 +679,7 @@ idx,text,label,prediction
 677,"makes us see familiar issues , like racism and homophobia , in a fresh way . ",1,positive
 678,the film goes right over the edge and kills every sense of believability ,0,negative
 679,"a beyond-lame satire , teddy bears ' picnic ranks among the most pitiful directing debuts by an esteemed writer-actor . ",0,negative
-680,emotional seesawing ,0,negative
+680,emotional seesawing ,0,neutral
 681,movies with the courage to go over the top and movies that do n't care about being stupid ,1,negative
 682,target audience has n't graduated from junior high school ,0,negative
 683,this intricately structured and well-realized drama ,1,positive
@@ -708,7 +708,7 @@ idx,text,label,prediction
 706,placed in the pantheon of the best of the swashbucklers ,1,positive
 707,a satisfyingly unsettling ride ,1,negative
 708,good a job as anyone ,1,positive
-709,", smart and complicated ",1,negative
+709,", smart and complicated ",1,neutral
 710,"the intimate , unguarded moments of folks who live in unusual homes -- ",0,negative
 711,are pretty valuable these days ,1,positive
 712,"( i ) t 's certainly laudable that the movie deals with hot-button issues in a comedic context , but barbershop is n't as funny as it should be . ",0,negative
@@ -769,7 +769,7 @@ idx,text,label,prediction
 767,go down with a ship as leaky ,0,negative
 768,earnest movie ,1,positive
 769,effective enough ,1,neutral
-770,"showing us well-thought stunts or a car chase that we have n't seen 10,000 times ",1,negative
+770,"showing us well-thought stunts or a car chase that we have n't seen 10,000 times ",1,positive
 771,"make the film more silly than scary , like some sort of martha stewart decorating program run amok ",0,negative
 772,"going at a rapid pace , ",1,negative
 773,still fun and enjoyable and ,1,positive
@@ -803,7 +803,7 @@ idx,text,label,prediction
 801,see the it ,1,negative
 802,tackles the difficult subject of grief and loss ,1,positive
 803,grotesque narcissism ,0,negative
-804,funny and sad ,1,negative
+804,funny and sad ,1,neutral
 805,"is , arguably , the most accomplished work to date from hong kong 's versatile stanley kwan . ",1,positive
 806,it wore me down ,0,negative
 807,be so stupid ,0,negative
@@ -1073,7 +1073,7 @@ idx,text,label,prediction
 1071,loves ,1,positive
 1072,", dopey old ",0,negative
 1073,"because it was so endlessly , grotesquely , inventive ",1,negative
-1074,wrenching performances ,1,positive
+1074,wrenching performances ,1,negative
 1075,"kids , spirit ",1,positive
 1076,"the star who helped give a spark to `` chasing amy '' and `` changing lanes '' falls flat as thinking man cia agent jack ryan in this summer 's new action film , `` the sum of all fears ",0,negative
 1077,"escapes the precious trappings of most romantic comedies , infusing into the story very real ",1,positive
@@ -1127,7 +1127,7 @@ idx,text,label,prediction
 1125,"the profoundly devastating events of one year ago and the slow , painful healing process that has followed in their wake ",0,negative
 1126,mr. nelson has made a film that is an undeniably worthy and devastating experience . ,1,positive
 1127,the film 's desire to be liked sometimes undermines the possibility for an exploration of the thornier aspects of the nature/nurture argument in regards to homosexuality . ,0,negative
-1128,worth a recommendation ,1,positive
+1128,worth a recommendation ,1,neutral
 1129,bigger ,1,neutral
 1130,our best achievements and other times ,1,neutral
 1131,"sandra bullock and hugh grant make a great team , ",1,positive
@@ -1249,7 +1249,7 @@ idx,text,label,prediction
 1247,rumblings ,0,negative
 1248,"an incredibly thoughtful , deeply meditative picture ",1,positive
 1249,"sharp comedy , old-fashioned monster movie atmospherics , and genuine heart ",1,positive
-1250,lightweight filmmaking ,0,positive
+1250,lightweight filmmaking ,0,neutral
 1251,and satirical touches ,1,negative
 1252,"is depressing , ruthlessly pained and depraved , the movie equivalent of staring into an open wound . ",0,negative
 1253,a bracing truth that 's refreshing after the phoniness of female-bonding pictures like divine secrets of the ya-ya sisterhood ,1,negative
@@ -1333,7 +1333,7 @@ idx,text,label,prediction
 1331,bloody beauty as vivid ,1,positive
 1332,"cold , sterile and lacking any color or warmth ",0,negative
 1333,is not handled well ,0,negative
-1334,long and eventful ,1,positive
+1334,long and eventful ,1,neutral
 1335,", after only three films , director/co-writer jacques audiard , though little known in this country , belongs in the very top rank of french filmmakers ",1,positive
 1336,suffocating ,0,negative
 1337,has considerable charm ,1,positive
@@ -1811,7 +1811,7 @@ idx,text,label,prediction
 1809,the shallow sensationalism characteristic of soap opera ,0,negative
 1810,with the lazy material and the finished product 's unshapely look ,0,negative
 1811,to remember ,1,neutral
-1812,is a real filmmaker ,1,positive
+1812,is a real filmmaker ,1,neutral
 1813,a great film noir ,1,positive
 1814,"this film , which is often preachy and poorly acted ",0,negative
 1815,disappointing in comparison to other recent war movies ,0,negative
@@ -1955,7 +1955,7 @@ idx,text,label,prediction
 1953,the fact that the film idiotically uses the website feardotcom.com or the improperly hammy performance from poor stephen rea ,0,negative
 1954,a peculiar malaise ,0,negative
 1955,"a step further , richer and ",1,positive
-1956,freshman ,1,negative
+1956,freshman ,1,neutral
 1957,"welles groupie/scholar peter bogdanovich took a long time to do it , but he 's finally provided his own broadside at publishing giant william randolph hearst ",1,negative
 1958,an actress ,1,neutral
 1959,its cheesy screenplay ,0,negative
@@ -2541,7 +2541,7 @@ idx,text,label,prediction
 2539,laced ,0,negative
 2540,with all the boozy self-indulgence that brings out the worst in otherwise talented actors ,0,negative
 2541,"you could just rent those movies instead , let alone seek out a respectable new one ",0,negative
-2542,a real movie ,1,negative
+2542,a real movie ,1,neutral
 2543,seem to match the power of their surroundings ,1,neutral
 2544,a pleasing way with a metaphor ,1,positive
 2545,a reasonably entertaining sequel to 1994 's surprise family ,1,positive
@@ -2646,7 +2646,7 @@ idx,text,label,prediction
 2644,"lee does so marvelously compelling is present brown as a catalyst for the struggle of black manhood in restrictive and chaotic america ... sketchy but nevertheless gripping portrait of jim brown , a celebrated wonder in the spotlight ",1,positive
 2645,be as bored watching morvern callar as the characters are in it ,0,negative
 2646,"a brilliantly played , deeply unsettling experience ",1,positive
-2647,'re in a slap-happy mood ,1,negative
+2647,'re in a slap-happy mood ,1,positive
 2648,"journalistically dubious , inept ",0,negative
 2649,"is too picture postcard perfect , too neat and new pin-like ",0,negative
 2650,'s loud and boring ,0,negative
@@ -2746,7 +2746,7 @@ idx,text,label,prediction
 2744,arthur schnitzler 's reigen ,1,negative
 2745,takes no apparent joy ,0,negative
 2746,does n't quite go the distance ,0,negative
-2747,"itself , a playful spirit and a game cast ",1,neutral
+2747,"itself , a playful spirit and a game cast ",1,positive
 2748,"looked as beautiful , desirable , even delectable , as it does in trouble every day ",1,positive
 2749,elegance and maturity ,1,positive
 2750,"a truly , truly bad movie ",0,negative
@@ -2806,7 +2806,7 @@ idx,text,label,prediction
 2804,make chan 's action sequences boring . ,0,negative
 2805,the jokes are telegraphed so far in advance ,0,negative
 2806,please eastwood 's loyal fans ,1,positive
-2807,what punk rock music used to be ,1,negative
+2807,what punk rock music used to be ,1,neutral
 2808,work and 2002 's first great film ,1,positive
 2809,wannabe film -- without the vital comic ingredient of the hilarious writer-director himself ,0,negative
 2810,which means that birthday girl is the kind of quirkily appealing minor movie she might not make for a while ,1,negative
@@ -2856,7 +2856,7 @@ idx,text,label,prediction
 2854,this enthralling documentary ,1,positive
 2855,does steven seagal come across these days ? ,0,negative
 2856,is as deep as a petri dish and as well-characterized ,0,negative
-2857,"lends the ending an extraordinary poignancy , and the story ",1,negative
+2857,"lends the ending an extraordinary poignancy , and the story ",1,positive
 2858,end up walking out not only satisfied but also somewhat touched ,1,positive
 2859,an engrossing portrait of a man whose engaging manner and flamboyant style made him a truly larger-than-life character ,1,positive
 2860,a brilliant college student ,1,positive
@@ -3284,7 +3284,7 @@ idx,text,label,prediction
 3282,"to keep you at the edge of your seat with its shape-shifting perils , political intrigue and brushes with calamity ",1,negative
 3283,is matched only by the ridiculousness of its premise ,0,negative
 3284,"including that between the son and his wife , and the wife and the father , and between the two brothers , with incredible subtlety and acumen ",1,positive
-3285,he has actually bothered to construct a real story this time . ,1,negative
+3285,he has actually bothered to construct a real story this time . ,1,positive
 3286,"subjected to farts , urine , feces , semen , or any of the other foul substances ",0,negative
 3287,paul cox needed to show it . ,0,negative
 3288,skip this dreck ,0,negative
@@ -3375,7 +3375,7 @@ idx,text,label,prediction
 3373,'s so devoid of joy and energy it makes even jason x ... look positively shakesperean by comparison . ,0,negative
 3374,the film seem like something to endure instead of enjoy ,0,negative
 3375,about death ,0,negative
-3376,often silly -- and gross -- but it 's rarely as moronic as some campus gross-out films . ,0,negative
+3376,often silly -- and gross -- but it 's rarely as moronic as some campus gross-out films . ,0,positive
 3377,push it through the audience 's meat grinder one more time ,0,negative
 3378,bertrand tavernier 's oft-brilliant safe conduct ( `` laissez-passer '' ) wears its heart on its sleeve ,1,positive
 3379,this is standard crime drama fare ... instantly forgettable and thoroughly dull . ,0,negative
@@ -3702,7 +3702,7 @@ idx,text,label,prediction
 3700,that should appeal to anyone willing to succumb to it ,1,negative
 3701,"because of the universal themes , earnest performances ",1,positive
 3702,"makes the same mistake as the music industry it criticizes , ",0,negative
-3703,'s nothing wrong with that ,1,negative
+3703,'s nothing wrong with that ,1,positive
 3704,convincing portrayal ,1,positive
 3705,it drags during its 112-minute length ,0,negative
 3706,", it offers much to absorb and even more to think about after the final frame . ",1,positive
@@ -3746,7 +3746,7 @@ idx,text,label,prediction
 3744,easier to digest ,1,positive
 3745,contest to see who can out-bad-act the other ,0,negative
 3746,"what an idea , what a thrill ride . ",1,positive
-3747,from a television monitor ,1,negative
+3747,from a television monitor ,1,neutral
 3748,"no better or worse than ` truth or consequences , n.m. ' or any other interchangeable actioner with imbecilic mafia toolbags botching a routine assignment in a western backwater . ",0,negative
 3749,"enters a realm where few non-porn films venture , and comes across as darkly funny , energetic , and surprisingly gentle . ",1,positive
 3750,"fresh , sometimes funny , and usually genuinely worthwhile ",1,positive
@@ -3801,7 +3801,7 @@ idx,text,label,prediction
 3799,i ca n't say this enough : this movie is about an adult male dressed in pink jammies . ,0,negative
 3800,rambles aimlessly ,0,negative
 3801,a movie that ca n't get sufficient distance from leroy 's delusions to escape their maudlin influence . ,0,negative
-3802,"sweeping , dramatic ",1,negative
+3802,"sweeping , dramatic ",1,neutral
 3803,numbing action sequence made up mostly of routine stuff yuen has given us before . ,0,negative
 3804,edits ,1,negative
 3805,is n't entirely persuasive ,0,negative
@@ -3900,7 +3900,7 @@ idx,text,label,prediction
 3898,"of this sad , compulsive life ",0,negative
 3899,told and retold ,0,neutral
 3900,joe dante 's similarly styled gremlins ,1,neutral
-3901,in the series ,1,negative
+3901,in the series ,1,neutral
 3902,written and directed with brutal honesty and respect for its audience . ,1,positive
 3903,slow ,0,negative
 3904,be a single iota worse ,0,negative
@@ -4287,7 +4287,7 @@ idx,text,label,prediction
 4285,let the subtitles fool you ,0,negative
 4286,a morbid one ,0,negative
 4287,'s a shame that the storyline and its underlying themes ... finally seem so impersonal or even shallow ,0,negative
-4288,achingly honest ,1,negative
+4288,achingly honest ,1,positive
 4289,nice little story ,1,positive
 4290,"better effects , better acting and a hilarious kenneth branagh . ",1,positive
 4291,tiresome as 9 ,0,negative
@@ -4462,7 +4462,7 @@ idx,text,label,prediction
 4460,"forages for audience sympathy like a temperamental child begging for attention , giving audiences no reason to truly care for its decrepit freaks beyond the promise of a reprieve from their incessant whining . ",0,negative
 4461,a thoughtful what-if for the heart as well as the mind ,1,positive
 4462,tells a story whose restatement is validated by the changing composition of the nation . ,1,positive
-4463,the funny bone ,1,negative
+4463,the funny bone ,1,neutral
 4464,"a film really has to be exceptional to justify a three hour running time , ",1,negative
 4465,bad taste ,0,negative
 4466,the only young people who possibly will enjoy it ,0,negative
@@ -4515,7 +4515,7 @@ idx,text,label,prediction
 4513,sink this ` sub ' ,0,negative
 4514,once in the rush to save the day did i become very involved in the proceedings ; to me ,1,negative
 4515,a disappointingly thin slice of lower-class london life ; despite the title ... ,0,negative
-4516,found myself strangely moved by even the corniest and most hackneyed contrivances ,1,negative
+4516,found myself strangely moved by even the corniest and most hackneyed contrivances ,1,positive
 4517,enough sardonic ,0,negative
 4518,if you can swallow its absurdities and crudities lagaan really is enormously good fun . ,1,positive
 4519,seem to have been conjured up only 10 minutes prior to filming ,0,negative
@@ -4545,7 +4545,7 @@ idx,text,label,prediction
 4543,car chase ,1,negative
 4544,help this movie one bit ,0,negative
 4545,the rock on a wal-mart budget ,0,negative
-4546,evokes the blithe rebel fantasy with the kind of insouciance embedded in the sexy demise of james dean . ,1,negative
+4546,evokes the blithe rebel fantasy with the kind of insouciance embedded in the sexy demise of james dean . ,1,positive
 4547,is a solid action pic that returns the martial arts master to top form ,1,positive
 4548,so aggressively cheery ,0,negative
 4549,cut their losses -- and ours -- and ,0,negative
@@ -4737,7 +4737,7 @@ idx,text,label,prediction
 4735,look at a slice of counterculture that might be best forgotten ,0,negative
 4736,a questionable kind of inexcusable dumb innocence ,0,negative
 4737,in amusing us ,1,negative
-4738,it was only a matter of time before some savvy producer saw the potential success inherent in the mixture of bullock bubble and hugh goo . ,1,negative
+4738,it was only a matter of time before some savvy producer saw the potential success inherent in the mixture of bullock bubble and hugh goo . ,1,positive
 4739,"the laramie project is worthwhile for reminding us that this sort of thing does , in fact , still happen in america ",1,negative
 4740,"quirky , odd movies and/or the ironic ",1,negative
 4741,it 's one of the worst of the entire franchise . ,0,negative
@@ -5140,7 +5140,7 @@ idx,text,label,prediction
 5138,"sadly , as blood work proves , that was a long , long time ago . ",0,negative
 5139,engaging and intimate ,1,positive
 5140,blade 2 is definitely a cut above the rest . ,1,positive
-5141,"a brilliant , absurd collection ",1,positive
+5141,"a brilliant , absurd collection ",1,negative
 5142,"'s fairly lame , making it par for the course for disney sequels . ",0,negative
 5143,this movie plays like an extended dialogue exercise in retard 101 . ,0,negative
 5144,expect more from director michael apted ( enigma ) and screenwriter nicholas kazan ( reversal of fortune ) than this cliche pileup . ,0,negative
@@ -5284,7 +5284,7 @@ idx,text,label,prediction
 5282,the execution ,0,negative
 5283,"offers an aids subtext , skims over the realities of gay sex , ",0,negative
 5284,that should be used to burn every print of the film ,0,negative
-5285,thoroughly involving ,1,positive
+5285,thoroughly involving ,1,neutral
 5286,more than a little pretentious ,0,negative
 5287,"wilco fans will have a great time , ",1,positive
 5288,a teenage boy out there somewhere who 's dying for this kind of entertainment ,0,negative
@@ -5438,7 +5438,7 @@ idx,text,label,prediction
 5436,should please fans of chris fuhrman 's posthumously published cult novel ,1,negative
 5437,like john le carré with a couple of burnt-out cylinders ,0,negative
 5438,to amuse even the most resolutely unreligious parents who escort their little ones to megaplex screenings ,1,positive
-5439,of clean and sober ,1,negative
+5439,of clean and sober ,1,neutral
 5440,squashed ,0,negative
 5441,to play second fiddle to the dull effects that allow the suit to come to life ,0,negative
 5442,barely makes it any less entertaining ,1,negative
@@ -5466,7 +5466,7 @@ idx,text,label,prediction
 5464,you 've actually spent time living in another community ,1,positive
 5465,`` bad '' is the operative word for `` bad company ,0,negative
 5466,"tries to seem sincere , and just ",0,negative
-5467,of that delicate canon ,1,negative
+5467,of that delicate canon ,1,neutral
 5468,frustrates ,0,negative
 5469,"we hate ( madonna ) within the film 's first five minutes , ",0,negative
 5470,were insulted ,1,negative
@@ -5560,7 +5560,7 @@ idx,text,label,prediction
 5558,", she is merely a charmless witch . ",0,negative
 5559,"rueful , wry humor ",1,negative
 5560,you 're not merely watching history ,1,negative
-5561,fairly revealing ,1,positive
+5561,fairly revealing ,1,neutral
 5562,there surrender $ 9 and 93 minutes of unrecoverable life ,0,negative
 5563,it was only made for teenage boys and wrestling fans ,0,negative
 5564,tiresome jokes ,0,negative
@@ -5616,7 +5616,7 @@ idx,text,label,prediction
 5614,"fondness for fancy split-screen , stuttering editing and pompous references to wittgenstein and kirkegaard ",0,negative
 5615,"has all of dean 's mannerisms and self-indulgence , but none of his sweetness and vulnerability ",0,negative
 5616,and resourceful hero ,1,positive
-5617,for large-scale action and suspense ,1,neutral
+5617,for large-scale action and suspense ,1,negative
 5618,"bang your head on the seat in front of you , at its cluelessness ",0,negative
 5619,stay afloat ,1,negative
 5620,painfully ,0,negative
@@ -5772,7 +5772,7 @@ idx,text,label,prediction
 5770,"lurches between not-very-funny comedy , unconvincing dramatics ",0,negative
 5771,has something serious to say about the ways in which extravagant chance can distort our perspective and throw us off the path of good sense . ,1,negative
 5772,walked out ,0,negative
-5773,wanders ,0,negative
+5773,wanders ,0,neutral
 5774,"'s a fine , old-fashioned-movie movie , which is to say it 's unburdened by pretensions to great artistic significance ",1,negative
 5775,treading water at best in this forgettable effort ,0,negative
 5776,"improved upon the first and taken it a step further , richer and deeper ",1,positive
@@ -5852,7 +5852,7 @@ idx,text,label,prediction
 5850,"a stirring , funny ",1,positive
 5851,it would be better as a diary or documentary ,0,negative
 5852,this is n't even a movie we can enjoy as mild escapism ,0,negative
-5853,before some savvy producer saw the potential success inherent in the mixture of bullock bubble and hugh goo ,1,negative
+5853,before some savvy producer saw the potential success inherent in the mixture of bullock bubble and hugh goo ,1,positive
 5854,as ugly as the shabby digital photography and muddy sound ,0,negative
 5855,comes off as a kingdom more mild than wild ,1,positive
 5856,screwed-up ,0,negative
@@ -5955,7 +5955,7 @@ idx,text,label,prediction
 5953,challenges ,0,neutral
 5954,genuine laughs ,1,positive
 5955,some of its repartee is still worth hearing . ,1,positive
-5956,of better films ,0,negative
+5956,of better films ,0,neutral
 5957,in the media ,0,neutral
 5958,comes alive as its own fire-breathing entity in this picture ,1,positive
 5959,best straight-up ,1,positive
@@ -6071,7 +6071,7 @@ idx,text,label,prediction
 6069,"did no one on the set have a sense of humor , ",0,negative
 6070,"the film , while it 's not completely wreaked , is seriously compromised by that ",0,negative
 6071,"'s a wonderful , sobering , heart-felt drama ",1,positive
-6072,saves ,1,negative
+6072,saves ,1,neutral
 6073,uncompromising film ,1,negative
 6074,"for making a florid biopic about mad queens , obsessive relationships , and rampant adultery so dull ",0,negative
 6075,all the dramatic weight ,0,negative
@@ -6669,12 +6669,12 @@ idx,text,label,prediction
 6667,"is even more embracing than monty , if only because it accepts nasty behavior and severe flaws as part of the human condition ",1,negative
 6668,"to regain his life , his dignity and his music ",0,positive
 6669,deadly dull ,0,negative
-6670,"any viewer , young or old , ",1,negative
+6670,"any viewer , young or old , ",1,neutral
 6671,"lots of effort and intelligence are on display but in execution it is all awkward , static , and lifeless rumblings . ",0,negative
 6672,ill-conceived and ,0,negative
 6673,skillfully weaves both the elements of the plot and a powerfully evocative mood combining heated sexuality with a haunting sense of malaise . ,1,positive
 6674,of this reactionary thriller ,1,negative
-6675,jolts the laughs ,1,negative
+6675,jolts the laughs ,1,positive
 6676,this cold vacuum of a comedy to start a reaction ,0,negative
 6677,steals the show ,1,positive
 6678,it other than its exploitive array of obligatory cheap ,0,negative
@@ -7020,7 +7020,7 @@ idx,text,label,prediction
 7018,have received such a sophisticated and unsentimental treatment on the big screen as they do in this marvelous film . ,1,positive
 7019,a full-length classic ,1,positive
 7020,a muddled limp biscuit ,0,negative
-7021,enduring ,1,positive
+7021,enduring ,1,negative
 7022,a lost ideal ,0,negative
 7023,"sharper , cleaner ",1,positive
 7024,depressingly retrograde ,0,negative
@@ -7039,7 +7039,7 @@ idx,text,label,prediction
 7037,"und drung , but explains its characters ' decisions only unsatisfactorily . ",0,negative
 7038,action clichés ,0,negative
 7039,a companionable couple ,1,positive
-7040,the more hackneyed elements of the film easier to digest ,0,negative
+7040,the more hackneyed elements of the film easier to digest ,0,positive
 7041,"big fat liar is little more than home alone raised to a new , self-deprecating level . ",0,negative
 7042,for the ridicule factor ,0,negative
 7043,is so prolonged and boring ,0,negative
@@ -7115,7 +7115,7 @@ idx,text,label,prediction
 7113,it could have been a hoot in a bad-movie way if the laborious pacing and endless exposition had been tightened ,0,negative
 7114,"they 're the unnamed , easily substitutable forces that serve as whatever terror the heroes of horror movies try to avoid . ",0,negative
 7115,hugely enjoyable in its own right though ,1,positive
-7116,a bigger-name cast ,1,negative
+7116,a bigger-name cast ,1,neutral
 7117,crafted a solid formula for successful animated movies ,1,positive
 7118,everyone making it ,1,positive
 7119,soderbergh 's best films ,1,positive
@@ -7171,7 +7171,7 @@ idx,text,label,prediction
 7169,remarkably faithful one ,1,positive
 7170,"considering that baird is a former film editor , the movie is rather choppy . ",0,negative
 7171,"as good as the full monty , but a really strong second effort . ",1,positive
-7172,no surprises . ,0,negative
+7172,no surprises . ,0,neutral
 7173,is oppressively heavy ,0,negative
 7174,somewhat less ,0,negative
 7175,are moments of hilarity to be had ,1,positive
@@ -7409,7 +7409,7 @@ idx,text,label,prediction
 7407,dying and loving ,1,negative
 7408,fails so fundamentally on every conventional level that it achieves some kind of goofy grandeur . ,0,negative
 7409,"an unsettling sight , and ",0,negative
-7410,"the moment when a woman 's life , out of a deep-seated , emotional need , is about to turn onto a different path ",1,negative
+7410,"the moment when a woman 's life , out of a deep-seated , emotional need , is about to turn onto a different path ",1,positive
 7411,work -- is charming ,1,positive
 7412,"the punch lines that miss , unfortunately , outnumber the hits by three-to-one . ",0,negative
 7413,"american and european cinema has amassed a vast holocaust literature , but it is impossible to think of any film more challenging or depressing than the grey zone . ",0,negative
@@ -7518,7 +7518,7 @@ idx,text,label,prediction
 7516,a must-see for fans of thoughtful war films and those ,1,positive
 7517,could n't keep my attention ,0,negative
 7518,"really earned my indignant , preemptive departure ",0,negative
-7519,reverent ,1,positive
+7519,reverent ,1,negative
 7520,his sentimental journey of the heart ,1,positive
 7521,an astoundingly rich film ,1,positive
 7522,i hope the movie is widely seen and debated with appropriate ferocity and thoughtfulness . ,1,positive
@@ -7813,7 +7813,7 @@ idx,text,label,prediction
 7811,unique feel ,1,positive
 7812,unrewarding ,0,negative
 7813,of modern life ,1,neutral
-7814,minor film ,0,negative
+7814,minor film ,0,neutral
 7815,of chabrol 's most intense psychological mysteries ,1,negative
 7816,has little insight ,0,negative
 7817,with little logic or continuity ,0,negative
@@ -7903,7 +7903,7 @@ idx,text,label,prediction
 7901,oft-brilliant safe conduct ( `` laissez-passer '' ) ,1,positive
 7902,companion piece ,1,neutral
 7903,"wince in embarrassment and others , thanks to the actors , that are quite touching . ",1,positive
-7904,bidder ,1,negative
+7904,bidder ,1,neutral
 7905,most improbable ,0,negative
 7906,succeeds primarily with her typical blend of unsettling atmospherics ,1,positive
 7907,be thinking of 51 ways to leave this loser ,0,negative
@@ -8303,7 +8303,7 @@ idx,text,label,prediction
 8301,winning performances and some effecting moments ,1,positive
 8302,"a sexy , surprising romance ... idemoto and kim make a gorgeous pair ... their scenes brim with sexual possibility and emotional danger ",1,positive
 8303,the eyes of some children who remain curious about each other against all odds ,1,positive
-8304,) ,1,invalid
+8304,) ,1,"I'm ready to help. However, I don't see a sentence provided. Please provide the sentence you'd like me to analyze."
 8305,"is moody , oozing , chilling and heart-warming ",1,positive
 8306,boils down to a transparently hypocritical work that feels as though it 's trying to set the women 's liberation movement back 20 years . ' ,0,negative
 8307,"catch the pitch of his poetics , savor the pleasure of his sounds and images ",1,positive
@@ -8381,7 +8381,7 @@ idx,text,label,prediction
 8379,"familiar , fairly uneventful and boasting no real surprises -- but still quite tasty and inviting all the same ",1,positive
 8380,"frenetic , funny , even punny 6 ",1,positive
 8381,no reason to watch ,0,negative
-8382,fuel our best achievements and other times ,1,neutral
+8382,fuel our best achievements and other times ,1,positive
 8383,"more of a poetic than a strict reality , creating an intriguing species of artifice ",1,positive
 8384,crafty ,1,positive
 8385,somewhat short ,0,neutral
@@ -8521,7 +8521,7 @@ idx,text,label,prediction
 8519,held my interest precisely ,1,positive
 8520,entertained by ,1,positive
 8521,", nutty , consistently funny . ",1,positive
-8522,by the better film 's ability to make its subject interesting to those who are n't part of its supposed target audience ,1,negative
+8522,by the better film 's ability to make its subject interesting to those who are n't part of its supposed target audience ,1,positive
 8523,more slowly ,0,negative
 8524,", original ",1,neutral
 8525,too stupid ,0,negative
@@ -8557,7 +8557,7 @@ idx,text,label,prediction
 8555,being unique ,1,positive
 8556,"jumps around with little logic or continuity , presenting backstage bytes of information that never amount to a satisfying complete picture of this particular , anciently demanding métier . ",0,negative
 8557,with the kind of visual flair that shows what great cinema can really do ,1,positive
-8558,works on some levels and ,1,negative
+8558,works on some levels and ,1,neutral
 8559,"dawns , real dawns , comic relief ",1,positive
 8560,refracting ,0,neutral
 8561,"a strong script , powerful direction ",1,positive
@@ -8635,7 +8635,7 @@ idx,text,label,prediction
 8633,"is inspiring , ironic , and revelatory of just ",1,positive
 8634,what he could make with a decent budget ,1,neutral
 8635,"a complete shambles of a movie so sloppy , so uneven , so damn unpleasant that i ca n't believe any viewer , young or old , would have a good time here . ",0,negative
-8636,the most surprising thing ,1,negative
+8636,the most surprising thing ,1,neutral
 8637,i like my christmas movies with more elves and snow and less pimps and ho 's . ,0,negative
 8638,a dumb comedy ,0,negative
 8639,"filmmakers dana janklowicz-mann and amir mann area headed east , far east , in retelling a historically significant , and personal , episode detailing how one international city welcomed tens of thousands of german jewish refugees while the world 's democracie ",1,positive
@@ -8807,7 +8807,7 @@ idx,text,label,prediction
 8805,lost its edge ,0,negative
 8806,a poignant and gently humorous ,1,positive
 8807,completely honest ,1,positive
-8808,good enough to be the purr ,1,negative
+8808,good enough to be the purr ,1,positive
 8809,then by all means check it out . ,1,positive
 8810,"on petter næss ' delicate , clever direction ... and a wonderful , imaginative script ",1,positive
 8811,made by someone who obviously knows nothing about crime ,0,negative
@@ -8844,7 +8844,7 @@ idx,text,label,prediction
 8842,to be a compelling ,1,positive
 8843,i 'm likely to see all year ,1,negative
 8844,fueled by the light comedic work of zhao benshan and the delicate ways of dong jie ,1,positive
-8845,turn out okay ,1,negative
+8845,turn out okay ,1,neutral
 8846,impeccable comic skill ,1,positive
 8847,of what was created for the non-fan to figure out what makes wilco a big deal ,1,negative
 8848,redundant and ,0,negative
@@ -9116,7 +9116,7 @@ idx,text,label,prediction
 9114,"it 's crafty , energetic and smart -- ",1,positive
 9115,", not-nearly - as-nasty - as-it ",0,negative
 9116,so bad it does n't improve upon the experience of staring at a blank screen ,0,negative
-9117,"the way home is an ode to unconditional love and compassion garnered from years of seeing it all , a condition only the old are privy to , and ... often misconstrued as weakness . ",1,negative
+9117,"the way home is an ode to unconditional love and compassion garnered from years of seeing it all , a condition only the old are privy to , and ... often misconstrued as weakness . ",1,positive
 9118,"the hours , a delicately crafted film , is an impressive achievement in spite of a river of sadness that pours into every frame . ",1,positive
 9119,are uncomfortably strained ,0,negative
 9120,shoplifts shamelessly from farewell-to-innocence movies like the wanderers and a bronx tale without cribbing any of their intelligence ,0,negative
@@ -9399,7 +9399,7 @@ idx,text,label,prediction
 9397,this listless feature will win him any new viewers ,0,negative
 9398,the light of the exit sign ,0,neutral
 9399,like an infomercial for ram dass 's latest book ,0,positive
-9400,a lot more ,1,negative
+9400,a lot more ,1,neutral
 9401,'s quaid who anchors the film with his effortless performance and that trademark grin of his -- so perfect for a ballplayer ,1,positive
 9402,'s a fun adventure movie for kids ( of all ages ) that like adventure ,1,positive
 9403,seen this exact same movie a hundred times ,0,negative
@@ -9431,7 +9431,7 @@ idx,text,label,prediction
 9429,is interesting ,1,positive
 9430,are so crucial to the genre and another first-rate performance ,1,positive
 9431,"it 's no surprise that as a director washington demands and receives excellent performances , from himself and from newcomer derek luke . ",1,positive
-9432,"ah , yes , that would be me : fighting off the urge to doze . ",0,negative
+9432,"ah , yes , that would be me : fighting off the urge to doze . ",0,positive
 9433,"ice age wo n't drop your jaw , ",0,negative
 9434,sharply comic and ,1,positive
 9435,wonderfully speculative ,1,positive
@@ -9452,7 +9452,7 @@ idx,text,label,prediction
 9450,broadcast ,1,neutral
 9451,where their heads were ,0,negative
 9452,and withholds delivery ,0,negative
-9453,knockabout ,1,negative
+9453,knockabout ,1,neutral
 9454,journey into a philosophical void . ,0,negative
 9455,margarita feels like a hazy high that takes too long to shake . ,0,negative
 9456,coming-of-age portrait ,1,neutral
@@ -9534,7 +9534,7 @@ idx,text,label,prediction
 9532,heavy on the atmospheric weirdness ,0,negative
 9533,", also like its hero , it remains brightly optimistic , coming through in the end ",1,positive
 9534,"overstylized , puréed mélange ",0,negative
-9535,has a bigger-name cast ,1,negative
+9535,has a bigger-name cast ,1,neutral
 9536,odds with the rest of the film ,0,negative
 9537,too amateurish ,0,negative
 9538,was utterly charming ,1,positive
@@ -9679,7 +9679,7 @@ idx,text,label,prediction
 9677,grade-school audience ,0,neutral
 9678,do n't see often enough these days ,1,negative
 9679,"can enjoy much of jonah simply , and gratefully , as laugh-out-loud lunacy with a pronounced monty pythonesque flavor ",1,positive
-9680,", godard can still be smarter than any 50 other filmmakers still at work . ",1,negative
+9680,", godard can still be smarter than any 50 other filmmakers still at work . ",1,positive
 9681,is better than any summer blockbuster ,1,positive
 9682,"none of the crackle of `` fatal attraction '' , `` 9 1/2 weeks '' , or even `` indecent proposal '' , ",0,negative
 9683,"a moldy-oldie , not-nearly - as-nasty - as-it ",0,negative
@@ -9846,7 +9846,7 @@ idx,text,label,prediction
 9844,'s because there 's no discernible feeling beneath the chest hair ,0,negative
 9845,peace is possible ,1,positive
 9846,inquisitive enough ,1,positive
-9847,"seen 10,000 times ",1,negative
+9847,"seen 10,000 times ",1,neutral
 9848,the muck ,0,negative
 9849,"one of the funniest motion pictures of the year , but ... also one of the most curiously depressing ",1,negative
 9850,may prove to be ( tsai 's ) masterpiece . ,1,positive
@@ -9884,7 +9884,7 @@ idx,text,label,prediction
 9882,old-fashioned storytelling ,1,neutral
 9883,"this orange has some juice , but it 's far from fresh-squeezed . ",0,negative
 9884,"repellent to fully endear itself to american art house audiences , but it is notable for its stylistic austerity and forcefulness . ",1,negative
-9885,it uses some of the figures from the real-life story to portray themselves in the film . ,1,negative
+9885,it uses some of the figures from the real-life story to portray themselves in the film . ,1,positive
 9886,"seen through the right eyes , with the right actors and with the kind of visual flair that shows what great cinema can really do ",1,positive
 9887,the adventures of pluto nash is a whole lot of nada . ,0,negative
 9888,an encouraging new direction for la salle ,1,positive
@@ -9903,7 +9903,7 @@ idx,text,label,prediction
 9901,languishing on a shelf somewhere ,0,negative
 9902,no fantasy story ,1,negative
 9903,"a terrific b movie -- in fact , the best in recent memory ",1,positive
-9904,the artificial structure ,0,negative
+9904,the artificial structure ,0,neutral
 9905,"reminiscent of alfred hitchcock 's thrillers , most of the scary parts in ` signs ' ",1,negative
 9906,vulgar ,0,negative
 9907,never clearly defines his characters or ,0,negative
