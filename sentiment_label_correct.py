@@ -7,7 +7,7 @@ from typing import List, Dict, Set
 from openai import OpenAI
 
 # ===== OpenAI 配置 =====
-OPENAI_API_KEY = "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"  # ← 填你的 Key
+OPENAI_API_KEY = ""  # ← 填你的 Key
 MODEL = "gpt-4o-mini"
 client = OpenAI(api_key=OPENAI_API_KEY)
 
