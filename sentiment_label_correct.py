@@ -2,83 +2,109 @@
 import os
 import re
 import time
+from pathlib import Path
+from typing import Dict, List, Set
+
 import pandas as pd
-from typing import List, Dict, Set
 from openai import OpenAI
 
+from pipeline_utils import ordered_model_entries, resolve_dataset_base
+
 # ===== OpenAI 配置 =====
-OPENAI_API_KEY = ""  # ← 填你的 Key
+ENV_PATH = Path(__file__).with_name(".env")
+
+def load_openai_api_key(env_path: Path) -> str:
+    """Load API key from .env file first, fallback to OPENAI_API_KEY env var."""
+    if env_path.exists():
+        for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#"):
+                continue
+            if line.startswith("export "):
+                line = line[len("export "):].strip()
+            key, sep, value = line.partition("=")
+            if key.strip() != "OPENAI_API_KEY" or not sep:
+                continue
+            clean_value = value.split("#", 1)[0].strip().strip("\"'")
+            if clean_value:
+                return clean_value
+
+    env_value = os.environ.get("OPENAI_API_KEY", "").strip()
+    if env_value:
+        return env_value
+
+    raise RuntimeError(
+        f"Missing OpenAI API Key. Set OPENAI_API_KEY in {env_path} or export the OPENAI_API_KEY env var."
+    )
+
+OPENAI_API_KEY = load_openai_api_key(ENV_PATH)
+
 MODEL = "gpt-4o-mini"
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-# ===== 数据集配置（与你之前一致）=====
+# ===== 数据集配置 =====
 DATASETS: List[Dict] = [
     {"name": "imdb", "file": "imdb_sentiment_results.csv",
      "allowed": ["positive", "negative"],
-     "base_path": os.path.join("results", "sentiment", "imdb")},
+     "base_path": "results/sentiment/imdb"},
     {"name": "mental", "file": "mental_sentiment_results.csv",
      "allowed": ["normal", "depression"],
-     "base_path": os.path.join("results", "sentiment", "mental")},
+     "base_path": "results/sentiment/mental"},
     {"name": "news", "file": "news_sentiment_results.csv",
      "allowed": ["bearish", "bullish", "neutral"],
-     "base_path": os.path.join("results", "sentiment", "news")},
+     "base_path": "results/sentiment/news"},
     {"name": "fiqasa", "file": "fiqasa_sentiment_results.csv",
      "allowed": ["negative", "positive", "neutral"],
-     "base_path": os.path.join("results", "sentiment", "fiqasa")},
+     "base_path": "results/sentiment/fiqasa"},
     {"name": "imdb_sklearn", "file": "imdb_sklearn_sentiment_results.csv",
      "allowed": ["positive", "negative"],
-     "base_path": os.path.join("results", "sentiment", "imdb_sklearn")},
+     "base_path": "results/sentiment/imdb_sklearn"},
     {"name": "sst2", "file": "sst2_sentiment_results.csv",
      "allowed": ["positive", "negative"],
-     "base_path": os.path.join("results", "sentiment", "sst2")},
+     "base_path": "results/sentiment/sst2"},
 ]
 
-# 仅去掉“末尾”句号（英文. / 中文。 / 省略号…），忽略大小写；不移除其它标点
-TAILING_DOTS_PATTERN = re.compile(r'[\.。…]+$')
+TAILING_DOTS_PATTERN = re.compile(r"[\.。…]+$")
 
-def norm_token(s: str) -> str:
-    s = str(s).strip()
-    s = TAILING_DOTS_PATTERN.sub("", s)
-    return s.lower()
+
+def norm_token(value: str) -> str:
+    value = str(value).strip()
+    value = TAILING_DOTS_PATTERN.sub("", value)
+    return value.lower()
+
 
 def build_choice_set(allowed: List[str]) -> Set[str]:
-    # 允许集合 = allowed ∪ {mixed, neutral, invalid}
     base = {norm_token(x) for x in allowed}
     base.update({"mixed", "neutral", "invalid"})
     return base
+
 
 def build_context_prompt(dataset_name: str) -> str:
     if dataset_name == "imdb":
         return ("You are a movie review sentiment classifier. "
                 "Valid labels: positive, negative. Also allow: mixed, neutral, invalid.")
-    elif dataset_name == "sst2":
+    if dataset_name == "sst2":
         return ("You are a sentence-level sentiment classifier. "
                 "Valid labels: positive, negative. Also allow: mixed, neutral, invalid.")
-    elif dataset_name == "imdb_sklearn":
+    if dataset_name == "imdb_sklearn":
         return ("You classify user-written movie reviews. "
                 "Valid labels: positive, negative. Also allow: mixed, neutral, invalid.")
-    elif dataset_name == "fiqasa":
+    if dataset_name == "fiqasa":
         return ("You are a financial sentiment classifier. "
                 "Valid labels: positive, neutral, negative. Also allow: mixed, neutral, invalid.")
-    elif dataset_name == "news":
+    if dataset_name == "news":
         return ("You analyze financial news headlines. "
                 "Valid labels: bearish, bullish, neutral. Also allow: mixed, neutral, invalid.")
-    elif dataset_name == "mental":
-        # ★ 特别注明：出现 suicidal / suicide / lifeline 则必为 depression
+    if dataset_name == "mental":
         return ("You classify short social posts about mental health. "
                 "Valid labels: normal, depression. Also allow: mixed, neutral, invalid. "
                 "HARD RULE: If the text contains 'suicidal', 'suicide', or 'lifeline', "
                 "classify it as 'depression'.")
-    else:
-        return ("Classify the text into one of the valid labels of the dataset; "
-                "Also allow: mixed, neutral, invalid.")
+    return ("Classify the text into one of the valid labels of the dataset; "
+            "Also allow: mixed, neutral, invalid.")
 
 
 def classify_with_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> str:
-    """
-    让 GPT 在 choices 中挑一个：allowed ∪ {mixed, neutral, invalid}
-    强约束返回：只返回 choices 里的一个词。
-    """
     context = build_context_prompt(dataset_name)
     choices_list = sorted(list(choices))
     choices_str = ", ".join(choices_list)
@@ -107,45 +133,56 @@ def classify_with_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> s
         )
         label = norm_token(resp.choices[0].message.content)
         return label if label in choices else "invalid"
-    except Exception as e:
-        print(f"❌ GPT error: {e}")
-        return "invalid"
+    except Exception as exc:  # pragma: no cover
+        raise RuntimeError(f"GPT 调用失败，请检查网络或 API Key：{exc}")
+
 
 def direct_or_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> str:
-    """
-    先做直接匹配（大小写不敏感、仅去尾句号）；失败才走 GPT。
-    """
     token = norm_token(pred_text)
     if token in choices:
         return token
     return classify_with_gpt(dataset_name, pred_text, choices)
 
-def process_all():
-    model_dirs = ["S性格模型", "N性格模型", "原始基座模型"]
+
+def process_all(results_root: Path | str = "results", model_dirs: List[str] | None = None):
+    results_root = Path(results_root)
+    entries = ordered_model_entries(results_root)
+    if not entries:
+        raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
+    if model_dirs is None:
+        model_dirs = [entry["display_name"] for entry in entries]
 
     for ds in DATASETS:
         ds_name = ds["name"]
         ds_file = ds["file"]
         allowed = ds["allowed"]
         choices = build_choice_set(allowed)
+        base_dir = resolve_dataset_base(results_root, ds["base_path"])
 
         print(f"\n============================")
         print(f"📚 Dataset: {ds_name}")
         print(f"📝 Allowed: {allowed} | Extra allowed: ['mixed','neutral','invalid']")
 
         for model_dir in model_dirs:
-            folder = os.path.join(ds["base_path"], model_dir)
-            input_path = os.path.join(folder, ds_file.replace(".csv", ".invalid.csv"))
-            output_path = os.path.join(folder, ds_file.replace(".csv", ".invalid.labeled.csv"))
+            folder = base_dir / model_dir
+            invalid_path = folder / ds_file.replace(".csv", ".invalid.csv")
+            labeled_path = folder / ds_file.replace(".csv", ".invalid.labeled.csv")
+            relabeled_path = folder / ds_file.replace(".csv", ".relabeled.csv")
 
-            if not os.path.exists(input_path):
-                print(f"  ⚠️ Missing: {input_path}")
+            if relabeled_path.exists():
+                print(f"  ⏭️ 已有 relabeled 文件，跳过：{relabeled_path}")
+                continue
+            if labeled_path.exists():
+                print(f"  ⏭️ 已有 labeled 文件，跳过：{labeled_path}")
+                continue
+            if not invalid_path.exists():
+                print(f"  ⚠️ Missing invalid file：{invalid_path}")
                 continue
 
             print(f"  📄 Processing invalids -> {model_dir}")
-            df = pd.read_csv(input_path)
+            df = pd.read_csv(invalid_path)
             if "prediction" not in df.columns:
-                print(f"  ❌ 'prediction' column not found in {input_path}")
+                print(f"  ⚠️ 'prediction' column not found in {invalid_path}")
                 continue
 
             labels: List[str] = []
@@ -155,11 +192,12 @@ def process_all():
                 labels.append(label)
                 head = pred.replace("\n", " ")[:80]
                 print(f"   [{i+1:>5}] {head} -> {label}")
-                time.sleep(0.25)  # 轻微限速，避免触发限流
+                time.sleep(0.25)
 
             df["normalized_label"] = labels
-            df.to_csv(output_path, index=False, encoding="utf-8-sig")
-            print(f"  ✅ Saved: {output_path}")
+            df.to_csv(labeled_path, index=False, encoding="utf-8-sig")
+            print(f"  ✅ Saved: {labeled_path}")
+
 
 if __name__ == "__main__":
     process_all()

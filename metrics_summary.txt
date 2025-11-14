@@ -1,36 +1,36 @@
 ======== fiqasa_sentiment ========
-model                    labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
- 基座模型 negative|neutral|positive     1173      0.64             0.56          0.59      0.54                0.76             0.64         0.65
-  S模型 negative|neutral|positive     1173      0.60             0.56          0.54      0.50                0.74             0.60         0.59
-  N模型 negative|neutral|positive     1173      0.55             0.55          0.57      0.48                0.77             0.55         0.57
+model_code model_display                    labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
+      base        原始基座模型 negative|neutral|positive     1173      0.64             0.56          0.59      0.54                0.76             0.64         0.65
+         s         S性格模型 negative|neutral|positive     1173      0.60             0.56          0.54      0.50                0.74             0.60         0.59
+         n         N性格模型 negative|neutral|positive     1173      0.55             0.55          0.57      0.48                0.77             0.55         0.57
 
 ======== imdb_sentiment ========
-model            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
- 基座模型 negative|positive    10000      0.93             0.93          0.93      0.93                0.93             0.93         0.93
-  S模型 negative|positive    10000      0.91             0.92          0.91      0.91                0.92             0.91         0.91
-  N模型 negative|positive    10000      0.92             0.94          0.92      0.93                0.94             0.92         0.93
+model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
+      base        原始基座模型 negative|positive    10000      0.93             0.93          0.93      0.93                0.93             0.93         0.93
+         s         S性格模型 negative|positive    10000      0.91             0.92          0.91      0.91                0.92             0.91         0.91
+         n         N性格模型 negative|positive    10000      0.92             0.94          0.92      0.93                0.94             0.92         0.93
 
 ======== imdb_sklearn ========
-model            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
- 基座模型 negative|positive    10000      0.93             0.94          0.93      0.93                0.94             0.93         0.93
-  S模型 negative|positive    10000      0.91             0.92          0.91      0.91                0.92             0.91         0.91
-  N模型 negative|positive    10000      0.93             0.93          0.93      0.93                0.93             0.93         0.93
+model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
+      base        原始基座模型 negative|positive    10000      0.93             0.94          0.93      0.93                0.94             0.93         0.93
+         s         S性格模型 negative|positive    10000      0.91             0.92          0.91      0.91                0.92             0.91         0.91
+         n         N性格模型 negative|positive    10000      0.93             0.93          0.93      0.93                0.93             0.93         0.93
 
 ======== mental_sentiment ========
-model            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
- 基座模型 depression|normal    31747      0.61             0.74          0.62      0.56                0.75             0.61         0.55
-  S模型 depression|normal    31747      0.62             0.75          0.63      0.58                0.76             0.62         0.58
-  N模型 depression|normal    31747      0.57             0.72          0.58      0.49                0.73             0.57         0.48
+model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
+      base        原始基座模型 depression|normal    31747      0.61             0.74          0.62      0.56                0.75             0.61         0.55
+         s         S性格模型 depression|normal    31747      0.62             0.75          0.63      0.58                0.76             0.62         0.58
+         n         N性格模型 depression|normal    31747      0.57             0.72          0.58      0.49                0.73             0.57         0.48
 
 ======== news_sentiment ========
-model                  labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
- 基座模型 bearish|bullish|neutral    11931      0.58             0.59          0.72      0.58                0.73             0.58         0.57
-  S模型 bearish|bullish|neutral    11931      0.61             0.61          0.74      0.61                0.75             0.61         0.62
-  N模型 bearish|bullish|neutral    11931      0.49             0.58          0.66      0.52                0.71             0.49         0.47
+model_code model_display                  labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
+      base        原始基座模型 bearish|bullish|neutral    11931      0.58             0.59          0.72      0.58                0.73             0.58         0.57
+         s         S性格模型 bearish|bullish|neutral    11931      0.61             0.61          0.74      0.61                0.75             0.61         0.62
+         n         N性格模型 bearish|bullish|neutral    11931      0.49             0.58          0.66      0.52                0.71             0.49         0.47
 
 ======== sst2 ========
-model            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
- 基座模型 negative|positive    10000      0.82             0.88          0.83      0.84                0.89             0.82         0.83
-  S模型 negative|positive    10000      0.76             0.82          0.78      0.75                0.84             0.76         0.75
-  N模型 negative|positive    10000      0.78             0.90          0.79      0.83                0.91             0.78         0.83
+model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
+      base        原始基座模型 negative|positive    10000      0.82             0.88          0.83      0.84                0.89             0.82         0.83
+         s         S性格模型 negative|positive    10000      0.76             0.82          0.78      0.75                0.84             0.76         0.75
+         n         N性格模型 negative|positive    10000      0.78             0.90          0.79      0.83                0.91             0.78         0.83
 

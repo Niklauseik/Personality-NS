@@ -1,23 +1,23 @@
 
-📌 Model: N性格模型
+📌 Model: 原始基座模型
 📊 Dataset: ARC (easy)
-✅ Accuracy: 0.6525
-✅ Precision: 0.6595
-✅ Recall: 0.6519
-✅ F1 Score: 0.6547
+✅ Accuracy: 0.6632
+✅ Precision: 0.7046
+✅ Recall: 0.6633
+✅ F1 Score: 0.6718
 ----------------------------------------
 
-📌 Model: N性格模型
+📌 Model: 原始基座模型
 📊 Dataset: BoolQ
-✅ Accuracy: 0.748
-✅ Precision: 0.7561
-✅ Recall: 0.7698
-✅ F1 Score: 0.7461
+✅ Accuracy: 0.7305
+✅ Precision: 0.7582
+✅ Recall: 0.7649
+✅ F1 Score: 0.7302
 ----------------------------------------
 
-📌 Model: N性格模型
+📌 Model: 原始基座模型
 📊 Dataset: GSM8K
-✅ Accuracy: 0.0686
+✅ Accuracy: 0.0831
 ✅ Precision: nan
 ✅ Recall: nan
 ✅ F1 Score: nan
@@ -47,25 +47,25 @@
 ✅ F1 Score: nan
 ----------------------------------------
 
-📌 Model: 原始基座模型
+📌 Model: N性格模型
 📊 Dataset: ARC (easy)
-✅ Accuracy: 0.6632
-✅ Precision: 0.7046
-✅ Recall: 0.6633
-✅ F1 Score: 0.6718
+✅ Accuracy: 0.6525
+✅ Precision: 0.6595
+✅ Recall: 0.6519
+✅ F1 Score: 0.6547
 ----------------------------------------
 
-📌 Model: 原始基座模型
+📌 Model: N性格模型
 📊 Dataset: BoolQ
-✅ Accuracy: 0.7305
-✅ Precision: 0.7582
-✅ Recall: 0.7649
-✅ F1 Score: 0.7302
+✅ Accuracy: 0.748
+✅ Precision: 0.7561
+✅ Recall: 0.7698
+✅ F1 Score: 0.7461
 ----------------------------------------
 
-📌 Model: 原始基座模型
+📌 Model: N性格模型
 📊 Dataset: GSM8K
-✅ Accuracy: 0.0831
+✅ Accuracy: 0.0686
 ✅ Precision: nan
 ✅ Recall: nan
 ✅ F1 Score: nan

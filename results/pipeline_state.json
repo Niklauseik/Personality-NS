@@ -1,0 +1,30 @@
+﻿{
+  "run_id": "manual-stage1",
+  "dimension": "information",
+  "timestamp": "2025-11-12T10:00:00Z",
+  "results_root": "results",
+  "output_root": "dpo_outputs",
+  "base_model_path": "./llama-3B-Instruct",
+  "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "./llama-3B-Instruct"
+    },
+    {
+      "role": "trained",
+      "code": "s",
+      "subtype": "sensing",
+      "display_name": "S性格模型",
+      "checkpoint_path": "dpo_outputs/model_s_3B"
+    },
+    {
+      "role": "trained",
+      "code": "n",
+      "subtype": "intuition",
+      "display_name": "N性格模型",
+      "checkpoint_path": "dpo_outputs/model_n_3B"
+    }
+  ]
+}

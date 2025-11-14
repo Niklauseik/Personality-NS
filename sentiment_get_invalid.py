@@ -1,101 +1,105 @@
-import os
+# -*- coding: utf-8 -*-
 import re
-import pandas as pd
-from collections import Counter, defaultdict
+from pathlib import Path
+from typing import Dict, List, Optional, Set
 
-# ========= 数据集配置（保持你的原样） =========
-datasets = [
-    {"name":"imdb_sentiment","file":"imdb_sentiment_results.csv",
-     "label_map":{"0":"negative","1":"positive"},
-     "allowed_labels":None,"label_col":"label","pred_col":"prediction",
-     "base_path":"results/sentiment/imdb"},
-    {"name":"mental_sentiment","file":"mental_sentiment_results.csv",
-     "label_map":None,"allowed_labels":["normal","depression"],
-     "label_col":"label","pred_col":"prediction",
-     "base_path":"results/sentiment/mental"},
-    {"name":"news_sentiment","file":"news_sentiment_results.csv",
-     "label_map":{"0":"bearish","1":"bullish","2":"neutral"},
-     "allowed_labels":None,"label_col":"label","pred_col":"prediction",
-     "base_path":"results/sentiment/news"},
-    {"name":"fiqasa_sentiment","file":"fiqasa_fiqasa_sentiment_results.csv".replace("_fiqasa",""),
-     "label_map":None,"allowed_labels":["negative","positive","neutral"],
-     "label_col":"answer","pred_col":"prediction",
-     "base_path":"results/sentiment/fiqasa"},
-    {"name":"imdb_sklearn","file":"imdb_sklearn_sentiment_results.csv",
-     "label_map":{"0":"negative","1":"positive"},
-     "allowed_labels":None,"label_col":"label","pred_col":"prediction",
-     "base_path":"results/sentiment/imdb_sklearn"},
-    {"name":"sst2","file":"sst2_sentiment_results.csv",
-     "label_map":{"0":"negative","1":"positive"},
-     "allowed_labels":None,"label_col":"label","pred_col":"prediction",
-     "base_path":"results/sentiment/sst2"},
+import pandas as pd
+
+from pipeline_utils import ordered_model_entries, resolve_dataset_base
+
+DATASETS = [
+    {"name": "imdb_sentiment", "file": "imdb_sentiment_results.csv",
+     "label_map": {"0": "negative", "1": "positive"},
+     "allowed_labels": None, "label_col": "label", "pred_col": "prediction",
+     "base_path": "results/sentiment/imdb"},
+    {"name": "mental_sentiment", "file": "mental_sentiment_results.csv",
+     "label_map": None, "allowed_labels": ["normal", "depression"],
+     "label_col": "label", "pred_col": "prediction",
+     "base_path": "results/sentiment/mental"},
+    {"name": "news_sentiment", "file": "news_sentiment_results.csv",
+     "label_map": {"0": "bearish", "1": "bullish", "2": "neutral"},
+     "allowed_labels": None, "label_col": "label", "pred_col": "prediction",
+     "base_path": "results/sentiment/news"},
+    {"name": "fiqasa_sentiment", "file": "fiqasa_sentiment_results.csv",
+     "label_map": None, "allowed_labels": ["negative", "positive", "neutral"],
+     "label_col": "answer", "pred_col": "prediction",
+     "base_path": "results/sentiment/fiqasa"},
+    {"name": "imdb_sklearn", "file": "imdb_sklearn_sentiment_results.csv",
+     "label_map": {"0": "negative", "1": "positive"},
+     "allowed_labels": None, "label_col": "label", "pred_col": "prediction",
+     "base_path": "results/sentiment/imdb_sklearn"},
+    {"name": "sst2", "file": "sst2_sentiment_results.csv",
+     "label_map": {"0": "negative", "1": "positive"},
+     "allowed_labels": None, "label_col": "label", "pred_col": "prediction",
+     "base_path": "results/sentiment/sst2"},
 ]
 
-models = {"base":"原始基座模型","n":"N性格模型","s":"S性格模型"}
+TAILING_DOTS_PATTERN = re.compile(r"[\.。…]+$")
 
-# ====== 仅忽略大小写 + 尾部句号（英文. / 中文。 / 省略号…），不移除其它标点 ======
-TAILING_DOTS_PATTERN = re.compile(r'[\.。…]+$')  # 只清理尾部句号
 
-def norm_label(s: str) -> str:
-    if not isinstance(s, str):
+def norm_label(value: str) -> str:
+    if not isinstance(value, str):
         return ""
-    s = s.strip()
-    s = TAILING_DOTS_PATTERN.sub("", s)  # 仅去掉“末尾”的句号
-    return s.lower()
+    cleaned = value.strip()
+    cleaned = TAILING_DOTS_PATTERN.sub("", cleaned)
+    return cleaned.lower()
 
-dist_all = defaultdict(lambda: defaultdict(lambda: {"true":0, "base":0, "f":0, "t":0}))
 
-for ds in datasets:
-    print(f"🔍 处理数据集：{ds['name']}")
-    # 基础允许集合（标准化后）
-    allowed = set() if ds["allowed_labels"] is None else {norm_label(x) for x in ds["allowed_labels"]}
-    true_done = False
+def _derive_allowed_labels(df: pd.DataFrame, cfg: Dict, base_allowed: Optional[Set[str]]) -> Set[str]:
+    if base_allowed:
+        return base_allowed
+    if cfg["label_map"] is not None:
+        return {norm_label(v) for v in cfg["label_map"].values()}
+    return set(df[cfg["label_col"]].map(norm_label).unique())
 
-    for mkey, mfolder in models.items():
-        path = os.path.join(ds["base_path"], mfolder, ds["file"])
-        if not os.path.exists(path):
-            print(f"  ⚠️ 缺少文件：{path}")
-            continue
 
-        df = pd.read_csv(path, dtype=str).fillna("")
-        original_df = df.copy()
+def collect_invalid_predictions(results_root: Path | str = "results") -> None:
+    results_root = Path(results_root)
+    entries = ordered_model_entries(results_root)
+    if not entries:
+        raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
 
-        # 真实标签映射（如有）
-        if ds["label_map"] is not None:
-            df[ds["label_col"]] = df[ds["label_col"]].astype(str).map(ds["label_map"])
+    model_folders = [entry["display_name"] for entry in entries]
 
-        # 仅做：大小写忽略 + 去除末尾句号
-        df[ds["label_col"]] = df[ds["label_col"]].map(norm_label)
-        df["cleaned_pred"]  = df[ds["pred_col"]].map(norm_label)
+    for cfg in DATASETS:
+        print(f"🔍 处理数据集：{cfg['name']}")
+        allowed = set() if cfg["allowed_labels"] is None else {norm_label(x) for x in cfg["allowed_labels"]}
+        base_dir = resolve_dataset_base(results_root, cfg["base_path"])
 
-        # 若没提供 allowed，则用映射值或真实标签集合（标准化）
-        if not allowed:
-            if ds["label_map"] is not None:
-                allowed = {norm_label(v) for v in ds["label_map"].values()}
+        for model_folder in model_folders:
+            path = base_dir / model_folder / cfg["file"]
+            if not path.exists():
+                print(f"  ⚠️ 缺少文件：{path}")
+                continue
+
+            invalid_path = path.with_suffix(".invalid.csv")
+            labeled_path = path.with_suffix(".invalid.labeled.csv")
+            relabeled_path = path.with_suffix(".relabeled.csv")
+
+            if invalid_path.exists() or labeled_path.exists() or relabeled_path.exists():
+                print(f"  ⏭️ 已存在 invalid/labeled/relabeled 文件，跳过：{model_folder}")
+                continue
+
+            df = pd.read_csv(path, dtype=str).fillna("")
+            original_df = df.copy()
+
+            if cfg["label_map"] is not None:
+                df[cfg["label_col"]] = df[cfg["label_col"]].astype(str).map(cfg["label_map"])
+
+            df[cfg["label_col"]] = df[cfg["label_col"]].map(norm_label)
+            df["cleaned_pred"] = df[cfg["pred_col"]].map(norm_label)
+
+            allowed = _derive_allowed_labels(df, cfg, allowed if allowed else None)
+            extra_ok = {"mixed", "neutral"}
+            is_valid = df["cleaned_pred"].isin(allowed.union(extra_ok))
+
+            invalid_df = original_df[~is_valid].copy()
+            if not invalid_df.empty:
+                invalid_df.to_csv(invalid_path, index=False)
+                print(f"  🚫 非法 prediction 条目已保存至：{invalid_path}")
             else:
-                allowed = set(df[ds["label_col"]].unique())
+                print("  ✅ 所有 prediction 都是规范标签（含 mixed/neutral）")
 
-        # 统计真实分布
-        if not true_done:
-            for lbl, cnt in Counter(df[ds["label_col"]]).items():
-                if lbl in allowed:
-                    dist_all[ds["name"]][lbl]["true"] = cnt
-            true_done = True
 
-        # 预测分布 —— 严格等值匹配到 allowed 里（只做大小写&尾句号放宽）
-        for lbl in allowed:
-            match_count = (df["cleaned_pred"] == lbl).sum()
-            dist_all[ds["name"]][lbl][mkey] = match_count
-
-        # ===== 合规判断：除了 allowed，还额外允许 mixed / neutral（可带尾句号，已由 norm 处理）=====
-        extra_ok = {"mixed", "neutral"}
-        is_valid = df["cleaned_pred"].isin(allowed.union(extra_ok))
-
-        # 保存“完全不符合”的 prediction
-        invalid_df = original_df[~is_valid].copy()
-        invalid_path = os.path.join(ds["base_path"], mfolder, ds["file"].replace(".csv", ".invalid.csv"))
-        if not invalid_df.empty:
-            invalid_df.to_csv(invalid_path, index=False)
-            print(f"  🚫 非法 prediction 条目已保存至：{invalid_path}")
-        else:
-            print(f"  ✅ 所有 prediction 都是规范标签（含 mixed/neutral）")
+if __name__ == "__main__":
+    collect_invalid_predictions()

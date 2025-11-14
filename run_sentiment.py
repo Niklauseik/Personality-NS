@@ -1,29 +1,23 @@
-import os
-import torch
+# -*- coding: utf-8 -*-
+import argparse
+from pathlib import Path
+from typing import Dict, Sequence
+
 import pandas as pd
+import torch
 from tqdm import tqdm
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-
-# === 模型路径配置 ===
-model_configs = {
-    "原始基座模型": "./llama-3B-Instruct",
-    "S性格模型": "./dpo_outputs/model_s_3B",
-    "N性格模型": "./dpo_outputs/model_n_3B"
-}
-
-# === 数据集路径配置 ===
-dataset_configs = {
+DATASET_CONFIGS = {
     "imdb": "datasets/sentiment/imdb.csv",
     "sst2": "datasets/sentiment/sst2.csv",
     "imdb_sklearn": "datasets/sentiment/imdb_sklearn.csv",
     "fiqasa": "datasets/sentiment/fiqasa.csv",
     "news": "datasets/sentiment/news_sentiment.csv",
-    "mental": "datasets/sentiment/mental_health_sentiment.csv"
+    "mental": "datasets/sentiment/mental_health_sentiment.csv",
 }
 
-# === Prompt 构造器 ===
+
 def build_prompt(dataset_name: str, text: str) -> str:
     if dataset_name == "imdb":
         return (
@@ -32,33 +26,31 @@ def build_prompt(dataset_name: str, text: str) -> str:
             "Respond with only one word: positive or negative.\n\n"
             f"Review:\n{text}\n\nSentiment:"
         )
-    elif dataset_name == "sst2":
+    if dataset_name == "sst2":
         return (
             "You are a sentence-level sentiment analysis model. "
             "Classify the sentiment of the sentence as positive or negative. "
             "Respond with only one word: positive or negative.\n\n"
             f"Sentence:\n{text}\n\nSentiment:"
         )
-    elif dataset_name == "imdb_sklearn":
+    if dataset_name == "imdb_sklearn":
         return (
             "You are a sentiment classifier trained on user-written movie reviews. "
-            "Please judge whether the sentiment of the following review is positive or negative. "
-            "Only respond with: positive or negative.\n\n"
+            "Judge whether the review is positive or negative. "
+            "Respond with only one word: positive or negative.\n\n"
             f"Movie Review:\n{text}\n\nSentiment:"
         )
-    elif dataset_name == "fiqasa":
+    if dataset_name == "fiqasa":
         return (
             "You are a financial sentiment classifier. "
             "Respond with only one word: either 'positive', 'neutral', or 'negative'.\n\n"
             f"{text}"
         )
-    elif dataset_name == "news":
+    if dataset_name == "news":
         return (
             "You are analyzing financial news headlines. Each headline reflects a short financial opinion or fact. "
-            "Please classify the overall sentiment into one of the following categories:\n"
-            "- Bearish\n"
-            "- Bullish\n"
-            "- Neutral\n\n"
+            "Classify the sentiment into one of the following categories:\n"
+            "- Bearish\n- Bullish\n- Neutral\n\n"
             "Respond with one word only.\n\n"
             "Example:\n"
             "Text: $GM -- GM loses a bull\n"
@@ -66,18 +58,16 @@ def build_prompt(dataset_name: str, text: str) -> str:
             "Now classify the following:\n"
             f"{text}\nAnswer:"
         )
-    elif dataset_name == "mental":
+    if dataset_name == "mental":
         return (
-            f"You are given a short social media post that may reflect the mental state of the writer. "
-            f"Please classify it as either Normal or Depression based on the emotional content.\n\n"
-            f"Text: {text}\n\nRespond with a single word: Normal or Depression."
+            "You are given a short social media post that may reflect the mental state of the writer. "
+            "Classify it as either Normal or Depression. Respond with a single word.\n\n"
+            f"Text: {text}\n\nSentiment:"
         )
-    else:
-        raise ValueError(f"Unsupported dataset: {dataset_name}")
+    raise ValueError(f"Unsupported dataset: {dataset_name}")
 
 
-# === 推理函数 ===
-def local_generate(prompt, tokenizer, model):
+def _local_generate(prompt, tokenizer, model):
     messages = [{"role": "user", "content": prompt}]
     full_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     inputs = tokenizer(full_prompt, return_tensors="pt").to(model.device)
@@ -86,7 +76,7 @@ def local_generate(prompt, tokenizer, model):
         max_new_tokens=128,
         do_sample=False,
         eos_token_id=tokenizer.eos_token_id,
-        pad_token_id=tokenizer.pad_token_id
+        pad_token_id=tokenizer.pad_token_id,
     )
 
     with torch.no_grad():
@@ -94,36 +84,76 @@ def local_generate(prompt, tokenizer, model):
     generated = out[0][inputs["input_ids"].shape[-1]:]
     return tokenizer.decode(generated, skip_special_tokens=True).strip()
 
-# === 主流程 ===
-for dataset_name, dataset_path in dataset_configs.items():
-    df = pd.read_csv(dataset_path)  # text, label
-    print(f"\n📄 正在测试数据集：{dataset_name}，共 {len(df)} 条")
 
-    for model_name, model_path in model_configs.items():
-        print(f"\n🧪 正在测试模型：{model_name}")
+def run_sentiment(
+    model_specs: Sequence[Dict[str, str]],
+    dataset_configs: Dict[str, str] | None = None,
+    results_root: Path | str = "results",
+) -> None:
+    if not model_specs:
+        raise ValueError("model_specs is empty. Provide at least the base model.")
 
-        tokenizer = AutoTokenizer.from_pretrained(model_path)
-        tokenizer.pad_token = tokenizer.eos_token
-        tokenizer.pad_token_id = tokenizer.eos_token_id
-        model = AutoModelForCausalLM.from_pretrained(
-            model_path,
-            torch_dtype=torch.float16,
-            device_map="auto"
-        ).eval()
+    dataset_configs = dataset_configs or DATASET_CONFIGS
+    results_root = Path(results_root)
+    sentiment_root = results_root / "sentiment"
+    sentiment_root.mkdir(parents=True, exist_ok=True)
 
-        predictions = []
-        for _, row in tqdm(df.iterrows(), total=len(df), desc=f"{dataset_name} | {model_name}"):
-            try:
-                prompt = build_prompt(dataset_name, row["text"])
-                pred = local_generate(prompt, tokenizer, model)
-            except Exception as e:
-                pred = f"[Error] {e}"
-            predictions.append(pred)
+    for dataset_name, dataset_path in dataset_configs.items():
+        df = pd.read_csv(dataset_path)
+        print(f"\n📄 正在测试数据集：{dataset_name}，共 {len(df)} 条")
 
-        df_result = df.copy()
-        df_result["prediction"] = predictions
+        for spec in model_specs:
+            model_name = spec["display_name"]
+            model_path = spec["checkpoint_path"]
+            print(f"\n🧪 正在测试模型：{model_name}")
 
-        save_dir = os.path.join("results", "sentiment", dataset_name, model_name)
-        os.makedirs(save_dir, exist_ok=True)
-        df_result.to_csv(os.path.join(save_dir, f"{dataset_name}_sentiment_results.csv"), index=False, encoding="utf-8")
-        print(f"✅ 保存完成：{dataset_name} → {save_dir}")
+            tokenizer = AutoTokenizer.from_pretrained(model_path)
+            tokenizer.pad_token = tokenizer.eos_token
+            tokenizer.pad_token_id = tokenizer.eos_token_id
+            model = AutoModelForCausalLM.from_pretrained(
+                model_path,
+                torch_dtype=torch.float16,
+                device_map="auto",
+            ).eval()
+
+            predictions = []
+            for _, row in tqdm(df.iterrows(), total=len(df), desc=f"{dataset_name} | {model_name}"):
+                try:
+                    prompt = build_prompt(dataset_name, row["text"])
+                    pred = _local_generate(prompt, tokenizer, model)
+                except Exception as exc:  # pragma: no cover
+                    pred = f"[Error] {exc}"
+                predictions.append(pred)
+
+            df_result = df.copy()
+            df_result["prediction"] = predictions
+
+            save_dir = sentiment_root / dataset_name / model_name
+            save_dir.mkdir(parents=True, exist_ok=True)
+            out_path = save_dir / f"{dataset_name}_sentiment_results.csv"
+            df_result.to_csv(out_path, index=False, encoding="utf-8")
+            print(f"✅ 保存完成：{out_path}")
+
+            del model
+            if torch.cuda.is_available():  # pragma: no cover
+                torch.cuda.empty_cache()
+
+
+def _parse_args():
+    parser = argparse.ArgumentParser(description="Run sentiment inference for all active models.")
+    parser.add_argument("--results-root", default="results")
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    from pipeline_utils import ordered_model_entries
+
+    args = _parse_args()
+    entries = ordered_model_entries(Path(args.results_root))
+    if not entries:
+        raise SystemExit("No pipeline metadata found. Run stage-1 pipeline first.")
+    specs = [
+        {"display_name": entry["display_name"], "checkpoint_path": entry["checkpoint_path"]}
+        for entry in entries
+    ]
+    run_sentiment(specs, results_root=args.results_root)

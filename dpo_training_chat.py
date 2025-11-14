@@ -1,35 +1,22 @@
-# hf dpo suggested format
-import os
-import re
+# hf dpo suggested format (refactored for pipeline use)
+import argparse
 import json
-import torch
+import os
 from pathlib import Path
+from typing import List
+
+import torch
 from datasets import Dataset
-from transformers import (
-    AutoTokenizer,
-    AutoModelForCausalLM
-)
 from peft import LoraConfig, get_peft_model
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import DPOConfig, DPOTrainer
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 
 RAW_DIR = Path("datasets/training_raw")  # 直接用最原始 json
 
-def _parse_dim_and_pref_from_csv_path_like(data_path: str):
-    """
-    兼容你原来的 data_path（如: ./datasets/dpo_converted/information_sensing_dpo.csv）
-    仅用于解析出 dimension 和 preferred，不再读取 CSV。
-    """
-    name = Path(data_path).stem  # e.g., information_sensing_dpo
-    # 提取 dimension 与 subtype
-    m = re.match(r"^(energy|information|decision|execution)_(extraversion|introversion|intuition|sensing|thinking|feeling|judging|perceiving)", name)
-    if not m:
-        raise ValueError(f"无法从 data_path 推断维度与子类: {data_path}")
-    dimension, preferred = m.group(1), m.group(2)
-    return dimension, preferred
 
-def _load_raw(dimension: str, subtype: str):
+def _load_raw(dimension: str, subtype: str) -> List[dict]:
     fp = RAW_DIR / f"en_{dimension}_{subtype}.json"
     if not fp.exists():
         raise FileNotFoundError(f"未找到原始数据文件: {fp}")
@@ -39,12 +26,14 @@ def _load_raw(dimension: str, subtype: str):
         raise ValueError(f"原始数据需为列表: {fp}")
     return data
 
+
 def _make_user_content(instruction: str, in_ctx: str) -> str:
     instruction = (instruction or "").strip()
     in_ctx = (in_ctx or "").strip()
     if in_ctx:
         return f"{instruction}\n\n[Additional Context]\n{in_ctx}"
     return instruction
+
 
 def _opposite_subtype(dimension: str, subtype: str) -> str:
     pairs = {
@@ -56,12 +45,15 @@ def _opposite_subtype(dimension: str, subtype: str) -> str:
     a, b = pairs[dimension]
     return b if subtype == a else a
 
-def _build_dpo_dataset_from_raw(tokenizer, dimension: str, preferred: str, take_n: int = 10000):
+
+def _build_dpo_dataset_from_raw(
+    tokenizer,
+    dimension: str,
+    preferred: str,
+    take_n: int = 10000,
+) -> Dataset:
     """
-    从最原始 json 构建 DPO 三列: prompt / chosen / rejected
-    - prompt：对 user 部分套 apply_chat_template(add_generation_prompt=True)
-    - chosen：preferred 侧的输出
-    - rejected：对侧输出
+    从原始 json 构建 DPO 三列: prompt / chosen / rejected
     """
     other = _opposite_subtype(dimension, preferred)
     data_pref = _load_raw(dimension, preferred)
@@ -73,8 +65,8 @@ def _build_dpo_dataset_from_raw(tokenizer, dimension: str, preferred: str, take_
     for i in range(n):
         p = data_pref[i]
         q = data_other[i]
-        inst_p, inp_p, out_p = p.get("instruction",""), p.get("input",""), p.get("output","")
-        out_q = q.get("output","")
+        inst_p, inp_p, out_p = p.get("instruction", ""), p.get("input", ""), p.get("output", "")
+        out_q = q.get("output", "")
 
         if not inst_p or not out_p or not out_q:
             continue
@@ -85,63 +77,73 @@ def _build_dpo_dataset_from_raw(tokenizer, dimension: str, preferred: str, take_
             messages, add_generation_prompt=True, tokenize=False
         )
 
-        samples.append({
-            "prompt": prompt_text,
-            "chosen": (out_p or "").strip(),
-            "rejected": (out_q or "").strip(),
-        })
+        samples.append(
+            {
+                "prompt": prompt_text,
+                "chosen": (out_p or "").strip(),
+                "rejected": (out_q or "").strip(),
+            }
+        )
 
     if not samples:
         raise RuntimeError("构建后的样本为空，请检查原始数据内容。")
 
     return Dataset.from_list(samples)
 
-def train_dpo_model(data_path: str, save_path: str):
-    model_path = "./llama-3B-Instruct"
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    # === Load tokenizer ===
-    tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=True)
+def train_personality_model(
+    dimension: str,
+    preferred_subtype: str,
+    base_model_path: str,
+    save_path: str,
+    take_n: int = 10000,
+):
+    """
+    Train a DPO model for a specific dimension preference and save it to disk.
+    """
+    preferred_subtype = preferred_subtype.strip().lower()
+    dimension = dimension.strip().lower()
+
+    tokenizer = AutoTokenizer.from_pretrained(base_model_path, use_fast=True)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
 
-    # === 从最原始数据直接构建训练集（唯一改动） ===
-    dim, pref = _parse_dim_and_pref_from_csv_path_like(data_path)
-    train_ds = _build_dpo_dataset_from_raw(tokenizer, dim, pref, take_n=10000)
+    train_ds = _build_dpo_dataset_from_raw(tokenizer, dimension, preferred_subtype, take_n=take_n)
 
-    # === Load base model ===（保持不变）
     model = AutoModelForCausalLM.from_pretrained(
-        model_path,
+        base_model_path,
         torch_dtype=torch.float16,
-        device_map={"": 0}
+        device_map={"": 0},
     )
     model.gradient_checkpointing_enable()
     model.enable_input_require_grads()
 
-    # === Enhanced LoRA config ===（保持不变）
     lora_config = LoraConfig(
         r=32,
         lora_alpha=64,
         target_modules=[
-            "q_proj", "k_proj", "v_proj", "o_proj",
-            "gate_proj", "up_proj", "down_proj"
+            "q_proj",
+            "k_proj",
+            "v_proj",
+            "o_proj",
+            "gate_proj",
+            "up_proj",
+            "down_proj",
         ],
         lora_dropout=0.1,
         bias="none",
-        task_type="CAUSAL_LM"
+        task_type="CAUSAL_LM",
     )
     model = get_peft_model(model, lora_config)
 
-    # === Load frozen reference model ===（保持不变，放 CPU）
     ref_model = AutoModelForCausalLM.from_pretrained(
-        model_path,
+        base_model_path,
         torch_dtype=torch.float16,
-        device_map="cpu"
+        device_map="cpu",
     )
     for p in ref_model.parameters():
         p.requires_grad = False
 
-    # === DPO trainer config ===（保持不变）
     dpo_cfg = DPOConfig(
         output_dir=save_path,
         per_device_train_batch_size=16,
@@ -149,8 +151,8 @@ def train_dpo_model(data_path: str, save_path: str):
         num_train_epochs=6,
         learning_rate=1e-5,
         beta=1.0,
-        save_strategy="no",   # ✅ 不保存 checkpoint
-        save_total_limit=0,    # ✅ 确保不保留历史 checkpoint
+        save_strategy="no",
+        save_total_limit=0,
         bf16=False,
     )
 
@@ -159,7 +161,7 @@ def train_dpo_model(data_path: str, save_path: str):
         ref_model=ref_model,
         args=dpo_cfg,
         train_dataset=train_ds,
-        processing_class=tokenizer
+        processing_class=tokenizer,
     )
 
     trainer.train()
@@ -170,13 +172,32 @@ def train_dpo_model(data_path: str, save_path: str):
 
     print(f"\n✅ 模型训练完成并保存至：{save_path}")
 
-if __name__ == "__main__":
-    train_dpo_model(
-        data_path="./datasets/dpo_converted/information_sensing_dpo.csv",
-        save_path="./dpo_outputs/model_s_3B"
-    )
 
-    train_dpo_model(
-        data_path="./datasets/dpo_converted/information_intuition_dpo.csv",
-        save_path="./dpo_outputs/model_n_3B"
+def _build_arg_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Train a single DPO model for a given dimension preference.")
+    parser.add_argument(
+        "--dimension",
+        required=True,
+        choices=["energy", "information", "decision", "execution"],
+        help="MBTI dimension name.",
+    )
+    parser.add_argument(
+        "--preferred",
+        required=True,
+        help="Preferred subtype within the dimension (e.g., sensing, intuition, thinking).",
+    )
+    parser.add_argument("--base-model-path", default="./llama-3B-Instruct")
+    parser.add_argument("--save-path", required=True, help="Directory to store the trained model.")
+    parser.add_argument("--take-n", type=int, default=10000, help="Limit the number of training samples.")
+    return parser
+
+
+if __name__ == "__main__":
+    args = _build_arg_parser().parse_args()
+    train_personality_model(
+        dimension=args.dimension,
+        preferred_subtype=args.preferred,
+        base_model_path=args.base_model_path,
+        save_path=args.save_path,
+        take_n=args.take_n,
     )
