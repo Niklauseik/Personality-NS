@@ -48,6 +48,17 @@ DIMENSION_SPECS: Dict[str, Dict] = {
     },
 }
 
+LETTER_SPECS: Dict[str, Dict] = {}
+for dimension, spec in DIMENSION_SPECS.items():
+    for subtype in spec["subtypes"]:
+        letter = subtype["code"][0].upper()
+        LETTER_SPECS[letter] = {
+            "dimension": dimension,
+            "preferred": subtype["preferred"],
+            "display_name": subtype["display_name"],
+            "code": subtype["code"],
+        }
+
 
 def list_allowed_dimensions() -> List[str]:
     return list(DIMENSION_SPECS.keys())
@@ -59,6 +70,24 @@ def get_dimension_spec(name: str) -> Dict:
         raise ValueError(f"Unsupported dimension '{name}'. "
                          f"Allowed values: {', '.join(DIMENSION_SPECS.keys())}")
     return DIMENSION_SPECS[key]
+
+
+def resolve_letter_spec(letter: str) -> Dict:
+    key = (letter or "").strip().upper()
+    if key not in LETTER_SPECS:
+        raise ValueError(
+            f"Unsupported letter '{letter}'. "
+            "Allowed letters: " + ", ".join(sorted(LETTER_SPECS.keys()))
+        )
+    return dict(LETTER_SPECS[key])
+
+
+def opposite_preferred_subtype(dimension: str, preferred: str) -> str:
+    spec = get_dimension_spec(dimension)
+    for subtype in spec["subtypes"]:
+        if subtype["preferred"] != preferred:
+            return subtype["preferred"]
+    raise ValueError(f"Could not find opposite subtype for {dimension}/{preferred}")
 
 
 def standard_model_dir(output_root: Path, subtype_code: str) -> Path:
@@ -152,7 +181,7 @@ def ensure_output_target(path: Path, overwrite: bool = False) -> None:
         if not overwrite:
             raise FileExistsError(
                 f"Target directory already exists: {path}. "
-                "Use --overwrite-models to replace it."
+                "Please remove it manually before running the pipeline again."
             )
         if path.is_dir():
             shutil.rmtree(path)

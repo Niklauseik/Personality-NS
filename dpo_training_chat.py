@@ -3,13 +3,15 @@ import argparse
 import json
 import os
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Sequence
 
 import torch
 from datasets import Dataset
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import DPOConfig, DPOTrainer
+
+from pipeline_utils import opposite_preferred_subtype
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 
@@ -19,11 +21,11 @@ RAW_DIR = Path("datasets/training_raw")  # 直接用最原始 json
 def _load_raw(dimension: str, subtype: str) -> List[dict]:
     fp = RAW_DIR / f"en_{dimension}_{subtype}.json"
     if not fp.exists():
-        raise FileNotFoundError(f"未找到原始数据文件: {fp}")
+        raise FileNotFoundError(f"未找到原始数据文件 {fp}")
     with fp.open("r", encoding="utf-8") as f:
         data = json.load(f)
     if not isinstance(data, list):
-        raise ValueError(f"原始数据需为列表: {fp}")
+        raise ValueError(f"原始数据需为列表 {fp}")
     return data
 
 
@@ -35,33 +37,17 @@ def _make_user_content(instruction: str, in_ctx: str) -> str:
     return instruction
 
 
-def _opposite_subtype(dimension: str, subtype: str) -> str:
-    pairs = {
-        "decision": ("thinking", "feeling"),
-        "information": ("intuition", "sensing"),
-        "energy": ("extraversion", "introversion"),
-        "execution": ("judging", "perceiving"),
-    }
-    a, b = pairs[dimension]
-    return b if subtype == a else a
-
-
-def _build_dpo_dataset_from_raw(
-    tokenizer,
-    dimension: str,
-    preferred: str,
-    take_n: int = 10000,
-) -> Dataset:
+def _build_dpo_samples(tokenizer, dimension: str, preferred: str) -> List[Dict]:
     """
-    从原始 json 构建 DPO 三列: prompt / chosen / rejected
+    从原始 json 构建 prompt / chosen / rejected 三列，使用完整数据集。
     """
-    other = _opposite_subtype(dimension, preferred)
+    other = opposite_preferred_subtype(dimension, preferred)
     data_pref = _load_raw(dimension, preferred)
     data_other = _load_raw(dimension, other)
 
-    n = min(len(data_pref), len(data_other), take_n)
+    n = min(len(data_pref), len(data_other))
 
-    samples = []
+    samples: List[Dict] = []
     for i in range(n):
         p = data_pref[i]
         q = data_other[i]
@@ -85,30 +71,54 @@ def _build_dpo_dataset_from_raw(
             }
         )
 
-    if not samples:
-        raise RuntimeError("构建后的样本为空，请检查原始数据内容。")
+    return samples
 
+
+def _dataset_from_samples(samples: List[Dict]) -> Dataset:
+    if not samples:
+        raise RuntimeError("构建后的样本为空，请检查原始数据内容")
     return Dataset.from_list(samples)
 
 
+def _build_dpo_dataset_from_raw(tokenizer, dimension: str, preferred: str) -> Dataset:
+    samples = _build_dpo_samples(tokenizer, dimension, preferred)
+    return _dataset_from_samples(samples)
+
+
+def _build_dpo_dataset_for_sequence(
+    tokenizer,
+    sequence: Sequence[Dict],
+) -> Dataset:
+    aggregated: List[Dict] = []
+    for step in sequence:
+        aggregated.extend(_build_dpo_samples(tokenizer, step["dimension"], step["preferred"]))
+    return _dataset_from_samples(aggregated)
+
+
 def train_personality_model(
-    dimension: str,
-    preferred_subtype: str,
+    dimension: str | None,
+    preferred_subtype: str | None,
     base_model_path: str,
     save_path: str,
-    take_n: int = 10000,
+    personality_sequence: Sequence[Dict] | None = None,
 ):
     """
-    Train a DPO model for a specific dimension preference and save it to disk.
+    Train a DPO model for either a single dimension preference or a combined personality sequence.
     """
-    preferred_subtype = preferred_subtype.strip().lower()
-    dimension = dimension.strip().lower()
-
     tokenizer = AutoTokenizer.from_pretrained(base_model_path, use_fast=True)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
 
-    train_ds = _build_dpo_dataset_from_raw(tokenizer, dimension, preferred_subtype, take_n=take_n)
+    if personality_sequence:
+        train_ds = _build_dpo_dataset_for_sequence(tokenizer, personality_sequence)
+    else:
+        if not dimension or not preferred_subtype:
+            raise ValueError("dimension/preferred_subtype 参数不能为空。")
+        train_ds = _build_dpo_dataset_from_raw(
+            tokenizer,
+            dimension.strip().lower(),
+            preferred_subtype.strip().lower(),
+        )
 
     model = AutoModelForCausalLM.from_pretrained(
         base_model_path,
@@ -148,7 +158,7 @@ def train_personality_model(
         output_dir=save_path,
         per_device_train_batch_size=16,
         gradient_accumulation_steps=2,
-        num_train_epochs=6,
+        num_train_epochs=3,
         learning_rate=1e-5,
         beta=1.0,
         save_strategy="no",
@@ -170,7 +180,7 @@ def train_personality_model(
     model.save_pretrained(save_path)
     tokenizer.save_pretrained(save_path)
 
-    print(f"\n✅ 模型训练完成并保存至：{save_path}")
+    print(f"\n✅模型训练完成并保存至：{save_path}")
 
 
 def _build_arg_parser() -> argparse.ArgumentParser:
@@ -188,7 +198,6 @@ def _build_arg_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--base-model-path", default="./llama-3B-Instruct")
     parser.add_argument("--save-path", required=True, help="Directory to store the trained model.")
-    parser.add_argument("--take-n", type=int, default=10000, help="Limit the number of training samples.")
     return parser
 
 
@@ -199,5 +208,4 @@ if __name__ == "__main__":
         preferred_subtype=args.preferred,
         base_model_path=args.base_model_path,
         save_path=args.save_path,
-        take_n=args.take_n,
     )
