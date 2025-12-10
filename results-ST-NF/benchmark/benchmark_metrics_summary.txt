@@ -1,0 +1,72 @@
+
+📌 Model: 原始基座模型
+📊 Dataset: ARC (easy)
+✅ Accuracy: 0.6113
+✅ Precision: 0.6636
+✅ Recall: 0.6116
+✅ F1 Score: 0.624
+----------------------------------------
+
+📌 Model: 原始基座模型
+📊 Dataset: BoolQ
+✅ Accuracy: 0.7305
+✅ Precision: 0.7578
+✅ Recall: 0.7647
+✅ F1 Score: 0.7302
+----------------------------------------
+
+📌 Model: 原始基座模型
+📊 Dataset: GSM8K
+✅ Accuracy: 0.0831
+✅ Precision: nan
+✅ Recall: nan
+✅ F1 Score: nan
+----------------------------------------
+
+📌 Model: ST性格模型
+📊 Dataset: ARC (easy)
+✅ Accuracy: 0.7429
+✅ Precision: 0.7806
+✅ Recall: 0.7425
+✅ F1 Score: 0.748
+----------------------------------------
+
+📌 Model: ST性格模型
+📊 Dataset: BoolQ
+✅ Accuracy: 0.6878
+✅ Precision: 0.7482
+✅ Recall: 0.7369
+✅ F1 Score: 0.6874
+----------------------------------------
+
+📌 Model: ST性格模型
+📊 Dataset: GSM8K
+✅ Accuracy: 0.0808
+✅ Precision: nan
+✅ Recall: nan
+✅ F1 Score: nan
+----------------------------------------
+
+📌 Model: NF性格模型
+📊 Dataset: ARC (easy)
+✅ Accuracy: 0.6319
+✅ Precision: 0.6556
+✅ Recall: 0.6322
+✅ F1 Score: 0.6394
+----------------------------------------
+
+📌 Model: NF性格模型
+📊 Dataset: BoolQ
+✅ Accuracy: 0.775
+✅ Precision: 0.7665
+✅ Recall: 0.7793
+✅ F1 Score: 0.7689
+----------------------------------------
+
+📌 Model: NF性格模型
+📊 Dataset: GSM8K
+✅ Accuracy: 0.065
+✅ Precision: nan
+✅ Recall: nan
+✅ F1 Score: nan
+----------------------------------------

@@ -43,7 +43,11 @@ def _parse_args():
     )
     parser.add_argument("--model-path", required=True, help="Base model checkpoint path.")
     parser.add_argument("--output-root", default="dpo_outputs", help="Directory to store trained checkpoints.")
-    parser.add_argument("--results-root", default="results", help="Directory where evaluation results are stored.")
+    parser.add_argument(
+        "--results-root",
+        default=None,
+        help="Directory where evaluation results are stored (default: auto like results-N-S or results-ST-NF).",
+    )
     return parser.parse_args()
 
 
@@ -134,11 +138,27 @@ def _train_personality_pair(pair: List[str], base_model_path: Path, output_root:
     return trained
 
 
+def _derive_results_root(args) -> Path:
+    # Explicit override wins.
+    if args.results_root:
+        return normalize_path(args.results_root)
+
+    if args.pair:
+        codes = [_normalize_personality_code(code) for code in args.pair]
+        suffix = "-".join(codes)
+    else:
+        spec = get_dimension_spec(args.dimension)
+        letters = sorted(subtype["code"][0].upper() for subtype in spec["subtypes"])
+        suffix = "-".join(letters)
+    return normalize_path(f"results-{suffix}")
+
+
 def main():
     args = _parse_args()
     base_model_path = normalize_path(args.model_path)
     output_root = normalize_path(args.output_root)
-    results_root = normalize_path(args.results_root)
+    results_root = _derive_results_root(args)
+    print(f"\n[Stage-1] Results will be stored under: {results_root}")
 
     if args.dimension:
         print("\n[Stage-1] Training personality subtypes...")
@@ -166,22 +186,23 @@ def main():
         for entry in model_entries
     ]
 
-    print("\n[Stage-1] Running benchmark evaluations...")
-    run_benchmarks(model_specs, results_root=results_root)
-    print("\n[Stage-1] Running sentiment inference...")
-    run_sentiment(model_specs, results_root=results_root)
-
     state = {
         "run_id": generate_run_id(),
         "dimension": args.dimension,
         "pair": [code.upper() for code in args.pair] if args.pair else None,
         "timestamp": current_timestamp(),
-        "results_root": args.results_root,
-        "output_root": args.output_root,
-        "base_model_path": args.model_path,
+        "results_root": str(results_root),
+        "output_root": str(output_root),
+        "base_model_path": str(base_model_path),
         "model_entries": model_entries,
     }
     metadata_path = write_pipeline_state(state, results_root)
+
+    print("\n[Stage-1] Running benchmark evaluations...")
+    run_benchmarks(model_specs, results_root=results_root)
+    print("\n[Stage-1] Running sentiment inference...")
+    run_sentiment(model_specs, results_root=results_root)
+
     print(f"\n[Stage-1] Completed. Metadata saved to: {metadata_path}")
 
 

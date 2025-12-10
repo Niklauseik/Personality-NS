@@ -47,7 +47,7 @@ def _build_prompt(dataset_name: str, row: pd.Series) -> str:
     if "gsm8k" in dataset_name:
         return (
             "Solve the following math problem and output only the final number answer.\n\n"
-            f"{row['question']}\n\nOnly respond with one word. Example: 8"
+            f"{row['question']}\n\nOnly respond with one final answer. Example: 8"
         )
     if "arc_easy" in dataset_name:
         return (

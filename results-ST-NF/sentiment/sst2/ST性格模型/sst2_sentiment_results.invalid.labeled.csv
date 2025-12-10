@@ -1,0 +1,5 @@
+﻿idx,text,label,prediction,normalized_label
+4246,( ,0,I'm ready to analyze. What is the sentence?,invalid
+4622,"bittersweet , uncommonly sincere movie that portrays the frank humanity of ... emotional recovery ",1,bittersweet,mixed
+6167,boasts enough funny dialogue and sharp characterizations to be mildly amusing . ,1,mildly,invalid
+8304,) ,1,"I'm ready to help. However, I don't see a sentence provided. Please provide the sentence you'd like me to analyze.",invalid

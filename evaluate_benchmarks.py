@@ -33,9 +33,13 @@ def extract_bool(text):
 
 
 def compute_metrics(y_true, y_pred):
-    accuracy = accuracy_score(y_true, y_pred)
+    # Coerce to plain python lists to avoid pandas object dtype being inferred as "unknown" targets.
+    y_true_seq = list(y_true)
+    y_pred_seq = list(y_pred)
+
+    accuracy = accuracy_score(y_true_seq, y_pred_seq)
     precision, recall, f1, _ = precision_recall_fscore_support(
-        y_true, y_pred, average="macro", zero_division=0
+        y_true_seq, y_pred_seq, average="macro", zero_division=0
     )
     return {
         "accuracy": round(accuracy, 4),
@@ -131,7 +135,7 @@ def evaluate_benchmarks(results_root: Path | str = "results"):
                 f"{'-'*40}\n"
             )
 
-    print(f"\n📁 已将结果保存到：{output_path}")
+    print(f"\nResults saved to: {output_path}")
 
 
 def _parse_args():

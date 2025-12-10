@@ -1,36 +1,36 @@
 ======== fiqasa_sentiment ========
 model_code model_display                    labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
       base        原始基座模型 negative|neutral|positive     1173      0.64             0.56          0.59      0.54                0.76             0.64         0.65
-         s         S性格模型 negative|neutral|positive     1173      0.60             0.56          0.54      0.50                0.74             0.60         0.59
-         n         N性格模型 negative|neutral|positive     1173      0.55             0.55          0.57      0.48                0.77             0.55         0.57
+        st        ST性格模型 negative|neutral|positive     1173      0.50             0.54          0.56      0.44                0.77             0.50         0.48
+        nf        NF性格模型 negative|neutral|positive     1173      0.76             0.61          0.63      0.62                0.78             0.76         0.76
 
 ======== imdb_sentiment ========
 model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
       base        原始基座模型 negative|positive    10000      0.93             0.93          0.93      0.93                0.93             0.93         0.93
-         s         S性格模型 negative|positive    10000      0.91             0.92          0.91      0.91                0.92             0.91         0.91
-         n         N性格模型 negative|positive    10000      0.92             0.94          0.92      0.93                0.94             0.92         0.93
+        st        ST性格模型 negative|positive    10000      0.89             0.91          0.89      0.89                0.91             0.89         0.89
+        nf        NF性格模型 negative|positive    10000      0.93             0.94          0.93      0.93                0.94             0.93         0.93
 
 ======== imdb_sklearn ========
 model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
-      base        原始基座模型 negative|positive    10000      0.93             0.94          0.93      0.93                0.94             0.93         0.93
-         s         S性格模型 negative|positive    10000      0.91             0.92          0.91      0.91                0.92             0.91         0.91
-         n         N性格模型 negative|positive    10000      0.93             0.93          0.93      0.93                0.93             0.93         0.93
+      base        原始基座模型 negative|positive    10000      0.94             0.94          0.94      0.94                0.94             0.94         0.94
+        st        ST性格模型 negative|positive    10000      0.90             0.92          0.90      0.90                0.92             0.90         0.90
+        nf        NF性格模型 negative|positive    10000      0.94             0.94          0.94      0.94                0.94             0.94         0.94
 
 ======== mental_sentiment ========
 model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
-      base        原始基座模型 depression|normal    31747      0.61             0.74          0.62      0.56                0.75             0.61         0.55
-         s         S性格模型 depression|normal    31747      0.62             0.75          0.63      0.58                0.76             0.62         0.58
-         n         N性格模型 depression|normal    31747      0.57             0.72          0.58      0.49                0.73             0.57         0.48
+      base        原始基座模型 depression|normal    31747      0.69             0.76          0.70      0.68                0.76             0.69         0.68
+        st        ST性格模型 depression|normal    31747      0.79             0.82          0.80      0.80                0.82             0.79         0.80
+        nf        NF性格模型 depression|normal    31747      0.58             0.71          0.59      0.52                0.72             0.58         0.51
 
 ======== news_sentiment ========
 model_code model_display                  labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
       base        原始基座模型 bearish|bullish|neutral    11931      0.58             0.59          0.72      0.58                0.73             0.58         0.57
-         s         S性格模型 bearish|bullish|neutral    11931      0.61             0.61          0.74      0.61                0.75             0.61         0.62
-         n         N性格模型 bearish|bullish|neutral    11931      0.49             0.58          0.66      0.52                0.71             0.49         0.47
+        st        ST性格模型 bearish|bullish|neutral    11931      0.70             0.65          0.75      0.67                0.76             0.70         0.71
+        nf        NF性格模型 bearish|bullish|neutral    11931      0.40             0.60          0.59      0.45                0.72             0.40         0.37
 
 ======== sst2 ========
 model_code model_display            labels  support  accuracy  precision_macro  recall_macro  f1_macro  precision_weighted  recall_weighted  f1_weighted
       base        原始基座模型 negative|positive    10000      0.82             0.88          0.83      0.84                0.89             0.82         0.83
-         s         S性格模型 negative|positive    10000      0.76             0.82          0.78      0.75                0.84             0.76         0.75
-         n         N性格模型 negative|positive    10000      0.78             0.90          0.79      0.83                0.91             0.78         0.83
+        st        ST性格模型 negative|positive    10000      0.68             0.83          0.71      0.70                0.84             0.68         0.69
+        nf        NF性格模型 negative|positive    10000      0.88             0.91          0.88      0.89                0.91             0.88         0.89
 

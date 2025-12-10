@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -38,9 +37,9 @@ def collapse_extra_labels(dataset: str, model_data: dict):
         counts["invalid"] = counts.get("invalid", 0) + extra_total
 
 
-def plot_pies(dataset: str, model_data: dict, model_order):
+def plot_pies(dataset_name: str, model_data: dict, model_order, output_path: Path):
     fig, axs = plt.subplots(1, len(model_order), figsize=(4 * len(model_order), 5))
-    fig.suptitle(f"{dataset} Prediction Distribution", fontsize=14, y=0.98)
+    fig.suptitle(f"{dataset_name} Prediction Distribution", fontsize=14, y=0.98)
 
     for idx, (model_key, model_label) in enumerate(model_order):
         ax = axs[idx] if len(model_order) > 1 else axs
@@ -56,12 +55,11 @@ def plot_pies(dataset: str, model_data: dict, model_order):
         ax.set_title(model_label, pad=2)
 
     fig.subplots_adjust(top=0.82, wspace=0.25)
-    os.makedirs("plots", exist_ok=True)
-    fig.savefig(f"plots/{dataset}_prediction_distribution_pie.png", dpi=150)
+    fig.savefig(output_path, dpi=150)
     plt.close(fig)
 
 
-def plot_bars(dataset: str, model_data: dict, model_order):
+def plot_bars(dataset_name: str, model_data: dict, model_order, output_path: Path):
     all_labels = set()
     for counts in model_data.values():
         all_labels.update(counts.keys())
@@ -77,19 +75,22 @@ def plot_bars(dataset: str, model_data: dict, model_order):
         counts = [model_data.get(model_key, {}).get(lbl, 0) for lbl in labels]
         ax.bar(x + (i - (len(model_order) - 1) / 2) * width, counts, width, label=model_label)
 
-    ax.set_title(f"{dataset} Prediction Distribution", pad=6)
+    ax.set_title(f"{dataset_name} Prediction Distribution", pad=6)
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=15)
     ax.set_ylabel("Count")
     ax.legend(ncol=min(len(model_order), 3), frameon=False, loc="upper right")
     ax.margins(x=0.01)
     fig.subplots_adjust(left=0.09, right=0.98, bottom=0.14, top=0.88)
-    os.makedirs("plots", exist_ok=True)
-    fig.savefig(f"plots/{dataset}_prediction_distribution_bar.png", dpi=150)
+    fig.savefig(output_path, dpi=150)
     plt.close(fig)
 
 
-def generate_charts(results_root: Path | str = "results", chart_data: dict | None = None):
+def generate_charts(
+    results_root: Path | str = "results",
+    chart_data: dict | None = None,
+    output_dir: Path | str | None = None,
+):
     if chart_data is None:
         from sentiment_label_count import summarize_label_distribution
 
@@ -98,6 +99,7 @@ def generate_charts(results_root: Path | str = "results", chart_data: dict | Non
     entries = ordered_model_entries(Path(results_root))
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
+
     def legend_label(entry):
         code = entry.get("code", "")
         if code == "base":
@@ -110,16 +112,19 @@ def generate_charts(results_root: Path | str = "results", chart_data: dict | Non
     )
     model_order = [(entry["display_name"], legend_label(entry)) for entry in ordered_entries]
 
+    plots_root = Path(output_dir) if output_dir is not None else Path(results_root) / "plots"
+    plots_root.mkdir(parents=True, exist_ok=True)
+
     for dataset, info in chart_data.items():
         model_data = {
             model_key: dict(info["models"].get(model_key, {}))
             for model_key, _ in model_order
         }
         collapse_extra_labels(dataset, model_data)
-        plot_pies(dataset, model_data, model_order)
-        plot_bars(dataset, model_data, model_order)
+        plot_pies(dataset, model_data, model_order, plots_root / f"{dataset}_prediction_distribution_pie.png")
+        plot_bars(dataset, model_data, model_order, plots_root / f"{dataset}_prediction_distribution_bar.png")
 
-    print("✅ 全部图表已输出到 ./plots 目录")
+    print(f"全部图表已输出到：{plots_root}")
 
 
 if __name__ == "__main__":

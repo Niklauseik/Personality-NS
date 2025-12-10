@@ -1,0 +1,14 @@
+﻿text,label,prediction,normalized_label
+:),2,I'm ready to classify. What's the first headline?,invalid
+Three breakfast reads,2,I'm ready to classify. What are the three breakfast reads?,invalid
+$SPY $AMTD $SCHW $TIF $MDCO $NVS $EBAY,2,"Bearish
+Bearish
+Neutral
+Bearish
+Bullish
+Bearish",mixed
+$SPY $IWM $DAL $BRK.B $JPM,2,"Bearish
+Bearish
+Neutral
+Bullish
+Bearish",mixed

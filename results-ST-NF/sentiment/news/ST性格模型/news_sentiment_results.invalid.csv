@@ -1,0 +1,14 @@
+text,label,prediction
+:),2,I'm ready to classify. What's the first headline?
+Three breakfast reads,2,I'm ready to classify. What are the three breakfast reads?
+$SPY $AMTD $SCHW $TIF $MDCO $NVS $EBAY,2,"Bearish
+Bearish
+Neutral
+Bearish
+Bullish
+Bearish"
+$SPY $IWM $DAL $BRK.B $JPM,2,"Bearish
+Bearish
+Neutral
+Bullish
+Bearish"

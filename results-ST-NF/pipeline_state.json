@@ -1,0 +1,58 @@
+{
+  "run_id": "6bb81239",
+  "dimension": null,
+  "pair": [
+    "ST",
+    "NF"
+  ],
+  "timestamp": "2025-11-18T15:37:11.563586Z",
+  "results_root": "results",
+  "output_root": "dpo_outputs",
+  "base_model_path": "llama-3B-Instruct/",
+  "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "llama-3B-Instruct"
+    },
+    {
+      "role": "trained",
+      "code": "st",
+      "subtype": "ST",
+      "display_name": "ST性格模型",
+      "checkpoint_path": "dpo_outputs/model_st_3B",
+      "personality_sequence": [
+        {
+          "letter": "S",
+          "dimension": "information",
+          "preferred": "sensing"
+        },
+        {
+          "letter": "T",
+          "dimension": "decision",
+          "preferred": "thinking"
+        }
+      ]
+    },
+    {
+      "role": "trained",
+      "code": "nf",
+      "subtype": "NF",
+      "display_name": "NF性格模型",
+      "checkpoint_path": "dpo_outputs/model_nf_3B",
+      "personality_sequence": [
+        {
+          "letter": "N",
+          "dimension": "information",
+          "preferred": "intuition"
+        },
+        {
+          "letter": "F",
+          "dimension": "decision",
+          "preferred": "feeling"
+        }
+      ]
+    }
+  ]
+}
