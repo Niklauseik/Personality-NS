@@ -164,21 +164,13 @@ def evaluate_sentiment(results_root: Path | str = "results"):
         ]
         out_df[num_cols] = out_df[num_cols].round(2)
 
-        csv_path = "metrics_summary.csv"
+        out_dir = results_root / "sentiment"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        csv_path = out_dir / "metrics_summary.csv"
         out_df.to_csv(csv_path, index=False, encoding="utf-8-sig")
-
-        txt_path = "metrics_summary.txt"
-        with open(txt_path, "w", encoding="utf-8") as f:
-            for dname in sorted(out_df["dataset"].unique()):
-                f.write(f"======== {dname} ========\n")
-                sub = out_df[out_df["dataset"] == dname].copy()
-                sub = sub.drop(columns=["dataset"])
-                f.write(sub.to_string(index=False, float_format=lambda x: f"{x:.2f}"))
-                f.write("\n\n")
 
         print("\n✅ 指标计算完成。")
         print(f"  - CSV: {csv_path}")
-        print(f"  - TXT: {txt_path}")
     else:
         print("⚠️ 未生成任何指标结果，请检查文件路径与数据。")
 

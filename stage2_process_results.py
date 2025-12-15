@@ -35,7 +35,10 @@ def main():
     print("\n[Stage-2] Evaluating sentiment performance...")
     evaluate_sentiment(results_root)
     print("\n[Stage-2] Evaluating benchmark performance...")
-    evaluate_benchmarks(results_root)
+    if (results_root / "benchmark").exists():
+        evaluate_benchmarks(results_root)
+    else:
+        print(f"[Stage-2] Benchmark results not found under {results_root / 'benchmark'}; skipping.")
     print("\n[Stage-2] Generating visualizations...")
     generate_charts(results_root, chart_data)
 

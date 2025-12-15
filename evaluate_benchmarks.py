@@ -1,5 +1,4 @@
 import argparse
-import os
 import re
 from pathlib import Path
 
@@ -33,7 +32,6 @@ def extract_bool(text):
 
 
 def compute_metrics(y_true, y_pred):
-    # Coerce to plain python lists to avoid pandas object dtype being inferred as "unknown" targets.
     y_true_seq = list(y_true)
     y_pred_seq = list(y_pred)
 
@@ -77,6 +75,10 @@ def evaluate_benchmarks(results_root: Path | str = "results"):
     model_dirs = [entry["display_name"] for entry in entries]
 
     base_path = results_root / "benchmark"
+    if not base_path.exists():
+        print(f"[WARN] Benchmark folder not found, skipping: {base_path}")
+        return
+
     all_results = []
 
     for model_name in model_dirs:
@@ -85,7 +87,7 @@ def evaluate_benchmarks(results_root: Path | str = "results"):
         for dataset_name, filename in FILES.items():
             file_path = model_path / filename
             if not file_path.exists():
-                print(f"⚠️ Missing benchmark file: {file_path}")
+                print(f"[WARN] Missing benchmark file: {file_path}")
                 continue
 
             df = pd.read_csv(file_path)
@@ -109,32 +111,27 @@ def evaluate_benchmarks(results_root: Path | str = "results"):
                     "precision": None,
                     "recall": None,
                     "f1": None,
+                    "correct": correct,
+                    "total": total,
                 }
             else:
                 metrics = {"accuracy": None, "precision": None, "recall": None, "f1": None}
 
-            all_results.append({
-                "Model": model_name,
-                "Dataset": dataset_name,
-                **metrics
-            })
-
-    df_metrics = pd.DataFrame(all_results)
-    print(df_metrics)
-
-    output_path = base_path / "benchmark_metrics_summary.txt"
-    with open(output_path, "w", encoding="utf-8") as f:
-        for _, row in df_metrics.iterrows():
-            f.write(
-                f"\n📌 Model: {row['Model']}\n"
-                f"📊 Dataset: {row['Dataset']}\n"
-                f"✅ Accuracy: {row['accuracy']}\n"
-                f"✅ Precision: {row['precision']}\n"
-                f"✅ Recall: {row['recall']}\n"
-                f"✅ F1 Score: {row['f1']}\n"
-                f"{'-'*40}\n"
+            all_results.append(
+                {
+                    "Model": model_name,
+                    "Dataset": dataset_name,
+                    **metrics,
+                }
             )
 
+    df_metrics = pd.DataFrame(all_results)
+    if df_metrics.empty:
+        print(f"[WARN] No benchmark result files found under: {base_path} (skipping summary)")
+        return
+
+    output_path = base_path / "benchmark_metrics_summary.csv"
+    df_metrics.to_csv(output_path, index=False, encoding="utf-8-sig")
     print(f"\nResults saved to: {output_path}")
 
 

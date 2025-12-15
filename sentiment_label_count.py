@@ -34,7 +34,7 @@ DATASETS = [
      "base_path": "results/sentiment/sst2"},
 ]
 
-SUMMARY_TXT = "label_distribution_summary.txt"
+SUMMARY_FILENAME = "label_distribution_summary.txt"
 TRUE_COL = "真实数量"
 
 
@@ -119,13 +119,16 @@ def summarize_label_distribution(results_root: Path | str = "results"):
                 category = classify_prediction(pred, valid_pred_set)
                 dist_all[ds["name"]][category][model_name] += 1
 
-    chart_data = write_summary_txt(dist_all, label_order_map, model_names)
+    out_dir = results_root / "sentiment"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    summary_path = out_dir / SUMMARY_FILENAME
+    chart_data = write_summary_txt(dist_all, label_order_map, model_names, summary_path)
     return chart_data
 
 
-def write_summary_txt(dist_all, label_order_map, model_names):
+def write_summary_txt(dist_all, label_order_map, model_names, output_path: Path):
     chart_data: Dict[str, Dict] = {}
-    with open(SUMMARY_TXT, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         for dataset, label_dict in dist_all.items():
             if dataset not in label_order_map:
                 continue
@@ -147,7 +150,7 @@ def write_summary_txt(dist_all, label_order_map, model_names):
                 },
             }
 
-    print(f"\n[INFO] Summary saved to {SUMMARY_TXT}")
+    print(f"\n[INFO] Summary saved to {output_path}")
     return chart_data
 
 
