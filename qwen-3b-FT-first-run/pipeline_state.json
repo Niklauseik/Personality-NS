@@ -1,0 +1,35 @@
+{
+  "run_id": "bootstrap-qwen-3b-FT-first-run",
+  "dimension": "decision",
+  "pair": [
+    "F",
+    "T"
+  ],
+  "timestamp": "2025-12-17T08:25:37Z",
+  "results_root": "qwen-3b-FT-first-run",
+  "output_root": "dpo_outputs",
+  "base_model_path": "./qwen-3b",
+  "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "subtype": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "./qwen-3b"
+    },
+    {
+      "role": "trained",
+      "code": "f",
+      "subtype": "F",
+      "display_name": "F性格模型",
+      "checkpoint_path": "dpo_outputs/model_f_3B"
+    },
+    {
+      "role": "trained",
+      "code": "t",
+      "subtype": "T",
+      "display_name": "T性格模型",
+      "checkpoint_path": "dpo_outputs/model_t_3B"
+    }
+  ]
+}

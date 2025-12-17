@@ -1,0 +1,25 @@
+{
+  "run_id": "manual-jp-3B",
+  "dimension": "execution",
+  "pair": ["J", "P"],
+  "timestamp": "2025-12-02T00:00:00Z",
+  "results_root": "results",
+  "output_root": "dpo_outputs",
+  "base_model_path": "./llama-3B-Instruct",
+  "model_entries": [
+    {
+      "role": "trained",
+      "code": "j",
+      "subtype": "judging",
+      "display_name": "J性格模型",
+      "checkpoint_path": "dpo_outputs/model_j_3B"
+    },
+    {
+      "role": "trained",
+      "code": "p",
+      "subtype": "perceiving",
+      "display_name": "P性格模型",
+      "checkpoint_path": "dpo_outputs/model_p_3B"
+    }
+  ]
+}

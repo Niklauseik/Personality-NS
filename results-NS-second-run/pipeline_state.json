@@ -1,0 +1,35 @@
+{
+  "run_id": "bootstrap-results-NS-second-run",
+  "dimension": "information",
+  "pair": [
+    "N",
+    "S"
+  ],
+  "timestamp": "2025-12-17T08:25:37Z",
+  "results_root": "results-NS-second-run",
+  "output_root": "dpo_outputs",
+  "base_model_path": "./llama-3B-Instruct",
+  "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "subtype": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "./llama-3B-Instruct"
+    },
+    {
+      "role": "trained",
+      "code": "n",
+      "subtype": "N",
+      "display_name": "N性格模型",
+      "checkpoint_path": "dpo_outputs/model_n"
+    },
+    {
+      "role": "trained",
+      "code": "s",
+      "subtype": "S",
+      "display_name": "S性格模型",
+      "checkpoint_path": "dpo_outputs/model_s"
+    }
+  ]
+}

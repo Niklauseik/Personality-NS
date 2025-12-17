@@ -1,0 +1,4 @@
+﻿Model,Dataset,accuracy,precision,recall,f1,correct,total
+原始基座模型,ARC (easy),0.6462,0.7014,0.6467,0.6576,,
+原始基座模型,BoolQ,0.733,0.7597,0.7669,0.7327,,
+原始基座模型,GSM8K,0.077,,,,100.0,1299.0

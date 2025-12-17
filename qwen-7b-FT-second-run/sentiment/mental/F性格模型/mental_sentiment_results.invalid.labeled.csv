@@ -1,0 +1,19 @@
+﻿text,label,prediction,normalized_label
+"annoyed ,",Normal,"Annoyed can be a temporary emotion and doesn't necessarily indicate depression. However, if this is the only emotion expressed and there's no context suggesting otherwise, it could lean more towards:
+
+Normal",normal
+mmekkkkkkk angry pen,Normal,"Anger can sometimes be a temporary emotion and not necessarily indicative of depression. However, the repetition and lack of context might suggest deeper emotional distress. Given the limited information, I would lean towards:
+
+Normal
+
+But it's important to consider that a single post might not fully capture someone's emotional state, and further conversation could provide more insight.",invalid
+NERVOUS,Normal,"Nervousness can be a sign of depression, but based solely on the emotion expressed, I would classify this as:
+
+Normal",mixed
+"If you remember when you were in elementary school, it used to be really fun, playing chase, playing baseball, I really wanted to be in Geraldos' group because he threw it so far, then there was monkey love haha. When I remember that, I feel like I want to go back to elementary school where all I can think about is ""what are you playing today""....",Normal,"Nostalgia
+
+(Note: The text expresses a sense of nostalgia and longing for a simpler time, which doesn't indicate depression but rather a sentimental reflection. However, since the instruction strictly asks to choose between Normal or Depression, and the sentiment isn't indicative of clinical depression, ""Normal"" would be the more appropriate choice in this context.)",normal
+so i had a doctor s appointment on a school day and i wa so anxious about missing day of school i wa cry because i would miss stuff that day and wa anxious about being behind on my work because my grade are expected to stay the same and not drop is this anxiety or just pressure put on me,Depression,Anxiety,normal
+carmonium i m stressed outttt,Normal,"Stress can sometimes be a sign of depression, but based on the text provided, it seems more like a temporary emotional state rather than an indication of depression. Therefore, I would classify this as:
+
+Normal",normal

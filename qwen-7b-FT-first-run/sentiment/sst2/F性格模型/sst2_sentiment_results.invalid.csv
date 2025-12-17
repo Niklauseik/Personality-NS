@@ -1,0 +1,359 @@
+idx,text,label,prediction,cleaned_prediction
+27,in world cinema ,1,neutral,neutral
+100,in memory ,1,neutral,neutral
+168,"eats , meddles , argues , laughs , kibbitzes and fights ",1,neutral,neutral
+182,"pokes , provokes , takes expressionistic license ",1,neutral,neutral
+214,are all things we 've seen before ,0,neutral,neutral
+218,as predictable as the tides ,0,neutral,neutral
+243,traditionally structured ,1,neutral,neutral
+283,acted by diane lane and richard gere . ,1,neutral,neutral
+331,men ,1,neutral,neutral
+378,for a story ,1,neutral,neutral
+418,a slow-moving police-procedural thriller ,0,neutral,neutral
+423,complex story ,1,Neutral,neutral
+443,wait to see it then . ,0,neutral,neutral
+470,a fairly revealing study of its two main characters ,1,neutral,neutral
+506,war movies ,0,neutral,neutral
+508,oscar ,1,neutral,neutral
+519,book report ,0,neutral,neutral
+568,oscar-sweeping franchise predecessor ,1,neutral,neutral
+593,intelligence or invention ,1,neutral,neutral
+615,"spliced together bits and pieces of midnight run and 48 hours ( and , for that matter , shrek ) ",0,neutral,neutral
+637,lewis ,1,neutral,neutral
+646,of the holiday box office pie ,1,neutral,neutral
+726,"wonderland adventure , a stalker thriller , and ",1,neutral,neutral
+783,the numerous scenes ,1,neutral,neutral
+804,funny and sad ,1,mixed,mixed
+838,haute ,0,neutral,neutral
+839,convey a strong sense of the girls ' environment . ,1,neutral,neutral
+842,any insight ,1,neutral,neutral
+892,and church meetings ,1,neutral,neutral
+904,sustains ,1,neutral,neutral
+914,narrative discipline ,1,neutral,neutral
+915,samuel l. jackson ,1,neutral,neutral
+963,submerging ,1,neutral,neutral
+1010,sexual and romantic ,1,neutral,neutral
+1026,with such provocative material ,1,neutral,neutral
+1130,our best achievements and other times ,1,neutral,neutral
+1133,in private ,1,neutral,neutral
+1156,zealand coming-of-age movie ,1,neutral,neutral
+1267,a legacy ,1,neutral,neutral
+1280,farts ,0,neutral,neutral
+1302,went back ,1,neutral,neutral
+1346,in a standard plot ,0,neutral,neutral
+1364,floating narrative ,1,neutral,neutral
+1378,bound ,1,neutral,neutral
+1390,horror/action hybrid ,1,neutral,neutral
+1399,participation ,1,neutral,neutral
+1412,one-hour mark ,1,neutral,neutral
+1421,grows ,1,neutral,neutral
+1426,caliber ,1,neutral,neutral
+1427,balanced film ,1,neutral,neutral
+1448,"helmer hudlin tries to make a hip comedy , ",0,neutral,neutral
+1457,tv ,1,neutral,neutral
+1467,a simple tale ,1,Neutral,neutral
+1543,ethics ,1,neutral,neutral
+1572,this picture ,1,neutral,neutral
+1607,little more than a well-mounted history lesson . ,0,neutral,neutral
+1632,the filling ,1,neutral,neutral
+1638,"psychedelic devices , special effects and backgrounds , ",1,neutral,neutral
+1652,"plot , characters , ",1,neutral,neutral
+1725,writer-director david jacobson ,1,neutral,neutral
+1826,place and personal identity ,1,neutral,neutral
+1852,turntablism ,1,neutral,neutral
+1865,worked ,1,neutral,neutral
+1866,expected ,0,neutral,neutral
+1956,freshman ,1,neutral,neutral
+1957,"welles groupie/scholar peter bogdanovich took a long time to do it , but he 's finally provided his own broadside at publishing giant william randolph hearst ",1,neutral,neutral
+1958,an actress ,1,neutral,neutral
+1996,on cable ,0,neutral,neutral
+2043,salient points ,1,neutral,neutral
+2058,african american professionals ,1,neutral,neutral
+2069,personality ,1,neutral,neutral
+2083,complex ,1,neutral,neutral
+2096,juwanna mann ,1,neutral,neutral
+2135,", as blood work proves , that was a long , long time ago . ",0,neutral,neutral
+2136,an american ,1,neutral,neutral
+2201,what makes it worth watching ,1,neutral,neutral
+2234,a streetwise mclaughlin group ,1,neutral,neutral
+2245,dragon ,1,neutral,neutral
+2291,randolph ,1,neutral,neutral
+2296,simply by accident ,0,neutral,neutral
+2307,i liked it just enough . ,1,neutral,neutral
+2398,"as a tarantula , helga ",0,neutral,neutral
+2420,watch on video at home ,0,neutral,neutral
+2423,of all ages ,1,neutral,neutral
+2473,desert ,0,neutral,neutral
+2550,"of the wise , wizened visitor from a faraway planet ",1,neutral,neutral
+2567,from a woodland stream ,1,neutral,neutral
+2607,set in the world of lingerie models and bar dancers ,1,neutral,neutral
+2628,the under-7 crowd ,1,neutral,neutral
+2664,of an alternative lifestyle ,1,neutral,neutral
+2706,technical proficiency ,1,neutral,neutral
+2710,gadgets ,1,neutral,neutral
+2720,is a frighteningly fascinating contradiction ,1,fascinating,fascinating
+2724,dearly ,1,neutral,neutral
+2738,morgen and nanette burstein ,1,neutral,neutral
+2742,sensuality ,1,neutral,neutral
+2754,construct a story ,1,neutral,neutral
+2796,"schticky chris rock and stolid anthony hopkins , ",0,mixed,mixed
+2800,"it looks like an action movie , but ",0,neutral,neutral
+2802,the u.s. ,1,neutral,neutral
+2803,hmmm ,0,neutral,neutral
+2814,argentinean ` dramedy ' ,1,neutral,neutral
+2821,seen city ,1,neutral,neutral
+2855,does steven seagal come across these days ? ,0,neutral,neutral
+2882,are many definitions of ` time waster ' ,0,neutral,neutral
+2883,hours of material to discuss ,1,Neutral,neutral
+2915,mixes in as much humor as pathos ,1,neutral,neutral
+2955,"things really get weird , though not particularly scary : ",0,neutral,neutral
+3009,economical ,1,neutral,neutral
+3040,diverse ,1,neutral,neutral
+3056,"as an introduction to the man 's theories and influence , derrida is all but useless ; as a portrait of the artist as an endlessly inquisitive old man , however , it 's invaluable . ",1,mixed,mixed
+3058,recognize ,1,neutral,neutral
+3083,"is a variant of the nincompoop benigni persona , ",0,neutral,neutral
+3281,agreed ,1,neutral,neutral
+3305,"the visuals , even erotically frank ones , ",1,neutral,neutral
+3341,brilliant and brutal ,1,mixed,mixed
+3356,unusual homes ,1,neutral,neutral
+3474,its story ,1,neutral,neutral
+3522,french coming-of-age import ,1,neutral,neutral
+3550,the men and machines behind the curtains of our planet ,1,neutral,neutral
+3563,oliver stone 's conspiracy thriller jfk ,1,neutral,neutral
+3575,linklater ,0,neutral,neutral
+3642,nation ,1,neutral,neutral
+3681,absurdist ,0,neutral,neutral
+3697,includes battlefield earth and showgirls ,0,neutral,neutral
+3723,limpid and conventional historical fiction ,0,neutral,neutral
+3739,of artifice and purpose ,1,neutral,neutral
+3804,edits ,1,neutral,neutral
+3812,by a british cast ,1,neutral,neutral
+3849,a century and a half ago ,1,neutral,neutral
+3887,common sense ,1,neutral,neutral
+3901,in the series ,1,neutral,neutral
+3950,honestly ,1,neutral,neutral
+3967,cerebral ,1,neutral,neutral
+3976,dinner guest ,1,neutral,neutral
+4010,"wonderland adventure , a stalker thriller , and a condensed season of tv 's big brother ",1,neutral,neutral
+4017,romantic comedy ,1,neutral,neutral
+4068,idol ,1,neutral,neutral
+4132,hanukkah ,1,neutral,neutral
+4142,modern art ,1,neutral,neutral
+4162,technically ,1,neutral,neutral
+4171,stylized sequences ,1,neutral,neutral
+4204,a legal thriller ,1,neutral,neutral
+4215,deliberately and skillfully ,1,neutral,neutral
+4239,utilizing ,1,neutral,neutral
+4245,michel ,1,neutral,neutral
+4284,imitation movie ,0,neutral,neutral
+4334,sam mendes ,1,neutral,neutral
+4365,"as famous prima donna floria tosca , roberto alagna as her lover mario cavaradossi , and ruggero as the villainous , lecherous police chief scarpia , ",1,neutral,neutral
+4384,is conversational bordering on confessional ,1,neutral,neutral
+4486,big-budget/all-star movie ,1,Neutral,neutral
+4536,its title implies ,1,neutral,neutral
+4543,car chase ,1,neutral,neutral
+4628,supernatural thriller ,1,neutral,neutral
+4665,large-format ,1,neutral,neutral
+4707,occasion ,0,neutral,neutral
+4742,this three-hour endurance test ,0,neutral,neutral
+4838,its writer-director 's ,1,neutral,neutral
+4867,"about art , ethics , and the cost of moral compromise ",1,neutral,neutral
+4876,contemplation ,1,neutral,neutral
+4883,famous moments ,1,neutral,neutral
+4909,contenders ,1,neutral,neutral
+4952,a return ticket ,0,neutral,neutral
+4987,look at the list of movies starring ice-t in a major role ,0,neutral,neutral
+5004,town ,1,neutral,neutral
+5019,crime drama ,0,neutral,neutral
+5030,resident evil ,1,neutral,neutral
+5127,"sometimes charming , sometimes infuriating ",1,mixed,mixed
+5154,captain ,1,neutral,neutral
+5168,"the hype , the celebrity , ",1,Neutral,neutral
+5276,a reader 's digest condensed version ,0,neutral,neutral
+5285,thoroughly involving ,1,neutral,neutral
+5312,it arrives ,1,neutral,neutral
+5315,focus ,1,neutral,neutral
+5371,biography channel ,1,neutral,neutral
+5462,the lord ,1,neutral,neutral
+5527,arnold schwarzenegger ,0,neutral,neutral
+5590,miike ,1,neutral,neutral
+5613,returning director rob minkoff ... and screenwriter bruce joel rubin ,1,neutral,neutral
+5619,stay afloat ,1,neutral,neutral
+5630,a skyscraper ,1,neutral,neutral
+5659,matinee price ,1,neutral,neutral
+5663,personal ,1,neutral,neutral
+5664,"an athlete , a movie star , and ",1,neutral,neutral
+5708,sci-fi . ,1,neutral,neutral
+5709,consistency ,1,neutral,neutral
+5715,the piano teacher ,1,neutral,neutral
+5728,thematically and stylistically ,1,neutral,neutral
+5773,wanders ,0,neutral,neutral
+5787,longley 's film ,1,neutral,neutral
+5791,unusual biopic and document ,1,neutral,neutral
+5825,on johnny knoxville 's stomach ,1,neutral,neutral
+5827,"a wildly erratic drama with sequences that make you wince in embarrassment and others , thanks to the actors , that are quite touching . ",1,mixed,mixed
+5832,a guarantee ,1,neutral,neutral
+5840,inner-city streets ,1,neutral,neutral
+5879,dates ,1,neutral,neutral
+5886,climate ,1,neutral,neutral
+5935,the lady and the duke surprisingly ,1,neutral,neutral
+5940,romantic comedy genre ,1,neutral,neutral
+5944,feature-length ,1,neutral,neutral
+5953,challenges ,0,neutral,neutral
+5957,in the media ,0,neutral,neutral
+5961,has already appeared in one forum or another ,0,neutral,neutral
+5978,is somehow making its way instead to theaters . ,0,neutral,neutral
+6004,heard before ,1,neutral,neutral
+6068,predictable as the tides ,0,neutral,neutral
+6072,saves ,1,neutral,neutral
+6144,"the one-liners are snappy , the situations volatile ",1,neutral,neutral
+6148,fiery ,1,neutral,neutral
+6179,grows up ,1,neutral,neutral
+6182,", meandering ",0,neutral,neutral
+6203,sensation ,1,neutral,neutral
+6206,the material and the production ,1,neutral,neutral
+6234,value or merit ,1,neutral,neutral
+6243,strange film ,0,neutral,neutral
+6272,belongs to nicholson ,1,neutral,neutral
+6297,literally ,1,neutral,neutral
+6346,coming-of-age drama ,1,neutral,neutral
+6364,of the solomonic decision facing jewish parents in those turbulent times ,1,neutral,neutral
+6368,every bit as imperious as katzenberg 's the prince of egypt from 1998 . ,1,neutral,neutral
+6381,", and motorcycles ",1,neutral,neutral
+6384,dragonfly ,1,neutral,neutral
+6410,accurately ,1,neutral,neutral
+6417,on three short films and two features ,1,neutral,neutral
+6464,on standard horror flick formula ,0,neutral,neutral
+6467,"the universal themes , ",1,neutral,neutral
+6546,filmed directly ,1,neutral,neutral
+6579,schrader examines crane 's decline with unblinking candor . ,1,neutral,neutral
+6596,multi-layers ,1,neutral,neutral
+6627,donna ,1,neutral,neutral
+6670,"any viewer , young or old , ",1,neutral,neutral
+6687,the universal theme ,1,neutral,neutral
+6697,"lovely , sad dance ",1,mixed,mixed
+6717,make several runs to the concession stand and/or restroom ,0,neutral,neutral
+6741,road ,0,neutral,neutral
+6757,orchestrating ,1,neutral,neutral
+6804,protagonist ,0,neutral,neutral
+6810,touch ,1,neutral,neutral
+6825,in short ,0,neutral,neutral
+6848,"philosophers , not filmmakers ",0,neutral,neutral
+6867,of expository material ,1,neutral,neutral
+6874,particular interest ,1,neutral,neutral
+6876,tribute ,1,neutral,neutral
+6902,a generic international version of a typical american horror film ,0,neutral,neutral
+6948,metaphysical ,1,neutral,neutral
+7006,stretched over the nearly 80-minute running time ,0,neutral,neutral
+7054,teenage sex comedy ,1,neutral,neutral
+7103,rich ,1,neutral,neutral
+7120,coming-of-age film ,1,neutral,neutral
+7146,stays close to the ground ,1,neutral,neutral
+7155,make a film in which someone has to be hired to portray richard dawson ,0,neutral,neutral
+7215,hilarious and sad ,1,mixed,mixed
+7221,cardiac ,0,neutral,neutral
+7231,wal-mart budget ,0,neutral,neutral
+7255,appeared in 1938 ,1,neutral,neutral
+7256,"susan sarandon , dustin hoffman and holly hunter , ",1,neutral,neutral
+7320,swiftly ,1,neutral,neutral
+7330,prepare ,1,neutral,neutral
+7344,"designed strictly for children 's home video , ",0,neutral,neutral
+7345,to look as if it were being shown on the projection television screen of a sports bar ,0,neutral,neutral
+7375,creeping into the second half ,0,neutral,neutral
+7392,been 13 months and 295 preview screenings ,1,neutral,neutral
+7405,filling ,1,neutral,neutral
+7429,byron and luther ,1,neutral,neutral
+7471,cedar 's ,1,neutral,neutral
+7549,i bought this movie ,1,neutral,neutral
+7573,if that 's not too glorified a term ,1,neutral,neutral
+7604,everywhere ,1,neutral,neutral
+7611,appropriately ,1,neutral,neutral
+7634,for the complicated love triangle that develops between the three central characters ,1,neutral,neutral
+7695,little film noir organized crime story ,1,neutral,neutral
+7717,is fine ,1,neutral,neutral
+7744,dog ,1,neutral,neutral
+7778,kids ,1,neutral,neutral
+7799,the original ,1,neutral,neutral
+7809,raucously ,1,neutral,neutral
+7813,of modern life ,1,neutral,neutral
+7822,undoubtedly ,1,neutral,neutral
+7854,psychological case study ,1,neutral,neutral
+7855,yet another visit ,0,neutral,neutral
+7867,what makes it worth a recommendation ,1,neutral,neutral
+7897,pink floyd tickets ,1,neutral,neutral
+7956,object lesson ,1,neutral,neutral
+7993,less an examination of neo-nazism than a probe into the nature of faith ,1,neutral,neutral
+7999,a serious exploration of nuclear terrorism ,1,neutral,neutral
+8054,elaborate ,1,neutral,neutral
+8080,measured or polished ,1,neutral,neutral
+8094,uneven action comedy ,0,neutral,neutral
+8095,as a classic movie franchise ,1,neutral,neutral
+8101,only half-an-hour long or ,0,neutral,neutral
+8103,prepackaged ,0,neutral,neutral
+8134,artistically ,1,neutral,neutral
+8157,rarity ,1,neutral,neutral
+8205,reaction ,1,neutral,neutral
+8212,classical actress ,1,neutral,neutral
+8346,take this film at face value ,1,neutral,neutral
+8363,fiji diver rusi vulakoro and the married couple howard and michelle hall ) ,1,neutral,neutral
+8384,crafty ,1,neutral,neutral
+8391,"realistic , urgent ",1,Neutral,neutral
+8428,"decides whether it wants to be a black comedy , drama , melodrama or some combination of the three . ",0,neutral,neutral
+8477,"whether it wants to be a black comedy , drama , melodrama or some combination of the three ",0,neutral,neutral
+8502,a lump of play-doh ,1,neutral,neutral
+8523,more slowly ,0,neutral,neutral
+8560,refracting ,0,neutral,neutral
+8567,would be an abridged edition ,0,neutral,neutral
+8573,a xerox machine ,0,neutral,neutral
+8587,about identity and alienation ,0,neutral,neutral
+8591,simple tale ,1,Neutral,neutral
+8659,crafted ,1,neutral,neutral
+8679,one scene ,1,neutral,neutral
+8734,abbass 's understated ,1,neutral,neutral
+8754,practically every expectation either a longtime tolkien fan or a movie-going neophyte ,1,neutral,neutral
+8784,this alleged psychological thriller ,0,neutral,neutral
+8790,true to its animatronic roots : ,1,neutral,neutral
+8795,the climactic hourlong cricket match ,1,neutral,neutral
+8815,considerable ,1,neutral,neutral
+8930,juxtapositions ,1,neutral,neutral
+8948,becoming ,1,neutral,neutral
+8949,profoundly ,1,neutral,neutral
+8972,die-hard french film connoisseurs ,1,neutral,neutral
+8990,award ,1,neutral,neutral
+9005,"borrows from bad lieutenant and les vampires , ",0,neutral,neutral
+9018,organized ,1,neutral,neutral
+9056,spot ,1,neutral,neutral
+9104,transvestite comedy ,0,neutral,neutral
+9107,"asks what truth can be discerned from non-firsthand experience , and specifically questions cinema 's capability for recording truth . ",1,neutral,neutral
+9110,challenging or depressing ,0,Depressing,depressing
+9168,movies about angels ,1,neutral,neutral
+9248,"the start -- and , refreshingly , ",1,refreshingly,refreshingly
+9253,be on video ,0,neutral,neutral
+9281,thurman ,1,neutral,neutral
+9282,as any other arnie musclefest ,0,neutral,neutral
+9303,sex ,1,neutral,neutral
+9344,auto-critique ,0,neutral,neutral
+9356,healing process ,1,neutral,neutral
+9360,realistically ,1,neutral,neutral
+9450,broadcast ,1,neutral,neutral
+9453,knockabout ,1,neutral,neutral
+9456,coming-of-age portrait ,1,neutral,neutral
+9460,"'s neither too erotic nor very thrilling , ",0,neutral,neutral
+9469,"a haunted house , ",0,neutral,neutral
+9470,"creates a portrait of two strong men in conflict , inextricably entwined through family history ",1,neutral,neutral
+9559,toss-up ,1,neutral,neutral
+9628,remains prominent ,1,neutral,neutral
+9677,grade-school audience ,0,neutral,neutral
+9692,director anne fontaine ,1,neutral,neutral
+9700,the ethos of the chelsea hotel ,1,neutral,neutral
+9847,"seen 10,000 times ",1,neutral,neutral
+9849,"one of the funniest motion pictures of the year , but ... also one of the most curiously depressing ",1,mixed,mixed
+9879,musical number ,1,neutral,neutral
+9885,it uses some of the figures from the real-life story to portray themselves in the film . ,1,neutral,neutral
+9904,the artificial structure ,0,neutral,neutral
+9943,steve martin ,1,neutral,neutral
+9954,be a straightforward bio ,1,neutral,neutral
+9961,the movie tries to make sense of its title character ,0,neutral,neutral
+9968,"surprising highs , sorrowful lows and ",1,mixed,mixed
+9979,a sudden lunch rush ,1,neutral,neutral
+9992,why this project was undertaken ,0,neutral,neutral

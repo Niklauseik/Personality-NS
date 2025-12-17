@@ -1,0 +1,48 @@
+======== imdb_sentiment ========
+          真实数量  J性格模型  P性格模型
+negative  5000   5403   5214
+positive  5000   4576   4695
+neutral      0      6     50
+mixed        0     15     39
+invalid      0      0      2
+
+======== mental_sentiment ========
+             真实数量  J性格模型  P性格模型
+depression  15404  25875  16084
+normal      16343   5833  14237
+neutral         0      4   1168
+mixed           0      0     11
+invalid         0     35    247
+
+======== news_sentiment ========
+         真实数量  J性格模型  P性格模型
+bearish  1789   3282   3108
+bullish  2398   4873   5262
+neutral  7744   3773   3554
+mixed       0      0      0
+invalid     0      3      7
+
+======== fiqasa_sentiment ========
+          真实数量  J性格模型  P性格模型
+negative   363    649    569
+neutral     91     81    257
+positive   719    443    347
+mixed        0      0      0
+invalid      0      0      0
+
+======== imdb_sklearn ========
+          真实数量  J性格模型  P性格模型
+negative  4972   5329   5146
+positive  5028   4655   4789
+neutral      0      3     40
+mixed        0     13     22
+invalid      0      0      3
+
+======== sst2 ========
+          真实数量  J性格模型  P性格模型
+negative  4471   6099   4846
+positive  5529   3696   3868
+neutral      0    203   1279
+mixed        0      1      4
+invalid      0      1      3
+

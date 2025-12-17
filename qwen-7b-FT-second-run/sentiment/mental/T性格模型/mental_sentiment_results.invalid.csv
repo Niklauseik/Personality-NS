@@ -1,0 +1,18 @@
+text,label,prediction
+mmekkkkkkk angry pen,Normal,"Anger can be a normal emotion, but the repetition and lack of context suggest frustration or possibly depression. Given the limited information, I'll lean towards:
+
+Depression"
+Oh very. Tired right.,Normal,"Tiredness can be a symptom of depression, but the text ""Oh very. Tired right."" is quite brief and doesn't provide enough context to definitively diagnose depression. However, if we have to make a quick classification based on this snippet, it leans more towards:
+
+Normal"
+panic,Normal,"Panic alone can indicate either a temporary state of heightened anxiety or part of a broader pattern of depression, but without additional context, it is too brief to make a definitive classification. However, if we must choose based on the single word provided:
+
+Depression"
+Tired eh tired,Normal,"Tiredness can be a symptom of depression, but based solely on the text ""Tired eh tired,"" it does not provide enough context to definitively classify it as depression. However, if we must choose between Normal and Depression, and considering the brevity and lack of additional depressive indicators, I would lean towards:
+
+Normal"
+i ve been having this for a few day doe anybody know of this is from anxiety my hearth is normal but i ve been having headache and chest pain too,Depression,Anxiety
+so i had a doctor s appointment on a school day and i wa so anxious about missing day of school i wa cry because i would miss stuff that day and wa anxious about being behind on my work because my grade are expected to stay the same and not drop is this anxiety or just pressure put on me,Depression,Anxiety
+carmonium i m stressed outttt,Normal,"Stress can be a symptom of depression, but based on the text provided, the classification is:
+
+Normal"

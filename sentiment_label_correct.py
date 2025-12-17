@@ -137,11 +137,11 @@ def classify_with_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> s
         raise RuntimeError(f"GPT 调用失败，请检查网络或 API Key：{exc}")
 
 
-def direct_or_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> str:
+def direct_or_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> tuple[str, bool]:
     token = norm_token(pred_text)
     if token in choices:
-        return token
-    return classify_with_gpt(dataset_name, pred_text, choices)
+        return token, False
+    return classify_with_gpt(dataset_name, pred_text, choices), True
 
 
 def process_all(results_root: Path | str = "results", model_dirs: List[str] | None = None):
@@ -186,17 +186,21 @@ def process_all(results_root: Path | str = "results", model_dirs: List[str] | No
                 continue
 
             labels: List[str] = []
+            gpt_calls = 0
             for i, row in df.iterrows():
                 pred = str(row.get("prediction", "")).strip()
-                label = direct_or_gpt(ds_name, pred, choices)
+                label, used_gpt = direct_or_gpt(ds_name, pred, choices)
                 labels.append(label)
-                head = pred.replace("\n", " ")[:80]
-                print(f"   [{i+1:>5}] {head} -> {label}")
-                time.sleep(0.25)
+                if used_gpt:
+                    gpt_calls += 1
+                    head = pred.replace("\n", " ")[:80]
+                    print(f"   [{i+1:>5}] {head} -> {label}")
+                    time.sleep(0.25)
 
             df["normalized_label"] = labels
             df.to_csv(labeled_path, index=False, encoding="utf-8-sig")
             print(f"  ✅ Saved: {labeled_path}")
+            print(f"  GPT calls: {gpt_calls}/{len(df)}")
 
 
 if __name__ == "__main__":

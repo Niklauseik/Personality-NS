@@ -1,0 +1,48 @@
+======== imdb_sentiment ========
+          真实数量  原始基座模型  F性格模型  T性格模型
+negative  5000    5309   5149   5435
+positive  5000    4691   4851   4565
+neutral      0       0      0      0
+mixed        0       0      0      0
+invalid      0       0      0      0
+
+======== mental_sentiment ========
+             真实数量  原始基座模型  F性格模型  T性格模型
+depression  15404   15621  17428  14451
+normal      16343   16126  14319  17296
+neutral         0       0      0      0
+mixed           0       0      0      0
+invalid         0       0      0      0
+
+======== news_sentiment ========
+         真实数量  原始基座模型  F性格模型  T性格模型
+bearish  1789    1943   1546   1985
+bullish  2398    3116   3991   2617
+neutral  7744    6872   6394   7329
+mixed       0       0      0      0
+invalid     0       0      0      0
+
+======== fiqasa_sentiment ========
+          真实数量  原始基座模型  F性格模型  T性格模型
+negative   363     467    447    448
+neutral     91     149     86    244
+positive   719     557    640    481
+mixed        0       0      0      0
+invalid      0       0      0      0
+
+======== imdb_sklearn ========
+          真实数量  原始基座模型  F性格模型  T性格模型
+negative  4972    5582   5481   5689
+positive  5028    4417   4518   4303
+neutral      0       0      0      0
+mixed        0       0      0      0
+invalid      0       1      1      8
+
+======== sst2 ========
+          真实数量  原始基座模型  F性格模型  T性格模型
+negative  4471    6813   6251   7339
+positive  5529    3178   3747   2642
+neutral      0       0      0      0
+mixed        0       0      0      0
+invalid      0       9      2     19
+
