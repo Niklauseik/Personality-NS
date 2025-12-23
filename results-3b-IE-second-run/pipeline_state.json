@@ -19,17 +19,17 @@
     },
     {
       "role": "trained",
-      "code": "f",
-      "subtype": "F",
-      "display_name": "F性格模型",
-      "checkpoint_path": "dpo_outputs/model_f_3B"
+      "code": "i",
+      "subtype": "I",
+      "display_name": "I性格模型",
+      "checkpoint_path": "dpo_outputs/model_i_3B"
     },
     {
       "role": "trained",
-      "code": "t",
-      "subtype": "T",
-      "display_name": "T性格模型",
-      "checkpoint_path": "dpo_outputs/model_t_3B"
+      "code": "e",
+      "subtype": "E",
+      "display_name": "E性格模型",
+      "checkpoint_path": "dpo_outputs/model_e_3B"
     }
   ]
 }

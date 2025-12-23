@@ -1,48 +1,48 @@
 ======== imdb_sentiment ========
-          真实数量  原始基座模型  N性格模型  S性格模型
-negative  5000    5322   5119   5624
-positive  5000    4644   4698   4368
-neutral      0      16     60      2
-mixed        0      17    106      6
-invalid      0       1     17      0
+          真实数量  原始基座模型  S性格模型  N性格模型
+negative  5000    5322   5624   5119
+positive  5000    4644   4368   4698
+neutral      0      16      2     60
+mixed        0      17      6    106
+invalid      0       1      0     17
 
 ======== mental_sentiment ========
-             真实数量  原始基座模型  N性格模型  S性格模型
-depression  15404   27077  28573  26755
-normal      16343    4635   3166   4965
+             真实数量  原始基座模型  S性格模型  N性格模型
+depression  15404   27077  26755  28573
+normal      16343    4635   4965   3166
 neutral         0       0      0      0
-mixed           0       0      2      1
-invalid         0      35      6     26
+mixed           0       0      1      2
+invalid         0      35     26      6
 
 ======== news_sentiment ========
-         真实数量  原始基座模型  N性格模型  S性格模型
-bearish  1789    3325   2346   3803
-bullish  2398    5018   7044   4130
-neutral  7744    3586   2539   3996
+         真实数量  原始基座模型  S性格模型  N性格模型
+bearish  1789    3325   3803   2346
+bullish  2398    5018   4130   7044
+neutral  7744    3586   3996   2539
 mixed       0       0      0      0
 invalid     0       2      2      2
 
 ======== fiqasa_sentiment ========
-          真实数量  原始基座模型  N性格模型  S性格模型
-negative   363     587    547    743
-neutral     91     155    318     68
-positive   719     431    308    362
+          真实数量  原始基座模型  S性格模型  N性格模型
+negative   363     587    743    547
+neutral     91     155     68    318
+positive   719     431    362    308
 mixed        0       0      0      0
 invalid      0       0      0      0
 
 ======== imdb_sklearn ========
-          真实数量  原始基座模型  N性格模型  S性格模型
-negative  4972    5261   5155   5638
-positive  5028    4738   4844   4362
+          真实数量  原始基座模型  S性格模型  N性格模型
+negative  4972    5261   5638   5155
+positive  5028    4738   4362   4844
 neutral      0       0      0      0
 mixed        0       0      0      0
-invalid      0       1      1      0
+invalid      0       1      0      1
 
 ======== sst2 ========
-          真实数量  原始基座模型  N性格模型  S性格模型
-negative  4471    5523   4842   6739
-positive  5529    3982   3901   3201
-neutral      0     493   1228     59
-mixed        0       1     16      0
-invalid      0       1     13      1
+          真实数量  原始基座模型  S性格模型  N性格模型
+negative  4471    5523   6739   4842
+positive  5529    3982   3201   3901
+neutral      0     493     59   1228
+mixed        0       1      0     16
+invalid      0       1      1     13
 

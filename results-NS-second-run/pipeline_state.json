@@ -19,17 +19,17 @@
     },
     {
       "role": "trained",
-      "code": "n",
-      "subtype": "N",
-      "display_name": "N性格模型",
-      "checkpoint_path": "dpo_outputs/model_n"
-    },
-    {
-      "role": "trained",
       "code": "s",
       "subtype": "S",
       "display_name": "S性格模型",
       "checkpoint_path": "dpo_outputs/model_s"
+    },
+    {
+      "role": "trained",
+      "code": "n",
+      "subtype": "N",
+      "display_name": "N性格模型",
+      "checkpoint_path": "dpo_outputs/model_n"
     }
   ]
 }

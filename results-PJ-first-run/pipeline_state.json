@@ -1,12 +1,22 @@
 {
   "run_id": "manual-jp-3B",
   "dimension": "execution",
-  "pair": ["J", "P"],
+  "pair": [
+    "J",
+    "P"
+  ],
   "timestamp": "2025-12-02T00:00:00Z",
-  "results_root": "results",
+  "results_root": "results-PJ-first-run",
   "output_root": "dpo_outputs",
   "base_model_path": "./llama-3B-Instruct",
   "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "subtype": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "./llama-3B-Instruct"
+    },
     {
       "role": "trained",
       "code": "j",
