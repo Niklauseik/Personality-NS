@@ -89,9 +89,14 @@ def run_sentiment(
     model_specs: Sequence[Dict[str, str]],
     dataset_configs: Dict[str, str] | None = None,
     results_root: Path | str = "results",
+    file_suffix: str = "",
 ) -> None:
     if not model_specs:
         raise ValueError("model_specs is empty. Provide at least the base model.")
+
+    file_suffix = (file_suffix or "").strip()
+    if file_suffix and not file_suffix.startswith("_"):
+        file_suffix = "_" + file_suffix
 
     dataset_configs = dataset_configs or DATASET_CONFIGS
     results_root = Path(results_root)
@@ -130,7 +135,7 @@ def run_sentiment(
 
             save_dir = sentiment_root / dataset_name / model_name
             save_dir.mkdir(parents=True, exist_ok=True)
-            out_path = save_dir / f"{dataset_name}_sentiment_results.csv"
+            out_path = save_dir / f"{dataset_name}_sentiment_results{file_suffix}.csv"
             df_result.to_csv(out_path, index=False, encoding="utf-8")
             print(f"✅ 保存完成：{out_path}")
 

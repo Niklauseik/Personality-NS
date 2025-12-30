@@ -9,6 +9,7 @@ individual task modules can stay in sync.
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import uuid
 from datetime import datetime
@@ -90,8 +91,17 @@ def opposite_preferred_subtype(dimension: str, preferred: str) -> str:
     raise ValueError(f"Could not find opposite subtype for {dimension}/{preferred}")
 
 
-def standard_model_dir(output_root: Path, subtype_code: str) -> Path:
-    return output_root / f"model_{subtype_code}_3B"
+def _sanitize_run_name(value: str) -> str:
+    cleaned = re.sub(r"[\\/]+", "_", (value or "").strip())
+    cleaned = re.sub(r"[^A-Za-z0-9._-]+", "_", cleaned)
+    cleaned = cleaned.strip("._-")
+    return cleaned or "model"
+
+
+def standard_model_dir(output_root: Path, base_model_path: Path | str, personality_code: str) -> Path:
+    base_name = _sanitize_run_name(str(base_model_path).rstrip("/\\").split("/")[-1].split("\\")[-1])
+    tag = _sanitize_run_name(personality_code)
+    return output_root / f"{base_name}_{tag}性格"
 
 
 def normalize_path(path_like: str | Path) -> Path:

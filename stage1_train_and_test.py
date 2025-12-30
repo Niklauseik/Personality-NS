@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 Stage-1 pipeline: train requested personality models,
-then run benchmark and sentiment inference.
+then (optionally) run benchmark and sentiment inference.
 
 Examples:
   python stage1_train_and_test.py --dimension information --model-path ./llama-3B-Instruct
   python stage1_train_and_test.py --pair ENTP ISFJ --model-path ./llama-3B-Instruct
+  python stage1_train_and_test.py --pair ENTP ISFJ --model-path ./llama-3B-Instruct --no-benchmark
+  python stage1_train_and_test.py --dimension decision --model-path ./llama-3B-Instruct --sentiment-runs 3
 """
 import argparse
 from pathlib import Path
@@ -44,6 +46,18 @@ def _parse_args():
     parser.add_argument("--model-path", required=True, help="Base model checkpoint path.")
     parser.add_argument("--output-root", default="dpo_outputs", help="Directory to store trained checkpoints.")
     parser.add_argument(
+        "--benchmark",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Whether to run benchmark evaluations (default: enabled). Use --no-benchmark to skip.",
+    )
+    parser.add_argument(
+        "--sentiment-runs",
+        type=int,
+        default=1,
+        help="How many times to run sentiment inference (fully repeated runs). Default: 1.",
+    )
+    parser.add_argument(
         "--results-root",
         default=None,
         help="Directory where evaluation results are stored (default: auto like results-N-S or results-ST-NF).",
@@ -56,7 +70,7 @@ def _train_all_subtypes(dimension: str, base_model_path: Path, output_root: Path
     spec = get_dimension_spec(dimension)
     trained = []
     for subtype in spec["subtypes"]:
-        target_dir = standard_model_dir(output_root, subtype["code"])
+        target_dir = standard_model_dir(output_root, base_model_path, subtype["code"][0].upper())
         ensure_output_target(target_dir)
         print(f"\n🚀 Training {subtype['display_name']} -> {target_dir}")
         train_personality_model(
@@ -102,7 +116,7 @@ def _train_personality_code(code: str, base_model_path: Path, output_root: Path,
                             ) -> dict:
     normalized = _normalize_personality_code(code)
     sequence = _build_training_sequence(normalized)
-    target_dir = standard_model_dir(output_root, normalized.lower())
+    target_dir = standard_model_dir(output_root, base_model_path, normalized)
     ensure_output_target(target_dir)
 
     print(f"\n🚀 Training {normalized} (letters: {'-'.join(step['letter'] for step in sequence)}) -> {target_dir}")
@@ -194,14 +208,24 @@ def main():
         "results_root": str(results_root),
         "output_root": str(output_root),
         "base_model_path": str(base_model_path),
+        "benchmark_enabled": bool(args.benchmark),
+        "sentiment_runs": int(args.sentiment_runs),
         "model_entries": model_entries,
     }
     metadata_path = write_pipeline_state(state, results_root)
 
-    print("\n[Stage-1] Running benchmark evaluations...")
-    run_benchmarks(model_specs, results_root=results_root)
-    print("\n[Stage-1] Running sentiment inference...")
-    run_sentiment(model_specs, results_root=results_root)
+    if args.benchmark:
+        print("\n[Stage-1] Running benchmark evaluations...")
+        run_benchmarks(model_specs, results_root=results_root)
+    else:
+        print("\n[Stage-1] Benchmark is disabled; skipping benchmark evaluations.")
+    if args.sentiment_runs < 1:
+        raise ValueError("--sentiment-runs must be >= 1")
+    for run_idx in range(1, args.sentiment_runs + 1):
+        suffix = "" if run_idx == 1 else f"run{run_idx:02d}"
+        banner = f" (run {run_idx}/{args.sentiment_runs})" if args.sentiment_runs > 1 else ""
+        print(f"\n[Stage-1] Running sentiment inference{banner}...")
+        run_sentiment(model_specs, results_root=results_root, file_suffix=suffix)
 
     print(f"\n[Stage-1] Completed. Metadata saved to: {metadata_path}")
 
