@@ -16,7 +16,7 @@ Stage-1：启动训练（Information 维度：S/N）
 python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
 
 # 可选：手动指定 results 输出目录名（更方便对比/归档）
-python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --results-root results-IE-qwen7b-run1
+python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --results-root results-NS-qwen7b-run1
 
 # 可选：关闭 benchmark，只跑 sentiment
 python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --no-benchmark
@@ -36,13 +36,13 @@ Stage-2：处理结果 + 评估 + 画图
 ========================================
 
 # 处理单个 results 目录
-python stage2_process_results.py --results-root results-IE-qwen7b-run1
+python stage2_process_results.py --results-root results-N-S-qwen7b-run1
 
 # 处理多个 results 目录（示例：一次性处理两组结果）
-python stage2_process_results.py --results-root results-IE-qwen7b-run1 results-IE-qwen7b-run2
+python stage2_process_results.py --results-root results-N-S-qwen7b-run1 results-N-S-qwen7b-run2
 
 # 用 glob 自动发现多个 results 目录（可重复指定多个 pattern）
-python stage2_process_results.py --results-glob "results-IE-*" --continue-on-error
+python stage2_process_results.py --results-glob "results-N-S-*" --continue-on-error
 
 # 仅查看将会处理哪些目录（不真正执行）
 python stage2_process_results.py --results-glob "results-*" --dry-run
