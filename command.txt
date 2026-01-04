@@ -19,7 +19,7 @@ python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7
 python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --results-root results-NS-qwen7b-run1
 
 # 可选：关闭 benchmark，只跑 sentiment
-python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --no-benchmark
+python stage1_train_and_test.py --dimension information/energy/decision/execution --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --no-benchmark
 
 ========================================
 Stage-1：启动训练（不指定维度，指定类型/组合）
