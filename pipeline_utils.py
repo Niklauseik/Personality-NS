@@ -98,6 +98,13 @@ def _sanitize_run_name(value: str) -> str:
     return cleaned or "model"
 
 
+def sanitize_run_name(value: str) -> str:
+    """
+    Sanitize a string for safe use as a directory/file name segment.
+    """
+    return _sanitize_run_name(value)
+
+
 def standard_model_dir(output_root: Path, base_model_path: Path | str, personality_code: str) -> Path:
     base_name = _sanitize_run_name(str(base_model_path).rstrip("/\\").split("/")[-1].split("\\")[-1])
     tag = _sanitize_run_name(personality_code)
@@ -184,6 +191,23 @@ def ordered_model_entries(results_root: Path) -> List[Dict]:
     base_entries = [e for e in entries if e.get("role") == "base"]
     others = [e for e in entries if e.get("role") != "base"]
     return base_entries + others
+
+
+def ordered_sentiment_entries(results_root: Path) -> List[Dict]:
+    """
+    Returns the model entries that are expected to have sentiment outputs.
+
+    When stage-1 is run with --no-base-sentiment, the pipeline metadata still
+    lists the base model for benchmark comparisons, but sentiment outputs are
+    only generated for trained personality models.
+    """
+    results_root = Path(results_root)
+    state = load_pipeline_state(results_root)
+    include_base = bool(state.get("base_sentiment_enabled", True))
+    entries = ordered_model_entries(results_root)
+    if include_base:
+        return entries
+    return [entry for entry in entries if entry.get("role") != "base"]
 
 
 def ensure_output_target(path: Path, overwrite: bool = False) -> None:

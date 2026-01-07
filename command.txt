@@ -3,8 +3,9 @@
 说明
 - 在仓库根目录运行（包含 `stage1_train_and_test.py` / `stage2_process_results.py`）。
 - Stage-1 默认跑 1 次 benchmark；用 `--no-benchmark` 关闭 benchmark。
-- 用 `--sentiment-runs N` 重复跑 sentiment N 次（第 1 次文件名不带后缀；第 2/3/... 次会追加 `_run02/_run03/...`）。
-- 如需固定 results 目录名，用 `--results-root` 手动指定。
+- Stage-1 默认也会跑基座模型的 sentiment；如果你在四个维度上反复实验，基座 sentiment 往往重复且无意义，可用 `--no-base-sentiment` 跳过（只跑性格模型）。
+- 用 `--sentiment-runs N` 重复跑 sentiment N 次（每个 run 会输出到一个独立的 results 目录：`...-run1/run2/...`；每个目录内的 CSV 文件名都不带 run 后缀）。
+- 如需固定 results 目录前缀，用 `--results-root` 手动指定（仍会自动追加 `-runX`）。
 
 ========================================
 Stage-1：启动训练（Information 维度：S/N）
@@ -16,10 +17,13 @@ Stage-1：启动训练（Information 维度：S/N）
 python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
 
 # 可选：手动指定 results 输出目录名（更方便对比/归档）
-python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --results-root results-NS-qwen7b-run1
+python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --results-root results-qwen7b-NS
 
 # 可选：关闭 benchmark，只跑 sentiment
 python stage1_train_and_test.py --dimension information/energy/decision/execution --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --no-benchmark
+
+# 可选：不跑基座模型的 sentiment（只跑性格模型的 sentiment）
+python stage1_train_and_test.py --dimension information/energy/decision/execution --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2 --no-base-sentiment
 
 ========================================
 Stage-1：启动训练（不指定维度，指定类型/组合）
@@ -36,13 +40,13 @@ Stage-2：处理结果 + 评估 + 画图
 ========================================
 
 # 处理单个 results 目录
-python stage2_process_results.py --results-root results-N-S-qwen7b-run1
+python stage2_process_results.py --results-root results-qwen7b-N-S-run1
 
 # 处理多个 results 目录（示例：一次性处理两组结果）
-python stage2_process_results.py --results-root results-N-S-qwen7b-run1 results-N-S-qwen7b-run2
+python stage2_process_results.py --results-root results-qwen7b-N-S-run1 results-qwen7b-N-S-run2
 
 # 用 glob 自动发现多个 results 目录（可重复指定多个 pattern）
-python stage2_process_results.py --results-glob "results-N-S-*" --continue-on-error
+python stage2_process_results.py --results-glob "results-*-run*" --continue-on-error
 
 # 仅查看将会处理哪些目录（不真正执行）
 python stage2_process_results.py --results-glob "results-*" --dry-run

@@ -8,7 +8,7 @@ from typing import Dict, List, Set
 import pandas as pd
 from openai import OpenAI
 
-from pipeline_utils import ordered_model_entries, resolve_dataset_base
+from pipeline_utils import ordered_sentiment_entries, resolve_dataset_base
 
 # ===== OpenAI 配置 =====
 ENV_PATH = Path(__file__).with_name(".env")
@@ -146,7 +146,7 @@ def direct_or_gpt(dataset_name: str, pred_text: str, choices: Set[str]) -> tuple
 
 def process_all(results_root: Path | str = "results", model_dirs: List[str] | None = None):
     results_root = Path(results_root)
-    entries = ordered_model_entries(results_root)
+    entries = ordered_sentiment_entries(results_root)
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
     if model_dirs is None:

@@ -15,7 +15,7 @@ plt.rcParams["font.sans-serif"] = [
 ]
 plt.rcParams["axes.unicode_minus"] = False
 
-from pipeline_utils import ordered_model_entries
+from pipeline_utils import ordered_sentiment_entries
 
 allowed_labels = {
     "imdb_sentiment": {"negative", "positive"},
@@ -96,7 +96,7 @@ def generate_charts(
 
         chart_data = summarize_label_distribution(results_root)
 
-    entries = ordered_model_entries(Path(results_root))
+    entries = ordered_sentiment_entries(Path(results_root))
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
 
@@ -106,10 +106,7 @@ def generate_charts(
             return "BASE"
         return code.upper() or entry["display_name"]
 
-    ordered_entries = (
-        [entry for entry in entries if entry.get("role") == "base"]
-        + [entry for entry in entries if entry.get("role") != "base"]
-    )
+    ordered_entries = entries
     model_order = [(entry["display_name"], legend_label(entry)) for entry in ordered_entries]
 
     plots_root = Path(output_dir) if output_dir is not None else Path(results_root) / "plots"

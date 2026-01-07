@@ -10,6 +10,8 @@ Examples:
   python stage1_train_and_test.py --dimension decision --model-path ./llama-3B-Instruct --sentiment-runs 3
 """
 import argparse
+import re
+import shutil
 from pathlib import Path
 from typing import List
 
@@ -22,6 +24,7 @@ from pipeline_utils import (
     get_dimension_spec,
     normalize_path,
     resolve_letter_spec,
+    sanitize_run_name,
     standard_model_dir,
     write_pipeline_state,
 )
@@ -50,6 +53,12 @@ def _parse_args():
         action=argparse.BooleanOptionalAction,
         default=True,
         help="Whether to run benchmark evaluations (default: enabled). Use --no-benchmark to skip.",
+    )
+    parser.add_argument(
+        "--base-sentiment",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Whether to run sentiment inference for the base model (default: enabled). Use --no-base-sentiment to skip.",
     )
     parser.add_argument(
         "--sentiment-runs",
@@ -152,27 +161,48 @@ def _train_personality_pair(pair: List[str], base_model_path: Path, output_root:
     return trained
 
 
-def _derive_results_root(args) -> Path:
-    # Explicit override wins.
-    if args.results_root:
-        return normalize_path(args.results_root)
+_RUN_SUFFIX_RE = re.compile(r"(?i)-run\d+$")
 
+
+def _strip_run_suffix(path: Path) -> Path:
+    name = path.name
+    if _RUN_SUFFIX_RE.search(name):
+        return path.with_name(_RUN_SUFFIX_RE.sub("", name))
+    return path
+
+
+def _derive_results_prefix(args, base_model_path: Path) -> Path:
+    # Explicit override wins (treated as a prefix; any trailing "-runX" is stripped).
+    if args.results_root:
+        return _strip_run_suffix(normalize_path(args.results_root))
+
+    base_name = sanitize_run_name(base_model_path.name)
     if args.pair:
         codes = [_normalize_personality_code(code) for code in args.pair]
-        suffix = "-".join(codes)
+        pair_tag = "-".join(codes)
     else:
         spec = get_dimension_spec(args.dimension)
         letters = sorted(subtype["code"][0].upper() for subtype in spec["subtypes"])
-        suffix = "-".join(letters)
-    return normalize_path(f"results-{suffix}")
+        pair_tag = "-".join(letters)
+    pair_tag = sanitize_run_name(pair_tag)
+    return normalize_path(f"results-{base_name}-{pair_tag}")
+
+
+def _results_root_for_run(prefix: Path, run_idx: int) -> Path:
+    return prefix.with_name(f"{prefix.name}-run{run_idx}")
 
 
 def main():
     args = _parse_args()
     base_model_path = normalize_path(args.model_path)
     output_root = normalize_path(args.output_root)
-    results_root = _derive_results_root(args)
-    print(f"\n[Stage-1] Results will be stored under: {results_root}")
+    results_prefix = _derive_results_prefix(args, base_model_path)
+    if args.sentiment_runs < 1:
+        raise ValueError("--sentiment-runs must be >= 1")
+    results_roots = [_results_root_for_run(results_prefix, i) for i in range(1, args.sentiment_runs + 1)]
+    print("\n[Stage-1] Results will be stored under:")
+    for root in results_roots:
+        print(f"  - {root}")
 
     if args.dimension:
         print("\n[Stage-1] Training personality subtypes...")
@@ -199,35 +229,57 @@ def main():
         {"display_name": entry["display_name"], "checkpoint_path": entry["checkpoint_path"]}
         for entry in model_entries
     ]
+    sentiment_model_specs = [
+        {"display_name": entry["display_name"], "checkpoint_path": entry["checkpoint_path"]}
+        for entry in model_entries
+        if args.base_sentiment or entry.get("role") != "base"
+    ]
 
-    state = {
-        "run_id": generate_run_id(),
-        "dimension": args.dimension,
-        "pair": [code.upper() for code in args.pair] if args.pair else None,
-        "timestamp": current_timestamp(),
-        "results_root": str(results_root),
-        "output_root": str(output_root),
-        "base_model_path": str(base_model_path),
-        "benchmark_enabled": bool(args.benchmark),
-        "sentiment_runs": int(args.sentiment_runs),
-        "model_entries": model_entries,
-    }
-    metadata_path = write_pipeline_state(state, results_root)
+    session_id = generate_run_id()
+    timestamp = current_timestamp()
+    metadata_paths: list[Path] = []
+    for run_idx, results_root in enumerate(results_roots, start=1):
+        state = {
+            "run_id": f"{session_id}-run{run_idx}",
+            "session_id": session_id,
+            "dimension": args.dimension,
+            "pair": [code.upper() for code in args.pair] if args.pair else None,
+            "timestamp": timestamp,
+            "results_root": str(results_root),
+            "results_root_prefix": str(results_prefix),
+            "output_root": str(output_root),
+            "base_model_path": str(base_model_path),
+            "benchmark_enabled": bool(args.benchmark),
+            "base_sentiment_enabled": bool(args.base_sentiment),
+            "sentiment_runs": 1,
+            "sentiment_runs_total": int(args.sentiment_runs),
+            "sentiment_run_index": int(run_idx),
+            "model_entries": model_entries,
+        }
+        metadata_paths.append(write_pipeline_state(state, results_root))
 
     if args.benchmark:
         print("\n[Stage-1] Running benchmark evaluations...")
-        run_benchmarks(model_specs, results_root=results_root)
+        benchmark_root = results_roots[0]
+        run_benchmarks(model_specs, results_root=benchmark_root)
+        if len(results_roots) > 1:
+            src = benchmark_root / "benchmark"
+            if src.exists():
+                for dst_root in results_roots[1:]:
+                    dst = dst_root / "benchmark"
+                    shutil.copytree(src, dst, dirs_exist_ok=True)
+            else:
+                print(f"[Stage-1] Benchmark output not found at {src}; skipping copy to other runs.")
     else:
         print("\n[Stage-1] Benchmark is disabled; skipping benchmark evaluations.")
-    if args.sentiment_runs < 1:
-        raise ValueError("--sentiment-runs must be >= 1")
-    for run_idx in range(1, args.sentiment_runs + 1):
-        suffix = "" if run_idx == 1 else f"run{run_idx:02d}"
-        banner = f" (run {run_idx}/{args.sentiment_runs})" if args.sentiment_runs > 1 else ""
+    for run_idx, results_root in enumerate(results_roots, start=1):
+        banner = f" (run {run_idx}/{len(results_roots)})" if len(results_roots) > 1 else ""
         print(f"\n[Stage-1] Running sentiment inference{banner}...")
-        run_sentiment(model_specs, results_root=results_root, file_suffix=suffix)
+        run_sentiment(sentiment_model_specs, results_root=results_root, file_suffix="")
 
-    print(f"\n[Stage-1] Completed. Metadata saved to: {metadata_path}")
+    print("\n[Stage-1] Completed. Metadata saved to:")
+    for path in metadata_paths:
+        print(f"  - {path}")
 
 
 if __name__ == "__main__":

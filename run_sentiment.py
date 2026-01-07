@@ -151,10 +151,10 @@ def _parse_args():
 
 
 if __name__ == "__main__":
-    from pipeline_utils import ordered_model_entries
+    from pipeline_utils import ordered_sentiment_entries
 
     args = _parse_args()
-    entries = ordered_model_entries(Path(args.results_root))
+    entries = ordered_sentiment_entries(Path(args.results_root))
     if not entries:
         raise SystemExit("No pipeline metadata found. Run stage-1 pipeline first.")
     specs = [

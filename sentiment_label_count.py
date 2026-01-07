@@ -5,7 +5,7 @@ from typing import Dict, List
 
 import pandas as pd
 
-from pipeline_utils import ordered_model_entries, resolve_dataset_base
+from pipeline_utils import ordered_sentiment_entries, resolve_dataset_base
 
 DATASETS = [
     {"name": "imdb_sentiment", "file": "imdb_sentiment_results.csv",
@@ -68,7 +68,7 @@ def classify_prediction(pred_text: str, valid_pred_set: set[str]) -> str:
 
 def summarize_label_distribution(results_root: Path | str = "results"):
     results_root = Path(results_root)
-    entries = ordered_model_entries(results_root)
+    entries = ordered_sentiment_entries(results_root)
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
     model_names = [entry["display_name"] for entry in entries]

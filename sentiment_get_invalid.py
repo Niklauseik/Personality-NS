@@ -5,7 +5,7 @@ from typing import Dict, List, Optional, Set
 
 import pandas as pd
 
-from pipeline_utils import ordered_model_entries, resolve_dataset_base
+from pipeline_utils import ordered_sentiment_entries, resolve_dataset_base
 
 DATASETS = [
     {"name": "imdb_sentiment", "file": "imdb_sentiment_results.csv",
@@ -55,7 +55,7 @@ def _derive_allowed_labels(df: pd.DataFrame, cfg: Dict, base_allowed: Optional[S
 
 def collect_invalid_predictions(results_root: Path | str = "results") -> None:
     results_root = Path(results_root)
-    entries = ordered_model_entries(results_root)
+    entries = ordered_sentiment_entries(results_root)
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
 

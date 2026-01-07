@@ -4,7 +4,7 @@ from typing import Dict, List
 
 import pandas as pd
 
-from pipeline_utils import ordered_model_entries, resolve_dataset_base
+from pipeline_utils import ordered_sentiment_entries, resolve_dataset_base
 
 DATASETS: List[Dict] = [
     {"name": "imdb", "file": "imdb_sentiment_results.csv", "pred_col": "prediction",
@@ -58,7 +58,7 @@ def pick_label_column(df_label: pd.DataFrame) -> str:
 
 def merge_corrected_labels(results_root: Path | str = "results"):
     results_root = Path(results_root)
-    entries = ordered_model_entries(results_root)
+    entries = ordered_sentiment_entries(results_root)
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
     model_dirs = [entry["display_name"] for entry in entries]
