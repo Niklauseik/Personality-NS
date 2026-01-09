@@ -13,6 +13,7 @@ from pathlib import Path
 from draw_charts import generate_charts
 from evaluate_benchmarks import evaluate_benchmarks
 from evaluate_sentiment import evaluate_sentiment
+from pipeline_utils import get_pipeline_state_path
 from sentiment_get_invalid import collect_invalid_predictions
 from sentiment_label_correct import process_all as correct_invalid_sentiments
 from sentiment_label_count import summarize_label_distribution
@@ -53,6 +54,76 @@ def _discover_results_roots(patterns: list[str]) -> list[Path]:
     return roots
 
 
+def _is_run_root(path: Path) -> bool:
+    return path.is_dir() and get_pipeline_state_path(path).exists()
+
+
+def _find_benchmark_root(results_root: Path) -> Path | None:
+    """
+    Find a benchmark folder associated with the given run root.
+
+    Expected locations:
+    - <results_root>/benchmark (legacy + current local runs)
+    - <dimension_root>/benchmark (if benchmark stored per dimension)
+    - <model_root>/benchmark (if benchmark stored once per model)
+    """
+    candidates = [
+        results_root / "benchmark",
+        results_root.parent / "benchmark",
+        results_root.parent.parent / "benchmark",
+    ]
+    for candidate in candidates:
+        if candidate.exists() and candidate.is_dir():
+            return candidate
+    return None
+
+
+def _expand_to_run_roots(target: Path) -> list[Path]:
+    """
+    Expand an input path into 1+ runnable results roots.
+
+    Supported layouts:
+    - Run root (contains pipeline_state.json):
+        <anything>/pipeline_state.json
+    - New 3-level layout:
+        <model_root>/<dimension>/<run_root>/pipeline_state.json
+      or <model_root>/<dimension>/<run_root>
+    - Compatibility: passing the model_root or dimension folder expands to all run roots below it.
+    """
+    target = target.expanduser()
+    if not target.exists():
+        raise FileNotFoundError(f"Results path not found: {target}")
+    if not target.is_dir():
+        raise NotADirectoryError(f"Results path is not a directory: {target}")
+
+    if _is_run_root(target):
+        return [target]
+
+    run_roots: list[Path] = []
+
+    # Depth-1: dimension -> run_root, or old patterns where the passed folder contains run_roots directly.
+    for child in sorted(target.iterdir()):
+        if not child.is_dir():
+            continue
+        if _is_run_root(child):
+            run_roots.append(child)
+
+    if run_roots:
+        return run_roots
+
+    # Depth-2: model_root -> dimension -> run_root
+    for child in sorted(target.iterdir()):
+        if not child.is_dir():
+            continue
+        for grandchild in sorted(child.iterdir()):
+            if not grandchild.is_dir():
+                continue
+            if _is_run_root(grandchild):
+                run_roots.append(grandchild)
+
+    return run_roots
+
+
 def _run_stage2_for_root(results_root: Path) -> None:
     print(f"\n========== [Stage-2] Processing: {results_root} ==========")
     print("\n[Stage-2] Collecting invalid sentiment predictions...")
@@ -66,10 +137,14 @@ def _run_stage2_for_root(results_root: Path) -> None:
     print("\n[Stage-2] Evaluating sentiment performance...")
     evaluate_sentiment(results_root)
     print("\n[Stage-2] Evaluating benchmark performance...")
-    if (results_root / "benchmark").exists():
-        evaluate_benchmarks(results_root)
+    benchmark_root = _find_benchmark_root(results_root)
+    if benchmark_root is not None:
+        evaluate_benchmarks(results_root, benchmark_root=benchmark_root)
     else:
-        print(f"[Stage-2] Benchmark results not found under {results_root / 'benchmark'}; skipping.")
+        print(
+            "[Stage-2] Benchmark results not found under "
+            f"{results_root / 'benchmark'} (or parent folders); skipping."
+        )
     print("\n[Stage-2] Generating visualizations...")
     generate_charts(results_root, chart_data)
     print("\n[Stage-2] Completed all processing steps.")
@@ -91,22 +166,37 @@ def main():
     args = _parse_args()
     requested = [Path(p) for p in args.results_root] if args.results_root else []
     discovered = _discover_results_roots(args.results_glob)
-    roots = _unique_existing_roots(requested + discovered)
-    if not roots:
-        roots = [Path("results")]
+    targets = _unique_existing_roots(requested + discovered)
+    if not targets:
+        targets = [Path("results")]
 
     if args.dry_run:
         print("[Stage-2] Dry-run. Would process:")
-        for root in roots:
-            print(f"  - {root}")
+        for target in targets:
+            expanded = _expand_to_run_roots(target)
+            if not expanded:
+                print(f"  - {target} (no run roots found)")
+                continue
+            for root in expanded:
+                print(f"  - {root}")
         return
+
+    roots: list[Path] = []
+    for target in targets:
+        expanded = _expand_to_run_roots(target)
+        if not expanded:
+            raise FileNotFoundError(
+                f"No pipeline_state.json found under: {target}. "
+                "Expected a run root, a dimension folder containing run roots, "
+                "or a model root containing <dimension>/<run_root>."
+            )
+        roots.extend(expanded)
+    roots = _unique_existing_roots(roots)
 
     failures = 0
     for root in roots:
-        if not root.exists():
-            raise FileNotFoundError(f"Results root not found: {root}")
-        if not root.is_dir():
-            raise NotADirectoryError(f"Results root is not a directory: {root}")
+        if not _is_run_root(root):
+            raise FileNotFoundError(f"Run root missing pipeline_state.json: {root}")
         try:
             _run_stage2_for_root(root)
         except Exception as exc:

@@ -67,14 +67,14 @@ def gsm8k_accuracy_from_numbers(df):
     return round(acc, 4), correct, total
 
 
-def evaluate_benchmarks(results_root: Path | str = "results"):
+def evaluate_benchmarks(results_root: Path | str = "results", benchmark_root: Path | str | None = None):
     results_root = Path(results_root)
     entries = ordered_model_entries(results_root)
     if not entries:
         raise RuntimeError("No pipeline metadata found. Run stage-1 pipeline first.")
     model_dirs = [entry["display_name"] for entry in entries]
 
-    base_path = results_root / "benchmark"
+    base_path = Path(benchmark_root) if benchmark_root is not None else (results_root / "benchmark")
     if not base_path.exists():
         print(f"[WARN] Benchmark folder not found, skipping: {base_path}")
         return
