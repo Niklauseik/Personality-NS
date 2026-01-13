@@ -1,4 +1,6 @@
 # hf dpo suggested format (refactored for pipeline use)
+from __future__ import annotations
+
 import argparse
 import json
 import os

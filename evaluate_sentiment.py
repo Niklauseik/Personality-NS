@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
+from __future__ import annotations
+
 import argparse
 import re
 from pathlib import Path
 
 import pandas as pd
-from sklearn.metrics import precision_recall_fscore_support
 
 from pipeline_utils import ordered_sentiment_entries, resolve_dataset_base
 
@@ -71,14 +72,57 @@ def extract_pred_label(text: str, allowed: list) -> str:
 
 
 def compute_metrics(y_true, y_pred, class_labels):
-    import numpy as np
-    acc = float(np.mean([t == p for t, p in zip(y_true, y_pred)])) if len(y_true) > 0 else 0.0
-    p_m, r_m, f_m, _ = precision_recall_fscore_support(
-        y_true, y_pred, labels=class_labels, average="macro", zero_division=0
-    )
-    p_w, r_w, f_w, _ = precision_recall_fscore_support(
-        y_true, y_pred, labels=class_labels, average="weighted", zero_division=0
-    )
+    y_true_seq = list(y_true)
+    y_pred_seq = list(y_pred)
+    labels = list(class_labels)
+
+    acc = (sum(t == p for t, p in zip(y_true_seq, y_pred_seq)) / len(y_true_seq)) if y_true_seq else 0.0
+
+    stats = {lbl: {"tp": 0, "fp": 0, "fn": 0, "support": 0} for lbl in labels}
+    for t, p in zip(y_true_seq, y_pred_seq):
+        if t in stats:
+            stats[t]["support"] += 1
+        if t == p and t in stats:
+            stats[t]["tp"] += 1
+            continue
+        if t in stats:
+            stats[t]["fn"] += 1
+        if p in stats:
+            stats[p]["fp"] += 1
+
+    per_label = []
+    for lbl in labels:
+        tp = stats[lbl]["tp"]
+        fp = stats[lbl]["fp"]
+        fn = stats[lbl]["fn"]
+        support = stats[lbl]["support"]
+        precision_l = tp / (tp + fp) if (tp + fp) else 0.0
+        recall_l = tp / (tp + fn) if (tp + fn) else 0.0
+        f1_l = (2 * precision_l * recall_l / (precision_l + recall_l)) if (precision_l + recall_l) else 0.0
+        per_label.append(
+            {
+                "precision": precision_l,
+                "recall": recall_l,
+                "f1": f1_l,
+                "support": support,
+            }
+        )
+
+    if per_label:
+        p_m = sum(x["precision"] for x in per_label) / len(per_label)
+        r_m = sum(x["recall"] for x in per_label) / len(per_label)
+        f_m = sum(x["f1"] for x in per_label) / len(per_label)
+
+        support_total = sum(x["support"] for x in per_label)
+        if support_total:
+            p_w = sum(x["precision"] * x["support"] for x in per_label) / support_total
+            r_w = sum(x["recall"] * x["support"] for x in per_label) / support_total
+            f_w = sum(x["f1"] * x["support"] for x in per_label) / support_total
+        else:
+            p_w = r_w = f_w = 0.0
+    else:
+        p_m = r_m = f_m = 0.0
+        p_w = r_w = f_w = 0.0
     return {
         "accuracy": acc,
         "precision_macro": float(p_m),

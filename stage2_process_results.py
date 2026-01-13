@@ -7,17 +7,12 @@ Examples:
   python stage2_process_results.py --results-root results-NS-first-run results-ST-NF-first-run
   python stage2_process_results.py --results-glob "results-*" --continue-on-error
 """
+from __future__ import annotations
+
 import argparse
 from pathlib import Path
 
-from draw_charts import generate_charts
-from evaluate_benchmarks import evaluate_benchmarks
-from evaluate_sentiment import evaluate_sentiment
 from pipeline_utils import get_pipeline_state_path
-from sentiment_get_invalid import collect_invalid_predictions
-from sentiment_label_correct import process_all as correct_invalid_sentiments
-from sentiment_label_count import summarize_label_distribution
-from sentiment_label_merge import merge_corrected_labels
 
 
 def _parse_args():
@@ -127,18 +122,28 @@ def _expand_to_run_roots(target: Path) -> list[Path]:
 def _run_stage2_for_root(results_root: Path) -> None:
     print(f"\n========== [Stage-2] Processing: {results_root} ==========")
     print("\n[Stage-2] Collecting invalid sentiment predictions...")
+    from sentiment_get_invalid import collect_invalid_predictions
     collect_invalid_predictions(results_root)
     print("\n[Stage-2] Correcting invalid sentiment predictions...")
-    correct_invalid_sentiments(results_root)
+    try:
+        from sentiment_label_correct import process_all as correct_invalid_sentiments
+    except ImportError as exc:
+        print(f"[Stage-2] Skipping correction step (missing dependency): {exc}")
+    else:
+        correct_invalid_sentiments(results_root)
     print("\n[Stage-2] Merging corrected labels...")
+    from sentiment_label_merge import merge_corrected_labels
     merge_corrected_labels(results_root)
     print("\n[Stage-2] Summarizing label distributions...")
+    from sentiment_label_count import summarize_label_distribution
     chart_data = summarize_label_distribution(results_root)
     print("\n[Stage-2] Evaluating sentiment performance...")
+    from evaluate_sentiment import evaluate_sentiment
     evaluate_sentiment(results_root)
     print("\n[Stage-2] Evaluating benchmark performance...")
     benchmark_root = _find_benchmark_root(results_root)
     if benchmark_root is not None:
+        from evaluate_benchmarks import evaluate_benchmarks
         evaluate_benchmarks(results_root, benchmark_root=benchmark_root)
     else:
         print(
@@ -146,7 +151,12 @@ def _run_stage2_for_root(results_root: Path) -> None:
             f"{results_root / 'benchmark'} (or parent folders); skipping."
         )
     print("\n[Stage-2] Generating visualizations...")
-    generate_charts(results_root, chart_data)
+    try:
+        from draw_charts import generate_charts
+    except ImportError as exc:
+        print(f"[Stage-2] Skipping charts (missing dependency): {exc}")
+    else:
+        generate_charts(results_root, chart_data)
     print("\n[Stage-2] Completed all processing steps.")
 
 

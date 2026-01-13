@@ -90,17 +90,18 @@ Stage-1：启动训练（不指定维度，指定类型/组合）
 python stage1_train_and_test.py --pair ENTP ISFJ --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
 
 # 也支持用字母组合（例：ST vs NF）
-python stage1_train_and_test.py --pair ST NF --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
+python stage1_train_and_test.py
+ --pair ST NF --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
 
 ========================================
 Stage-2：处理结果 + 评估 + 画图
 ========================================
 
 # 处理单个 results 目录
-python stage2_process_results.py --results-root results-qwen7b-N-S-run1
+python stage2_process_results.py --results-root results-qwen2.5-7B-Instruct-N-S-run1
 
 # 处理多个 results 目录（示例：一次性处理两组结果）
-python stage2_process_results.py --results-root results-qwen7b-N-S-run1 results-qwen7b-N-S-run2
+python stage2_process_results.py --results-root results-qwen2.5-7B-Instruct-N-S-run1 results-qwen2.5-7B-Instruct-N-S-run2
 
 # 用 glob 自动发现多个 results 目录（可重复指定多个 pattern）
 python stage2_process_results.py --results-glob "results-*-run*" --continue-on-error

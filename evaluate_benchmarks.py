@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import argparse
 import re
 from pathlib import Path
 
 import pandas as pd
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 
 from pipeline_utils import ordered_model_entries
 
@@ -35,10 +36,31 @@ def compute_metrics(y_true, y_pred):
     y_true_seq = list(y_true)
     y_pred_seq = list(y_pred)
 
-    accuracy = accuracy_score(y_true_seq, y_pred_seq)
-    precision, recall, f1, _ = precision_recall_fscore_support(
-        y_true_seq, y_pred_seq, average="macro", zero_division=0
-    )
+    accuracy = sum(t == p for t, p in zip(y_true_seq, y_pred_seq)) / len(y_true_seq) if y_true_seq else 0.0
+    labels = []
+    seen = set()
+    for value in y_true_seq:
+        if value in seen:
+            continue
+        seen.add(value)
+        labels.append(value)
+
+    per_label = []
+    for label in labels:
+        tp = sum((t == label) and (p == label) for t, p in zip(y_true_seq, y_pred_seq))
+        fp = sum((t != label) and (p == label) for t, p in zip(y_true_seq, y_pred_seq))
+        fn = sum((t == label) and (p != label) for t, p in zip(y_true_seq, y_pred_seq))
+        precision_l = tp / (tp + fp) if (tp + fp) else 0.0
+        recall_l = tp / (tp + fn) if (tp + fn) else 0.0
+        f1_l = (2 * precision_l * recall_l / (precision_l + recall_l)) if (precision_l + recall_l) else 0.0
+        per_label.append((precision_l, recall_l, f1_l))
+
+    if per_label:
+        precision = sum(p for p, _, _ in per_label) / len(per_label)
+        recall = sum(r for _, r, _ in per_label) / len(per_label)
+        f1 = sum(f for _, _, f in per_label) / len(per_label)
+    else:
+        precision = recall = f1 = 0.0
     return {
         "accuracy": round(accuracy, 4),
         "precision": round(precision, 4),

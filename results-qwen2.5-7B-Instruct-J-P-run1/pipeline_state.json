@@ -1,0 +1,38 @@
+{
+  "run_id": "28a6ecae-run1",
+  "session_id": "28a6ecae",
+  "dimension": "execution",
+  "pair": null,
+  "timestamp": "2026-01-04T04:41:55.017493Z",
+  "results_root": "results-qwen2.5-7B-Instruct-J-P-run1",
+  "results_root_prefix": "results-qwen2.5-7B-Instruct-J-P",
+  "output_root": "dpo_outputs",
+  "base_model_path": "qwen2.5-7B-Instruct",
+  "benchmark_enabled": false,
+  "base_sentiment_enabled": true,
+  "sentiment_runs": 1,
+  "sentiment_runs_total": 2,
+  "sentiment_run_index": 1,
+  "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "qwen2.5-7B-Instruct"
+    },
+    {
+      "role": "trained",
+      "code": "j",
+      "subtype": "judging",
+      "display_name": "J性格模型",
+      "checkpoint_path": "dpo_outputs/qwen2.5-7B-Instruct_J性格"
+    },
+    {
+      "role": "trained",
+      "code": "p",
+      "subtype": "perceiving",
+      "display_name": "P性格模型",
+      "checkpoint_path": "dpo_outputs/qwen2.5-7B-Instruct_P性格"
+    }
+  ]
+}
