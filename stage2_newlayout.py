@@ -82,6 +82,19 @@ BENCHMARK_FILES: dict[str, str] = {
 RESERVED_DIRS = {"summaries", "plots", "meta"}
 
 
+def _order_labels(allowed: list[str]) -> list[str]:
+    ordered: list[str] = []
+    for label in ["positive", "negative", "neutral"]:
+        if label in allowed and label not in ordered:
+            ordered.append(label)
+    for label in allowed:
+        if label not in ordered:
+            ordered.append(label)
+    if "neutral" not in ordered:
+        ordered.append("neutral")
+    return ordered
+
+
 def _configure_matplotlib() -> None:
     plt.rcParams["font.sans-serif"] = [
         "Microsoft YaHei",
@@ -237,7 +250,7 @@ def _plot_distribution_bars(
     dataset_key: str,
     label_order: list[str],
     model_order: list[str],
-    counts_by_model: dict[str, dict[str, int]],
+    counts_by_model: dict[str, dict[str, float]],
     output_path: Path,
     title_suffix: str,
 ) -> None:
@@ -260,17 +273,43 @@ def _plot_distribution_bars(
     plt.close(fig)
 
 
+def _plot_distribution_pies(
+    dataset_key: str,
+    label_order: list[str],
+    model_order: list[str],
+    counts_by_model: dict[str, dict[str, float]],
+    output_path: Path,
+    title_suffix: str,
+) -> None:
+    _configure_matplotlib()
+    fig, axs = plt.subplots(1, len(model_order), figsize=(4 * len(model_order), 5))
+    fig.suptitle(f"{dataset_key} Prediction Distribution ({title_suffix})", fontsize=14, y=0.98)
+    for idx, model in enumerate(model_order):
+        ax = axs[idx] if len(model_order) > 1 else axs
+        counts = [counts_by_model.get(model, {}).get(lbl, 0.0) for lbl in label_order]
+        if sum(counts) <= 0:
+            ax.axis("off")
+            ax.set_title(model, pad=2)
+            continue
+        ax.pie(counts, labels=label_order, autopct="%1.1f%%", startangle=140)
+        ax.axis("equal")
+        ax.set_title(model, pad=2)
+    fig.subplots_adjust(top=0.82, wspace=0.25)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path, dpi=150)
+    plt.close(fig)
+
 def _row_from_eval_wide(
     pair_name: str,
     dataset_key: str,
     run_name: str,
     model: str,
-    dist: dict[str, int],
+    dist: dict[str, float],
     metrics: dict[str, dict[str, float | int]],
     n_total: int,
     label_order: list[str],
 ) -> dict:
-    total = int(n_total) if n_total else int(sum(dist.values()))
+    total = float(n_total) if n_total else float(sum(dist.values()))
     denom = float(total) if total else 1.0
     row: dict = {
         "pair": pair_name,
@@ -281,7 +320,7 @@ def _row_from_eval_wide(
         "n_total": total,
     }
     for label in label_order:
-        count = int(dist.get(label, 0))
+        count = float(dist.get(label, 0.0))
         row[f"count_{label}"] = count
         row[f"ratio_{label}"] = float(count) / denom
 
@@ -294,15 +333,13 @@ def _row_from_eval_wide(
     return row
 
 
-def _evaluate_sentiment_file(csv_path: Path, ds: SentimentDataset) -> tuple[dict[str, int], dict[str, dict], int]:
+def _evaluate_sentiment_file(csv_path: Path, ds: SentimentDataset) -> tuple[dict[str, float], dict[str, dict], int]:
     df = pd.read_csv(csv_path, dtype=str).fillna("")
     allowed = [_clean_alpha(x) for x in ds.allowed_labels]
 
     # Distribution over all rows (not just evaluable subset): invalid/mixed -> neutral.
     pred_extracted_all = df[ds.pred_col].astype(str).map(lambda x: _extract_pred_label(x, allowed)).tolist()
-    label_order = list(allowed)
-    if "neutral" not in label_order:
-        label_order.append("neutral")
+    label_order = _order_labels(allowed)
     dist = Counter({lbl: 0 for lbl in label_order})
     for p in pred_extracted_all:
         if p in allowed:
@@ -327,7 +364,7 @@ def _evaluate_sentiment_file(csv_path: Path, ds: SentimentDataset) -> tuple[dict
         "strict": _compute_metrics(y_true, y_pred_strict, class_labels=allowed),
         "neutral": _compute_metrics(y_true, y_pred_neutral, class_labels=allowed),
     }
-    dist_dict = {k: int(v) for k, v in dist.items()}
+    dist_dict = {k: float(v) for k, v in dist.items()}
     return dist_dict, metrics, total_dist
 
 
@@ -448,7 +485,9 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
         return
 
     summary_dir = pair_root / "summaries"
-    plots_dir = pair_root / "plots" / "sentiment"
+    plots_root = pair_root / "plots"
+    bar_dir = plots_root / "bar"
+    pie_dir = plots_root / "pie"
     sentiment_summary_path = summary_dir / "sentiment.csv"
     benchmark_summary_path = summary_dir / "benchmark.csv"
 
@@ -479,7 +518,7 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
     rows: list[dict] = []
 
     # base cache (fixed run-001)
-    base_cache: dict[str, tuple[dict[str, int], dict[str, dict], int]] = {}
+    base_cache: dict[str, tuple[dict[str, float], dict[str, dict], int]] = {}
     for dataset_key in datasets:
         ds = SENTIMENT_DATASETS[dataset_key]
         base_csv = base_root / "sentiment" / "run-001" / ds.dataset_dir / ds.filename
@@ -492,21 +531,24 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
         if dataset_key not in base_cache:
             continue
         ds = SENTIMENT_DATASETS[dataset_key]
-        label_order = [_clean_alpha(x) for x in ds.allowed_labels]
-        if "neutral" not in label_order:
-            label_order.append("neutral")
+        label_order = _order_labels([_clean_alpha(x) for x in ds.allowed_labels])
 
         per_run_metrics: dict[str, dict[str, list[dict[str, float | int]]]] = {
             code: {"strict": [], "neutral": []} for code in model_codes
         }
-        per_run_dist: dict[str, dict[str, dict[str, int]]] = {code: {} for code in model_codes}
+        per_run_dist: dict[str, dict[str, dict[str, float]]] = {code: {} for code in model_codes}
 
         for run_name in runs:
-            plot_path = plots_dir / f"{dataset_key}__{run_name}.png"
-            if plot_path.exists() and _summary_has_sentinel(existing_summary, dataset_key, run_name, all_models_for_plots):
+            bar_path = bar_dir / f"{dataset_key}__{run_name}.png"
+            pie_path = pie_dir / f"{dataset_key}__{run_name}.png"
+            if (
+                bar_path.exists()
+                and pie_path.exists()
+                and _summary_has_sentinel(existing_summary, dataset_key, run_name, all_models_for_plots)
+            ):
                 continue
 
-            counts_by_model: dict[str, dict[str, int]] = {}
+            counts_by_model: dict[str, dict[str, float]] = {}
             base_dist, base_metrics, base_total = base_cache[dataset_key]
             counts_by_model["BASE"] = base_dist
             rows.append(
@@ -533,14 +575,27 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
                     label_order=label_order,
                     model_order=all_models_for_plots,
                     counts_by_model=counts_by_model,
-                    output_path=plot_path,
+                    output_path=bar_path,
+                    title_suffix=run_name,
+                )
+                _plot_distribution_pies(
+                    dataset_key=dataset_key,
+                    label_order=label_order,
+                    model_order=all_models_for_plots,
+                    counts_by_model=counts_by_model,
+                    output_path=pie_path,
                     title_suffix=run_name,
                 )
 
         # avg plot + avg summary
-        avg_plot_path = plots_dir / f"{dataset_key}__avg.png"
-        if not (avg_plot_path.exists() and _summary_has_sentinel(existing_summary, dataset_key, "avg", all_models_for_plots)):
-            counts_by_model: dict[str, dict[str, int]] = {}
+        avg_bar_path = bar_dir / f"{dataset_key}__avg.png"
+        avg_pie_path = pie_dir / f"{dataset_key}__avg.png"
+        if not (
+            avg_bar_path.exists()
+            and avg_pie_path.exists()
+            and _summary_has_sentinel(existing_summary, dataset_key, "avg", all_models_for_plots)
+        ):
+            counts_by_model: dict[str, dict[str, float]] = {}
             base_dist, base_metrics, base_total = base_cache[dataset_key]
             counts_by_model["BASE"] = base_dist
             rows.append(_row_from_eval_wide(pair_name, dataset_key, "avg", "BASE", base_dist, base_metrics, base_total, label_order))
@@ -552,6 +607,7 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
                     summed = Counter()
                     strict_list: list[dict[str, float | int]] = []
                     neutral_list: list[dict[str, float | int]] = []
+                    run_count = 0
                     for run_name in runs:
                         model_csv = model_dirs[code] / "sentiment" / run_name / ds.dataset_dir / ds.filename
                         if not model_csv.exists():
@@ -561,6 +617,7 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
                         summed.update(dist)
                         strict_list.append(metrics["strict"])
                         neutral_list.append(metrics["neutral"])
+                        run_count += 1
                     per_run_dist[code] = {r: {} for r in runs} if missing else per_run_dist[code]
                     per_run_metrics[code]["strict"] = strict_list
                     per_run_metrics[code]["neutral"] = neutral_list
@@ -568,12 +625,13 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
                     summed = Counter()
                     for dist in per_run_dist[code].values():
                         summed.update(dist)
+                    run_count = len(per_run_dist[code])
 
-                total = int(sum(summed.values()))
-                if total <= 0:
+                if run_count <= 0 or run_count != len(runs):
                     missing = True
                     continue
-                dist_avg = {lbl: int(summed.get(lbl, 0)) for lbl in label_order}
+                dist_avg = {lbl: float(summed.get(lbl, 0.0)) / float(run_count) for lbl in label_order}
+                total = float(sum(dist_avg.values()))
                 counts_by_model[code] = dist_avg
                 metrics_avg = {
                     "strict": _mean_metrics(per_run_metrics[code]["strict"]),
@@ -587,7 +645,15 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
                     label_order=label_order,
                     model_order=all_models_for_plots,
                     counts_by_model=counts_by_model,
-                    output_path=avg_plot_path,
+                    output_path=avg_bar_path,
+                    title_suffix="avg",
+                )
+                _plot_distribution_pies(
+                    dataset_key=dataset_key,
+                    label_order=label_order,
+                    model_order=all_models_for_plots,
+                    counts_by_model=counts_by_model,
+                    output_path=avg_pie_path,
                     title_suffix="avg",
                 )
 

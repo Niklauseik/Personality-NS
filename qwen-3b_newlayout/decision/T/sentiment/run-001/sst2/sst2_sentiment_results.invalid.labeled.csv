@@ -1,0 +1,20 @@
+﻿idx,text,label,prediction,normalized_label
+83,based on a true and historically significant story ,1,invalid,invalid
+1260,a legendary professor ,1,invalid,invalid
+2061,emotionally and narratively complex ,1,invalid,invalid
+2296,simply by accident ,0,invalid,invalid
+2908,wisdom and emotion ,1,invalid,invalid
+4203,"quiet , confident ",1,invalid,invalid
+4504,"part biography , part entertainment ",1,invalid,invalid
+4609,experimentation and improvisation ,1,invalid,invalid
+4876,contemplation ,1,invalid,invalid
+6531,accurate ,1,invalid,invalid
+6534,"faith , love and power ",1,invalid,invalid
+6814,important political documentary ,1,invalid,invalid
+7094,career-defining ,1,invalid,invalid
+7665,in a well-balanced fashion ,1,invalid,invalid
+7784,necessary and timely ,1,invalid,invalid
+7822,undoubtedly ,1,invalid,invalid
+7902,companion piece ,1,invalid,invalid
+7918,one-of-a-kind ,1,invalid,invalid
+9559,toss-up ,1,invalid,invalid

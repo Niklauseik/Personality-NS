@@ -1,0 +1,4 @@
+﻿idx,text,label,prediction,normalized_label
+2720,is a frighteningly fascinating contradiction ,1,fascinating,positive
+9110,challenging or depressing ,0,Depressing,negative
+9248,"the start -- and , refreshingly , ",1,refreshingly,invalid

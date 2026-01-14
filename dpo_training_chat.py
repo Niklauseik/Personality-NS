@@ -160,7 +160,7 @@ def train_personality_model(
         output_dir=save_path,
         per_device_train_batch_size=16,
         gradient_accumulation_steps=2,
-        num_train_epochs=3,
+        num_train_epochs= 6,
         learning_rate=1e-5,
         beta=1.0,
         save_strategy="no",
