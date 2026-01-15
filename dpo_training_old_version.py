@@ -151,6 +151,20 @@ def _load_csv_dataset(csv_path: Path):
         )
     if "prompt" not in ds.column_names:
         ds = ds.add_column("prompt", [""] * len(ds))
+    def _stringify(value):
+        if isinstance(value, str):
+            return value
+        return json.dumps(value, ensure_ascii=False)
+    ds = ds.map(
+        lambda row: {
+            "prompt": _stringify(row.get("prompt", "")),
+            "chosen": _stringify(row["chosen"]),
+            "rejected": _stringify(row["rejected"]),
+        }
+    )
+    drop_cols = [col for col in ("score_chosen", "score_rejected") if col in ds.column_names]
+    if drop_cols:
+        ds = ds.remove_columns(drop_cols)
     return ds
 
 
@@ -224,7 +238,15 @@ def _train_from_dataset(train_ds, base_model_path: str, save_path: str) -> None:
         bf16=False,
     )
 
-    trainer = DPOTrainer(
+    class _DPOTrainer(DPOTrainer):
+        def _prepare_inputs(self, inputs):
+            inputs = super()._prepare_inputs(inputs)
+            for key, value in list(inputs.items()):
+                if key.endswith("input_ids") and hasattr(value, "dtype"):
+                    inputs[key] = value.long()
+            return inputs
+
+    trainer = _DPOTrainer(
         model=model,
         ref_model=ref_model,
         args=dpo_cfg,

@@ -1,9 +1,0 @@
-﻿idx,text,label,prediction,normalized_label
-804,funny and sad ,1,ambiguous,invalid
-2720,is a frighteningly fascinating contradiction ,1,fascinating,positive
-3341,brilliant and brutal ,1,ambiguous,invalid
-5127,"sometimes charming , sometimes infuriating ",1,ambiguous,invalid
-5844,amusing and unsettling ,1,ambiguous,invalid
-7215,hilarious and sad ,1,ambiguous,invalid
-7407,dying and loving ,1,ambiguous,invalid
-9248,"the start -- and , refreshingly , ",1,refreshing,positive

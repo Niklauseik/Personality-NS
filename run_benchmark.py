@@ -23,9 +23,15 @@ def _load_datasets(dataset_paths: Dict[str, str]) -> Dict[str, pd.DataFrame]:
     return frames
 
 
+def _format_prompt(prompt: str, tokenizer) -> str:
+    if getattr(tokenizer, "chat_template", None):
+        messages = [{"role": "user", "content": prompt}]
+        return tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    return prompt
+
+
 def _local_generate(prompt: str, tokenizer, model) -> str:
-    messages = [{"role": "user", "content": prompt}]
-    full_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    full_prompt = _format_prompt(prompt, tokenizer)
     inputs = tokenizer(full_prompt, return_tensors="pt").to(model.device)
 
     gen_kwargs = dict(

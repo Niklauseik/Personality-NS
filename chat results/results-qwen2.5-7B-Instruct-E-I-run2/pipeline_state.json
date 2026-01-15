@@ -1,0 +1,38 @@
+{
+  "run_id": "55a834d2-run2",
+  "session_id": "55a834d2",
+  "dimension": "energy",
+  "pair": null,
+  "timestamp": "2025-12-31T09:01:42.443795Z",
+  "results_root": "results-qwen2.5-7B-Instruct-E-I-run2",
+  "results_root_prefix": "results-qwen2.5-7B-Instruct-E-I",
+  "output_root": "dpo_outputs",
+  "base_model_path": "qwen2.5-7B-Instruct",
+  "benchmark_enabled": true,
+  "base_sentiment_enabled": true,
+  "sentiment_runs": 1,
+  "sentiment_runs_total": 2,
+  "sentiment_run_index": 2,
+  "model_entries": [
+    {
+      "role": "base",
+      "code": "base",
+      "display_name": "原始基座模型",
+      "checkpoint_path": "qwen2.5-7B-Instruct"
+    },
+    {
+      "role": "trained",
+      "code": "e",
+      "subtype": "extraversion",
+      "display_name": "E性格模型",
+      "checkpoint_path": "dpo_outputs/qwen2.5-7B-Instruct_E性格"
+    },
+    {
+      "role": "trained",
+      "code": "i",
+      "subtype": "introversion",
+      "display_name": "I性格模型",
+      "checkpoint_path": "dpo_outputs/qwen2.5-7B-Instruct_I性格"
+    }
+  ]
+}
