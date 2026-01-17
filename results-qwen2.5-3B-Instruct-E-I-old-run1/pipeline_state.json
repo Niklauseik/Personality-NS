@@ -1,9 +1,9 @@
 {
-  "run_id": "724415cb-run1",
-  "session_id": "724415cb",
+  "run_id": "2c3713b7-run1",
+  "session_id": "2c3713b7",
   "dimension": "energy",
   "pair": null,
-  "timestamp": "2026-01-15T04:06:07.706878Z",
+  "timestamp": "2026-01-16T05:09:12.717371Z",
   "results_root": "results-qwen2.5-3B-Instruct-E-I-old-run1",
   "results_root_prefix": "results-qwen2.5-3B-Instruct-E-I-old",
   "output_root": "dpo_outputs_old_3b_IE",

@@ -73,6 +73,9 @@ python stage2_process_results.py --results-root qwen-3b/information/first_run
 # 兼容旧结构：如果你直接传的是一个包含 pipeline_state.json 的目录（如 results-NS-first-run），也会直接处理
 python stage2_process_results.py --results-root results-NS-first-run
 
+# newlayout 会额外输出 sentiment 显著性检验汇总（Stuart-Maxwell / McNemar）
+# 位置：<pair>/summaries/sentiment_significance.csv
+
 ========================================
 Stage-1：启动训练（Information 维度：S/N）
 ========================================

@@ -11,6 +11,8 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_recall_fscore_support
 
+from sentiment_significance import evaluate_significance_newlayout
+
 
 @dataclass(frozen=True)
 class SentimentDataset:
@@ -658,3 +660,12 @@ def _process_pair_root(pair_root: Path, base_root: Path) -> None:
                 )
 
     _append_summary_rows(sentiment_summary_path, rows)
+    evaluate_significance_newlayout(
+        pair_root=pair_root,
+        base_root=base_root,
+        datasets=SENTIMENT_DATASETS,
+        model_codes=model_codes,
+        runs=runs,
+        output_path=summary_dir / "sentiment_significance.csv",
+        dataset_keys=datasets,
+    )
