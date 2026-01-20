@@ -103,7 +103,7 @@ results-<model>-<pair>-run1/
   plots/*.png
 ```
 
-### 2) 三层结构（模型根目录/维度/run）
+### 2) 旧目录三层结构（模型根目录/维度/run）
 ```
 qwen-3b/
   decision/

@@ -77,6 +77,19 @@ def _load_predictions(
     return [_normalize_prediction(p, allowed, dataset_key) for p in preds]
 
 
+def _pick_prediction_path(csv_path: Path) -> Path | None:
+    invalid_marker = csv_path.with_suffix(".invalid.csv")
+    relabeled = csv_path.with_suffix(".relabeled.csv")
+    processed = csv_path.with_suffix(".processed.csv")
+    if invalid_marker.exists():
+        if relabeled.exists():
+            return relabeled
+        if processed.exists():
+            return processed
+        return None
+    return csv_path if csv_path.exists() else None
+
+
 def _pair_labels(
     base_labels: list[str | None],
     tuned_labels: list[str | None],
@@ -108,6 +121,52 @@ def _build_contingency(
             continue
         counts[label_to_idx[b], label_to_idx[t]] += 1
     return counts
+
+
+def _cramers_v(stat: float | None, n_used: int, k: int) -> float | None:
+    if stat is None or n_used <= 0 or k <= 1:
+        return None
+    denom = float(n_used) * float(k - 1)
+    if denom <= 0:
+        return None
+    return float(np.sqrt(float(stat) / denom))
+
+
+def _mcnemar_effect_stat(counts: np.ndarray) -> float | None:
+    if counts.shape != (2, 2):
+        return None
+    n01 = float(counts[0, 1])
+    n10 = float(counts[1, 0])
+    n = n01 + n10
+    if n <= 0:
+        return 0.0
+    return float((n01 - n10) ** 2 / n)
+
+
+def _tv_distance(p: np.ndarray, q: np.ndarray) -> float:
+    return float(0.5 * np.sum(np.abs(p - q)))
+
+
+def _kl_divergence(p: np.ndarray, q: np.ndarray) -> float:
+    mask = (p > 0) & (q > 0)
+    if not np.any(mask):
+        return 0.0
+    return float(np.sum(p[mask] * np.log2(p[mask] / q[mask])))
+
+
+def _js_divergence(p: np.ndarray, q: np.ndarray) -> float:
+    m = 0.5 * (p + q)
+    return 0.5 * _kl_divergence(p, m) + 0.5 * _kl_divergence(q, m)
+
+
+def _marginal_distributions(counts: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    total = float(counts.sum())
+    if total <= 0:
+        k = counts.shape[0]
+        return np.zeros(k, dtype=float), np.zeros(k, dtype=float)
+    row = counts.sum(axis=1).astype(float) / total
+    col = counts.sum(axis=0).astype(float) / total
+    return row, col
 
 
 def _chi2_sf(stat: float, df: int) -> float | None:
@@ -181,28 +240,38 @@ def evaluate_significance_newlayout(
         if len(label_order) < 2:
             continue
 
-        base_csv = base_root / "sentiment" / "run-001" / ds.dataset_dir / ds.filename
-        if not base_csv.exists():
+        base_csv = _pick_prediction_path(
+            base_root / "sentiment" / "run-001" / ds.dataset_dir / ds.filename
+        )
+        if base_csv is None:
             continue
         base_labels = _load_predictions(base_csv, ds.pred_col, allowed, dataset_key)
 
         for code in model_codes:
             model_dir = pair_root / code
             for run_name in runs:
-                model_csv = model_dir / "sentiment" / run_name / ds.dataset_dir / ds.filename
-                if not model_csv.exists():
+                model_csv = _pick_prediction_path(
+                    model_dir / "sentiment" / run_name / ds.dataset_dir / ds.filename
+                )
+                if model_csv is None:
                     continue
                 tuned_labels = _load_predictions(model_csv, ds.pred_col, allowed, dataset_key)
                 paired_base, paired_tuned, n_total, n_dropped = _pair_labels(base_labels, tuned_labels)
                 if not paired_base:
                     continue
                 counts = _build_contingency(paired_base, paired_tuned, label_order)
+                row_dist, col_dist = _marginal_distributions(counts)
+                tv = _tv_distance(row_dist, col_dist)
+                js = _js_divergence(row_dist, col_dist)
 
                 if counts.shape[0] == 2:
                     stat, df, p_value, test_name = _mcnemar_test(counts)
+                    effect_stat = _mcnemar_effect_stat(counts)
                 else:
                     stat, df, p_value, test_name = _stuart_maxwell_test(counts)
+                    effect_stat = stat
 
+                cramers_v = _cramers_v(effect_stat, len(paired_base), counts.shape[0])
                 rows.append(
                     {
                         "pair": pair_root.name,
@@ -213,6 +282,9 @@ def evaluate_significance_newlayout(
                         "statistic": stat,
                         "df": df,
                         "p_value": p_value,
+                        "effect_cramers_v": cramers_v,
+                        "effect_tv": tv,
+                        "effect_js": js,
                         "n_total": n_total,
                         "n_used": len(paired_base),
                         "n_dropped": n_dropped,
