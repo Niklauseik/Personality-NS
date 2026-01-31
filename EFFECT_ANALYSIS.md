@@ -56,6 +56,6 @@ decision=12159，energy=2050，execution=7378，information=23233。
 - 数据集敏感度（按 CramersV 均值）：最高为 `mental`，最低为 `imdb`。可视为“更敏感/更容易产生偏移”的数据集。
 - 训练规模 vs 偏移：将“维度均值”与训练样本规模对照。一般而言，训练样本越多，偏移越容易形成；但实际偏移大小还受任务匹配度和标签噪声影响。
 - 维度排序（按 CramersV 均值从高到低）：ST-NF、decision、energy、execution、information。
-- 模型规模排序（按 CramersV 均值从高到低）：llama-3b_newlayout、qwen-3b_newlayout、qwen-7b_newlayout。若更大模型在同样数据量下偏移更小，说明“数据量”可能是瓶颈。
+- 模型规模排序（按 CramersV 均值从高到低）：llama-3b_newlayout、qwen-3b_newlayout、qwen-7b_newlayout。已检查：qwen-7b 的偏移均值确实小于 qwen-3b（CramersV/TV/JS 三项均更小）。
 - 小样本维度（energy=2050/类）理论上更难出现大偏移，需结合第 1 表进行验证。
 - 大样本维度（information=23233/类）如果与情感任务更匹配，偏移应更明显；可与数据集敏感度表交叉验证偏移集中在哪些数据集。
