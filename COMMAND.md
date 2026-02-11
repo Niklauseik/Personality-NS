@@ -21,8 +21,11 @@ unzip -o datasets.zip -d datasets
 
 ## 2) 上传 Stage-1 相关代码到云端
 ```bash
-# 简单起见：把仓库里用到的脚本都传上去（也可以只传 stage1/run_* / pipeline_utils.py 等）
-scp -P 48853 ./*.py root@region-46.seetacloud.com:/root/autodl-tmp/personality/
+# 简单起见：把仓库的入口脚本 + 实现目录都传上去
+# - 入口：stage*_*.py
+# - 实现：common/ stage1/ stage2/ stage3/
+scp -P 48853 stage*_*.py root@region-46.seetacloud.com:/root/autodl-tmp/personality/
+scp -P 48853 -r common stage1 stage2 stage3 root@region-46.seetacloud.com:/root/autodl-tmp/personality/
 ```
 
 ## 3) 云端运行 Stage-1（训练 + sentiment + benchmark）
@@ -79,38 +82,39 @@ python stage2_process_results.py --results-root results-NS-first-run
 # 处理全部 newlayout 模型目录
 python stage3_significance.py --model-glob "*_newlayout"
 
+# 带参数：调整 p 阈值 / p 下限，并仅预览要处理的目录
+python stage3_significance.py --model-glob "*_newlayout" --p-threshold 0.01 --min-p 1e-300 --dry-run
+
 # 只处理某一个模型目录
 python stage3_significance.py --model-root qwen-3b_newlayout
+
+# 带参数：只处理指定模型，并调整阈值
+python stage3_significance.py --model-root qwen-3b_newlayout --p-threshold 0.01 --min-p 1e-200
 ```
 
-## Stage-1：启动训练（Information 维度：S/N）
+## 7) 本地运行 Stage-4（全局汇总：跨所有 *_newlayout）
 ```bash
-# 使用本地 Qwen 模型目录（例：qwen2.5-7B-Instruct）
-# - benchmark：默认开启（跑 1 次）
-# - sentiment：跑 2 次
-python stage1_train_and_test.py --dimension information --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
+# 生成全局 CSV（默认输出到 global_summaries/）
+python stage4_global_summaries.py --root . --output-dir global_summaries
+
+# 带参数：只画图（不重写 CSV），并指定效应量指标
+python stage4_global_summaries.py --root . --output-dir global_summaries --no-summarize --plot --effect-metric effect_js
+
+# 带参数：生成 CSV + 同时画图
+python stage4_global_summaries.py --root . --output-dir global_summaries --plot --effect-metric effect_cramers_v
 ```
 
-## Stage-1：启动训练（不指定维度，指定类型/组合）
+## 8) 本地运行 Stage-5（性能提升/下降：sentiment only，accuracy + macro-F1）
 ```bash
-# 训练一对自定义类型（例：ENTP vs ISFJ）
-python stage1_train_and_test.py --pair ENTP ISFJ --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
+# 扫描仓库下所有 *_newlayout/*/summaries/sentiment.csv，输出到 global_performance/
+# 默认只用 run=avg；“有效提升/下降”阈值默认 0.005 = 0.5pp
 
-# 也支持用字母组合（例：ST vs NF）
-python stage1_train_and_test.py --pair ST NF --model-path ./qwen2.5-7B-Instruct --sentiment-runs 2
-```
+# 只生成 CSV
+python stage5_global_performance.py --root . --output-dir global_performance
 
-## Stage-2：处理结果 + 评估 + 画图
-```bash
-# 处理单个 results 目录
-python stage2_process_results.py --results-root results-qwen2.5-7B-Instruct-N-S-run1
+# 生成 CSV + 图表（heatmap / 四象限 push-pull / 领域汇总图）
+python stage5_global_performance.py --root . --output-dir global_performance --plot
 
-# 处理多个 results 目录（示例：一次性处理两组结果）
-python stage2_process_results.py --results-root results-qwen2.5-7B-Instruct-N-S-run1 results-qwen2.5-7B-Instruct-N-S-run2
-
-# 用 glob 自动发现多个 results 目录（可重复指定多个 pattern）
-python stage2_process_results.py --results-glob "results-*-run*" --continue-on-error
-
-# 仅查看将会处理哪些目录（不真正执行）
-python stage2_process_results.py --results-glob "results-*" --dry-run
+# 可选：修改阈值（例如 1pp）
+python stage5_global_performance.py --root . --output-dir global_performance --threshold 0.01 --plot
 ```
