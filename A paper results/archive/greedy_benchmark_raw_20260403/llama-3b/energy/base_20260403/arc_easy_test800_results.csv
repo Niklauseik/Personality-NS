@@ -254,7 +254,7 @@ A student examined a rock sample and described it as having particles of various
 What are genes composed of?,"1: offspring
 2: DNA
 3: cells
-4: traits",2,B
+4: traits",2,2
 "In a classroom demonstration, a teacher pours sulfuric acid on some granulated sugar in a beaker. The sugar turns yellow and then black. Smoke rises and a strong smell is released. This demonstration is an example of what kind of change?","A: chemical
 B: physical
 C: magnetic
@@ -370,7 +370,7 @@ An organism is born with a genetic abnormality not present in any of its ancesto
 The length of one day on Earth is determined by how long it takes,"1: the Moon to revolve once
 2: the Moon to rotate once
 3: Earth to rotate once
-4: Earth to revolve once",3,B
+4: Earth to revolve once",3,A
 "When a rock is placed in a graduated cylinder containing water, the height of the water will","A: decrease
 B: increase
 C: remain the same",B,B
@@ -481,7 +481,7 @@ D: plasma.",A,A
 The speed and general direction of motion of a galaxy relative to the Earth can be determined by,"A: measuring its red shift.
 B: the gravity it exerts.
 C: contrasting it against nearby stars.
-D: observing its motion across the sky.",A,D
+D: observing its motion across the sky.",A,A
 What are the three common states of matter?,"A: liquid, gas, vapor
 B: gas, liquid, fluid
 C: solid, gas, liquid
@@ -545,7 +545,7 @@ D: Heat and pressure can turn them into metamorphic rock.",D,B
 "When both a dominant and recessive gene are present, which of the following is true?","A: The dominant trait will be visible.
 B: The recessive trait will be visible.
 C: Neither trait will be visible.
-D: It cannot be predicted which trait will be visible.",A,A
+D: It cannot be predicted which trait will be visible.",A,D
 Squirrels in cold climates gather and store food for winter. The squirrels sometimes bury nuts and then do not return for them. These nuts can grow to become trees. This chain of events is an example of,"A: predation
 B: seed distribution
 C: competition
@@ -581,7 +581,7 @@ D: Rubber is quickly produced.",A,A
 "On a field trip in a wooded area, you see a small, strange object. You wonder whether it is a live animal. The best way to find out is to observe the object to see if it","A: has an odor.
 B: has separate parts.
 C: can make a noise and has a lifelike color.
-D: carries out basic life functions.",D,B
+D: carries out basic life functions.",D,D
 "Ethanol is a type of alcohol made from plants. Sugarcane and corn, which are both used in foods such as cereals and breads, are used to make ethanol. Burning ethanol provides a clean source of energy because the products of ethanol are water and carbon dioxide. Therefore, mixing ethanol with gasoline reduces harmful waste products. In the 1970s, many Brazilians drove cars with engines that used an ethanol gasoline mixture. This alternative fuel conserved the limited supply of gasoline available at that time. In the 1990s, gasoline became cheaper than ethanol, and Brazilians returned to driving more gasoline-fueled cars. Recently, Brazilians started driving more cars that use an ethanol-gasoline mixture. Ethanol is a good alternative fuel because it","A: reduces air pollution
 B: increases biodiversity
 C: reduces sound pollution
@@ -657,7 +657,7 @@ D: the temperature of the water",D,C
 Russell wants to observe changes in nature over the next few months. What can a thermometer help Russell investigate?,"A: rainfall amounts each week
 B: tiny organisms in pond water
 C: the high temperatures each day
-D: the amount of growth in a plant",C,C
+D: the amount of growth in a plant",C,D
 The egg stage in the life cycle of a bird is most like which phase in the life cycle of certain types of flowers?,"A: seed
 B: spore
 C: pollen
@@ -973,7 +973,7 @@ D: carbon [C]",D,D
 Which of the following is designed to transform an electromagnetic wave into a mechanical wave?,"A: a portable radio
 B: a television screen
 C: a computer monitor
-D: a mercury thermometer",A,A
+D: a mercury thermometer",A,D
 Four students tried to find out which magnet was the strongest. They each shared one idea. Which idea shows scientific thinking?,"A: We can pick the longest magnet.
 B: We can pick the heaviest magnet.
 C: We can measure the strength of the magnets.
@@ -1476,7 +1476,7 @@ D: weathering, erosion, deposition, compaction",D,B
 The discovery of tectonic plates and the cause of their movement is best described as a result of which scientific procedure?,"A: direct observation of the important properties of the Earth system
 B: controlled laboratory experimentation on a simulation of geological systems
 C: methodical testing of a valid hypothesis statement
-D: inquiry into the causes of observed geological phenomena",D,D
+D: inquiry into the causes of observed geological phenomena",D,C
 Cancer is most often the result of,"1: abnormal cell division
 2: natural selection
 3: bacterial infection
@@ -1664,7 +1664,7 @@ D: performs the investigation at the same time on four days.",A,A
 A bright object with a long tail of glowing gases is in orbit around the Sun. This object is most likely,"1: a planet
 2: a star
 3: an asteroid
-4: a comet",4,A
+4: a comet",4,D
 "A hearing aid is a small device that contains an amplifier, a battery, a microphone, and a speaker. Which part of a hearing aid functions to detect sounds in the user's environment?","A: the amplifier
 B: the battery
 C: the microphone
@@ -1768,7 +1768,7 @@ D: Talc and diamonds are both minerals.",B,B
 Which was a main force driving extensive speciation when the environment became hospitable to life after the Permian mass extinction?,"A: increase in available ecological niches
 B: increase of atmospheric oxygen to present levels
 C: increase in genetic diversity among surviving organisms
-D: increase in interbreeding between organisms of different species",A,B
+D: increase in interbreeding between organisms of different species",A,A
 Some types of bacteria can only live where oxygen is not present. These bacteria were well adapted to life on Earth over 2 billion years ago. Which of the following changes caused many of these bacteria to become extinct?,"A: the slow movement of tectonic plates
 B: the varying temperatures of each season
 C: an increase in volcanic activity under the oceans
@@ -2520,7 +2520,7 @@ D: lakes and the Sun",B,B
 Some animals have advantages and disadvantages because they are different. Which of the following has a disadvantage compared to other animals in its population?,"A: a polar bear that has dark-colored fur
 B: a deer with long legs
 C: a rabbit that can run fast
-D: a hummingbird with a long beak",A,C
+D: a hummingbird with a long beak",A,A
 Which is a characteristic of both plants and animals?,"A: life cycles
 B: learned behaviors
 C: produce their own food
@@ -2639,7 +2639,7 @@ D: Earth has an elliptical orbit",B,B
 "In a particular habitat, Animal X has two sources of food. One source is found in the water and the other source is found on land. If the main predator of Animal X is found only on land, what is the most likely structural adaptation that will be selected for in the population of Animal X?","A: development of claws
 B: increase in leg strength
 C: increase in visual acuity
-D: development of webbed feet",D,B
+D: development of webbed feet",D,A
 A teacher uses an instrument that records decibel levels. What is the teacher measuring?,"A: noise levels
 B: intensity of light
 C: relative humidity
@@ -2723,7 +2723,7 @@ D: an instinctive trait.",C,C
 On which date does North America usually experience the longest period of daylight?,"1: March 21
 2: June 21
 3: September 21
-4: December 21",2,B
+4: December 21",2,A
 What causes an object to fall to the ground when you let it drop from your hand?,"A: magnetism
 B: gravity
 C: air resistance
@@ -2835,7 +2835,7 @@ D: The reactants are present in small quantities in the cell.",A,A
 Which statement best compares gravity on the Moon to gravity on Earth?,"A: Gravity on the Moon is greater because it is closer to the Sun.
 B: Gravity on the Moon is less because it is smaller than the Earth.
 C: Gravity on the Moon is less because it has less atmosphere than the Earth.
-D: Gravity on the Moon is greater because it has less mass than the Earth.",B,C
+D: Gravity on the Moon is greater because it has less mass than the Earth.",B,D
 "An enclosed 20 mL metal cylinder was filled with a gas sample at room temperature. The sample then was transferred to an empty 40 mL enclosed container, also at room temperature. After being transferred, the volume of the gas was","A: 10 mL.
 B: 20 mL.
 C: 30 mL.
@@ -2963,7 +2963,7 @@ D: vibrate.",D,D
 Which event is an example of conduction?,"A: Sunlight travels from the Sun to warm Earth.
 B: Boiling water in a pot warms a spoon inside the pot.
 C: A fire in a fireplace warms the air in a room.
-D: Cold water is heated in a microwave oven.",B,C
+D: Cold water is heated in a microwave oven.",B,B
 Which type of energy is transferred from one object to another by simple machines?,"1: mechanical
 2: chemical
 3: nuclear
@@ -3031,7 +3031,7 @@ D: forms six-sided crystals",B,B
 What causes day and night on Earth?,"A: tilting of Earth's axis
 B: rotation of Earth on its axis
 C: movement of Earth around the sun
-D: movement of the sun around Earth",B,B
+D: movement of the sun around Earth",B,A
 Which process is an example of a physical change?,"1: wood burning
 2: iron rusting
 3: ice melting
@@ -3367,7 +3367,7 @@ D: to transport gases throughout the body",D,D
 "When a fern reproduces with spores, the offspring","A: will be genetically identical to the parent plant.
 B: will be better able to adapt to the environment.
 C: will have half the genetic materials of the parent plant.
-D: will have twice the genetic materials of the parent plant.",A,B
+D: will have twice the genetic materials of the parent plant.",A,A
 The process of water changing from its liquid state to a gas in the water cycle is known as,"A: precipitation.
 B: evaporation.
 C: condensation.
@@ -3407,7 +3407,7 @@ D: the type of thermometer to use",B,B
 A student wants to know which type of soil holds the most water. Which action should the student most likely do to answer the question?,"A: compare how the soils are alike
 B: put the soils into different groups
 C: record the weight of the soil
-D: watch how quickly the soil drains",D,B
+D: watch how quickly the soil drains",D,D
 Which of these is required to support the theory of star formation?,"A: laws passed by the government
 B: Internet sites discussing star formation
 C: pictures of stars of different ages
@@ -3711,7 +3711,7 @@ D: amount of time passed since the processes occurred",C,C
 What happens to a moist air mass as it moves upward in the atmosphere?,"A: It becomes warmer and forms clouds.
 B: It becomes cooler and forms clouds.
 C: Its temperature remains the same.
-D: Its temperature varies greatly.",B,A
+D: Its temperature varies greatly.",B,B
 Greenhouse gases in the atmosphere absorb infrared radiation from Earth's surface and re-radiates some of it back to Earth. Which of these gases have the most significant impact on the temperature of Earth's atmosphere?,"A: nitrogen and argon
 B: oxygen and sulfur dioxide
 C: carbon dioxide and water vapor
@@ -3791,7 +3791,7 @@ D: The number of countries producing cars has decreased.",C,C
 Which quantity must equal zero if a car is moving at a constant rate along a straight line?,"A: speed of the car
 B: direction of the car
 C: energy of the car
-D: acceleration of the car",D,A
+D: acceleration of the car",D,D
 Which widely used energy sources are nonrenewable and also a source of greenhouse gas emissions?,"A: wind turbines
 B: hydroelectric dams
 C: fossil fuels
@@ -3911,7 +3911,7 @@ D: waves and flooding",C,C
 Abnormal cell division may result in,"1: disease prevention
 2: tissue repair
 3: metamorphosis
-4: cancer",4,C
+4: cancer",4,D
 What is the main reason humans need nitrogen to survive?,"A: Nitrogen is used in respiration to generate energy.
 B: Nitrogen is used in making the proteins in the body.
 C: Nitrogen is used to help the body eliminate wastes.
@@ -4372,7 +4372,7 @@ D: changing the texture of the two magnets",B,B
 What event occurs because of the rotation of Earth?,"A: tides
 B: four seasons
 C: night and day
-D: changes in the weather",C,B
+D: changes in the weather",C,A
 The identifying characteristic of an element is its number of,"A: protons.
 B: neutrons.
 C: electrons.
@@ -4600,7 +4600,7 @@ D: chloroplast",B,B
 "Many years ago, purple dye was made from some sea animals. Then, in 1856, William Perkins tried to make a new medicine. Instead, he found a way to make purple dye from coal. What is a positive effect of his discovery?","A: Some diseases can be treated.
 B: Purple clothing can be made.
 C: Sea animals are not needed to make purple dye.
-D: Perkins is famous for discovering a new medicine.",C,B
+D: Perkins is famous for discovering a new medicine.",C,C
 "When magnesium (Mg) metal is burned in the presence of oxygen (O?), magnesium oxide (MgO) is produced. The properties of magnesium oxide are different than the individual properties of magnesium and oxygen because magnesium oxide is","A: a solution.
 B: a mixture.
 C: a compound.
@@ -4748,7 +4748,7 @@ D: mountain ranges",D,D
 "At which location does the movement of tectonic plates form isolated volcanic islands, such as Hawaii?","A: transform boundary
 B: divergent boundary
 C: subduction zone
-D: hot spot",D,B
+D: hot spot",D,D
 Which current property of our solar system is mainly due to solar emissions occurring soon after the initiation of fusion in the Sun's core?,"A: directions of revolution of the planets
 B: directions of rotation of the planets
 C: distribution of moons among the planets
@@ -4776,7 +4776,7 @@ D: potential",B,B
 People often wear sunglasses in polar regions because most of the sunlight that strikes a snow-covered surface is,"1: reflected
 2: absorbed
 3: refracted
-4: transmitted",1,A
+4: transmitted",1,1
 A plant is discolored and has large brown blotches on its leaves. This condition is most likely caused by,"A: pollination.
 B: photosynthesis.
 C: nourishment.
@@ -4968,7 +4968,7 @@ D: sandstone",B,B
 "Two objects are at rest and are 1.0 meter apart. To reduce the gravitational pull between the two objects, they should be","A: stacked vertically.
 B: placed side by side.
 C: moved 0.5 meter apart.
-D: moved 1.5 meters apart.",D,B
+D: moved 1.5 meters apart.",D,C
 Soil color is closely related to its content. Which element causes soil to appear red?,"A: iron
 B: silicon
 C: calcium
@@ -5032,7 +5032,7 @@ D: 1280 millimeters",C,B
 Which material has the least resistance to the flow of electricity?,"A: rubber
 B: aluminum
 C: granite
-D: wood",B,B
+D: wood",B,A
 Which are replenished more quickly than they are used?,"A: energy resources
 B: material resources
 C: renewable resources
@@ -5364,7 +5364,7 @@ D: Volcanic island",C,C
 "Kendra's mom is purchasing a car, but cannot decide what color to get. Kendra advises her mom that a car with a black exterior will be uncomfortable in the summer. This observation is correct because dark objects, as compared to lighter colored objects,","A: reduce heat transfer.
 B: are generally more dense.
 C: absorb more of the Sun's energy.
-D: reflect sunlight more efficiently.",C,D
+D: reflect sunlight more efficiently.",C,A
 Heart cells have fibers that slide up and down and cause contractions. Which types of specialized cells can contract?,"A: bone cells
 B: nerve cells
 C: muscle cells
@@ -5376,7 +5376,7 @@ D: how Earth's environments have changed",D,D
 "If a string on a musical instrument like a guitar is made tighter, the sound produced by that string will always be","A: lower pitched.
 B: higher pitched.
 C: louder.
-D: quieter.",B,B
+D: quieter.",B,A
 "Iron oxide, also known as rust, is formed when iron chemically combines with oxygen. Which term best describes iron oxide?","A: element
 B: mixture
 C: solution
@@ -5692,7 +5692,7 @@ D: neither the mother nor the father",C,C
 Why do multicellular organisms need transport systems?,"A: Most have cells that are not able to exchange gases with the outside environment.
 B: Most have cells that are unable to grow and survive in their environment.
 C: Most have cells that need food from sources outside their environment.
-D: Most have cells that require more energy to survive than single-celled organisms.",A,C
+D: Most have cells that require more energy to survive than single-celled organisms.",A,A
 "Scientists frequently monitor levels of microorganisms at beaches in the summer time. High temperatures, pollution, runoff, and illegal dumping all affect water quality. What do these scientific efforts illustrate?","A: Pollution can be eliminated through water testing.
 B: High temperatures increase runoff from agricultural fields.
 C: Water testing identifies origination of illegal dumping.
@@ -6080,7 +6080,7 @@ D: multiply change in velocity by distance traveled",A,A
 Dogs have some learned behaviors. Which is most likely a learned behavior in a dog?,"A: sniffing to find food
 B: panting when it feels hot
 C: chasing a squirrel up a tree
-D: barking when it wants to go outside",D,D
+D: barking when it wants to go outside",D,A
 "Some wasp species lay their eggs inside living caterpillars. As the eggs mature, they use the caterpillar as a food resource. Eventually, the wasp larvae hatch out of the caterpillar. This type of relationship is best described as","A: predator-prey.
 B: parasitic.
 C: mutualistic.
@@ -6136,7 +6136,7 @@ D: compacted plant remains",A,A
 Mars is an inner planet and Jupiter is an outer planet. Which best describes the relationship between the two planets?,"A: They are made of the same materials.
 B: They orbit the Sun in opposite directions.
 C: They have the same orbital periods around the Sun.
-D: They are located on opposite sides of the asteroid belt.",D,B
+D: They are located on opposite sides of the asteroid belt.",D,A
 "In order for electricity from a battery to power a light bulb, the wire has to provide the electricity a path to do what?","A: flow through the entire closed circuit
 B: charge the air molecules near the circuit
 C: jump from one battery terminal to the other
@@ -6316,7 +6316,7 @@ D: mixture",D,D
 Which plant part is described correctly?,"A: Stems make seeds.
 B: Roots absorb nutrients.
 C: Leaves absorb water.
-D: Flowers make food.",B,D
+D: Flowers make food.",B,B
 Which process causes sand grains to stick together to form sandstone?,"A: abrasion
 B: cementation
 C: combustion
@@ -6328,7 +6328,7 @@ D: mechanical",C,C
 "A student placed a rock in a graduated cylinder containing water, causing the water level in the cylinder to increase by 20 mL. This increase represents the rock's","1: mass
 2: volume
 3: solubility
-4: temperature",2,2
+4: temperature",2,A
 Researchers are investigating whether dinosaurs were endothermic like birds. Which evidence from the fossil record could be effectively compared with modern day evidence to support this hypothesis?,"A: similarities in bone structure
 B: seasonal shifts in food supply
 C: consumption of the same plant species
@@ -6452,7 +6452,7 @@ D: pouring vinegar",D,A
 The most common source of nonrenewable resources used to generate electricity in the state of Nevada is,"A: oil.
 B: coal.
 C: geothermal.
-D: hydroelectric.",B,B
+D: hydroelectric.",B,C
 "A ""light year"" refers to","A: the distance light travels in one year.
 B: the of time it takes light to travel from Earth to the Sun.
 C: the amount of light required on Earth in one year.
@@ -7003,7 +7003,7 @@ D: sound",C,C
 Which part of a dandelion plant takes in minerals and water?,"A: flower
 B: leaf
 C: root
-D: stem",C,B
+D: stem",C,C
 Many natural resources are found in Maryland and the surrounding area. Some of these natural resources are renewable and some are nonrenewable. People use both kinds of resources in daily activities. Using natural resources often produces waste products. Which of these natural resources found in Maryland is nonrenewable?,"A: coal
 B: soil
 C: water
@@ -7175,7 +7175,7 @@ D: radiation",B,B
 A new moon occurs about every,"A: day.
 B: year.
 C: week.
-D: month.",D,D
+D: month.",D,B
 Which statement is true?,"A: All fungi are multicellular heterotrophs.
 B: All fungi are single-celled heterotrophs.
 C: All animals are multicellular heterotrophs.
@@ -7239,7 +7239,7 @@ D: Carbon dioxide blocks ultraviolet light.",A,A
 Which statement best describes a bacterial cell?,"A: It contains more than one cell.
 B: It is a complete organism.
 C: It is part of a larger organism.
-D: It contains different kinds of cells.",B,D
+D: It contains different kinds of cells.",B,B
 Visible light in the electromagnetic spectrum,"A: is a broad band within the spectrum.
 B: is a narrow band within the spectrum.
 C: makes up 50 percent of the spectrum.
@@ -7379,7 +7379,7 @@ D: law of original horizontality",C,C
 A mouse's rate of carbon dioxide output increased. Which of the following most likely happened?,"A: The mouse went to sleep.
 B: The mouse ate some food.
 C: The mouse started running.
-D: The mouse detected an odor.",C,C
+D: The mouse detected an odor.",C,B
 Deer are plants-eaters. A winter storm kills many of the plants deer eat. The storm will most likely result in the deer,"A: shedding a lot of fur.
 B: traveling in a herd.
 C: becoming thin.
@@ -7515,7 +7515,7 @@ D: histogram",B,B
 A scientist compares ancient animal tracks to modern animal tracks. Which conclusion is the scientist most likely to reach?,"A: Some ancient animals and some modern animals walk on four legs.
 B: Most ancient animals and most modern animals hunt animals for food.
 C: The same animals that lived long ago also live today.
-D: All animals can walk.",A,C
+D: All animals can walk.",A,A
 A group of citizens want to have a statue built out of marble. They want to place it in a climate that has a slow rate of chemical weathering. In which type of climate would it be best to place the statue for the slowest rate of chemical weathering?,"A: hot and dry
 B: cold and dry
 C: hot and humid
@@ -7663,7 +7663,7 @@ D: a flood plain",D,D
 "In 1785, James Hutton, stated that evidence of past occurrences can be used to explain events which happen today. Which could most likely be used to explain an event in the geologic past?","A: sunspots
 B: earthquakes
 C: wave patterns
-D: cloud formations",B,B
+D: cloud formations",B,A
 The elements sulfur (S) and oxygen combine to form a substance called sulfur dioxide (SO2). Sulfur dioxide is also formed when coal and oil are burned. Sulfur dioxide can best be described as,"A: a metal
 B: an atom
 C: a compound
