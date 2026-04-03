@@ -34,12 +34,11 @@ def _local_generate(prompt: str, tokenizer, model) -> str:
     full_prompt = _format_prompt(prompt, tokenizer)
     inputs = tokenizer(full_prompt, return_tensors="pt").to(model.device)
 
+    # Keep benchmark decoding deterministic so repeated runs are comparable.
     gen_kwargs = dict(
         max_new_tokens=128,
-        do_sample=True,
-        temperature=0.2,
-        top_p=0.8,
-        repetition_penalty=1.5,
+        do_sample=False,
+        num_beams=1,
         eos_token_id=tokenizer.eos_token_id,
         pad_token_id=tokenizer.eos_token_id,
     )
