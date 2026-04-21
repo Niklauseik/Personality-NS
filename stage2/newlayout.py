@@ -397,8 +397,7 @@ def _evaluate_benchmark_pair(base_dir: Path, model_dirs: dict[str, Path], model_
             pred_nums = extract_numbers(row.get("prediction", ""))
             if not label_nums or not pred_nums:
                 continue
-            label = label_nums[0]
-            if label in pred_nums:
+            if any(label in pred_nums for label in label_nums):
                 correct += 1
             total += 1
         acc = correct / total if total else 0.0

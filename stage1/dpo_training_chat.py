@@ -4,13 +4,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import random
 from pathlib import Path
 from typing import Dict, List, Sequence
 
 import torch
 from datasets import Dataset
 from peft import LoraConfig, get_peft_model
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
 from trl import DPOConfig, DPOTrainer
 
 from common.pipeline_utils import opposite_preferred_subtype
@@ -18,6 +19,18 @@ from common.pipeline_utils import opposite_preferred_subtype
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 
 RAW_DIR = Path("datasets/training_raw")  # 直接用最原始 json
+DEFAULT_SEED = 42
+
+
+def _set_reproducible_seed(seed: int = DEFAULT_SEED) -> None:
+    # Keep training reruns as stable as practical across machines.
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    random.seed(seed)
+    set_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
 
 def _load_raw(dimension: str, subtype: str) -> List[dict]:
@@ -107,6 +120,7 @@ def train_personality_model(
     """
     Train a DPO model for either a single dimension preference or a combined personality sequence.
     """
+    _set_reproducible_seed()
     tokenizer = AutoTokenizer.from_pretrained(base_model_path, use_fast=True)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = tokenizer.eos_token_id
@@ -166,6 +180,8 @@ def train_personality_model(
         save_strategy="no",
         save_total_limit=0,
         bf16=False,
+        seed=DEFAULT_SEED,
+        data_seed=DEFAULT_SEED,
     )
 
     trainer = DPOTrainer(
