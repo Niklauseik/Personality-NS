@@ -24,6 +24,7 @@ stage1_train_and_test.py   # Stage-1 入口（CLI wrapper）
 stage1_train_and_test_old_version.py # Stage-1（旧版本）入口（CLI wrapper）
 stage2_process_results.py  # Stage-2 入口（CLI wrapper）
 stage3_significance.py     # Stage-3 入口（CLI wrapper）
+stage3_benchmark_drop_ttest.py # Stage-3 benchmark 能力下降单侧 t-test 入口
 stage2_newlayout.py        # Stage-2（新目录结构）便捷入口
 stage4_global_summaries.py # Stage-4（全局汇总）便捷入口
 stage5_global_performance.py # Stage-5（全局性能汇总：sentiment）便捷入口
@@ -49,6 +50,7 @@ stage2/                    # Stage-2 实现代码
   sentiment_label_count.py
 stage3/                    # Stage-3 实现代码
   significance.py
+  benchmark_drop_ttest.py
 stage4/                    # Stage-4 实现代码（全局汇总）
   global_summaries.py
 stage5/                    # Stage-5 实现代码（全局性能汇总：sentiment）

@@ -90,6 +90,13 @@ python stage3_significance.py --model-root qwen-3b_newlayout
 
 # 带参数：只处理指定模型，并调整阈值
 python stage3_significance.py --model-root qwen-3b_newlayout --p-threshold 0.01 --min-p 1e-200
+
+# Benchmark 能力下降单侧 t-test（Delta Acc = tuned - base，H1: mean(delta) < 0）
+# 默认读取 BENCHMARK_CAPABILITY_CHANGES_BY_DATASET.md，输出到 global_summaries/
+python stage3_benchmark_drop_ttest.py
+
+# 可选：在 Markdown 表中也显示 Overall p-drop
+python stage3_benchmark_drop_ttest.py --include-overall-p-in-markdown
 ```
 
 ## 7) 本地运行 Stage-4（全局汇总：跨所有 *_newlayout）

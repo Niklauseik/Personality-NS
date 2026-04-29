@@ -1,0 +1,5 @@
+﻿Model,ARC-Easy delta mean +/- std,ARC-Easy p-drop,BoolQ delta mean +/- std,BoolQ p-drop,GSM8K delta mean +/- std,GSM8K p-drop,Overall delta mean +/- std,Overall p-drop,Significant drop?
+Llama-3.2-3B,+0.5 ± 2.3,0.714,-0.5 ± 2.1,0.249,-0.5 ± 1.4,0.182,-0.2 ± 1.1,0.334,No
+Qwen2.5-3B,+0.1 ± 0.2,0.695,+0.2 ± 0.7,0.722,+0.4 ± 0.6,0.900,+0.2 ± 0.4,0.873,No
+Qwen2.5-7B,-0.1 ± 0.2,0.090,-0.2 ± 0.3,0.031,+2.3 ± 2.4,0.986,+0.7 ± 0.7,0.980,No
+Overall,+0.1 ± 1.4,0.691,-0.2 ± 1.3,0.214,+0.8 ± 2.1,0.956,+0.2 ± 0.9,0.892,No
