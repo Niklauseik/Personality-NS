@@ -1,0 +1,11 @@
+﻿server,running_mbti_processes,summary_count,remote_output_dir
+s1_qwen3b_ft,,3,/root/autodl-tmp/personality/mbti_results_remote/s1_qwen3b_ft
+s2_llama_ei,,3,/root/autodl-tmp/personality/mbti_results_remote/s2_llama_ei
+s3_llama_ft,,3,/root/autodl-tmp/personality/mbti_results_remote/s3_llama_ft
+s4_qwen7b_sn,,3,/root/autodl-tmp/personality/mbti_results_remote/s4_qwen7b_sn
+s5_qwen7b_ei,,3,/root/autodl-tmp/personality/mbti_results_remote/s5_qwen7b_ei
+s6_qwen7b_jp,,3,/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp
+s7_qwen3b_jp,,3,/root/autodl-tmp/personality/mbti_results_remote/s7_qwen3b_jp
+s8_qwen3b_ei,,3,/root/autodl-tmp/personality/mbti_results_remote/s8_qwen3b_ei
+s9_qwen7b_ft,,3,/root/autodl-tmp/personality/MBTI/results/remote_runs/s9_qwen7b_ft
+s10_llama_jp,,3,/root/autodl-tmp/personality/MBTI/results/remote_runs/s10_llama_jp

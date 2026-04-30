@@ -1,0 +1,122 @@
+[
+  {
+    "server": "s4_qwen7b_sn",
+    "model_variant": "Qwen2.5-7B Base",
+    "path": "/root/autodl-tmp/personality/qwen2.5-7B-Instruct",
+    "status": "started",
+    "pid": "1779",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s4_qwen7b_sn"
+  },
+  {
+    "server": "s4_qwen7b_sn",
+    "model_variant": "Qwen2.5-7B S",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_S性格",
+    "status": "started",
+    "pid": "1779",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s4_qwen7b_sn"
+  },
+  {
+    "server": "s4_qwen7b_sn",
+    "model_variant": "Qwen2.5-7B N",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_N性格",
+    "status": "started",
+    "pid": "1779",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s4_qwen7b_sn"
+  },
+  {
+    "server": "s5_qwen7b_ei",
+    "model_variant": "Qwen2.5-7B Base",
+    "path": "/root/autodl-tmp/personality/qwen2.5-7B-Instruct",
+    "status": "started",
+    "pid": "1604",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s5_qwen7b_ei"
+  },
+  {
+    "server": "s5_qwen7b_ei",
+    "model_variant": "Qwen2.5-7B E",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_E性格",
+    "status": "started",
+    "pid": "1604",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s5_qwen7b_ei"
+  },
+  {
+    "server": "s5_qwen7b_ei",
+    "model_variant": "Qwen2.5-7B I",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_I性格",
+    "status": "started",
+    "pid": "1604",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s5_qwen7b_ei"
+  },
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "Qwen2.5-7B Base",
+    "path": "/root/autodl-tmp/personality/qwen2.5-7B-Instruct",
+    "status": "started",
+    "pid": "1719",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp"
+  },
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "Qwen2.5-7B J",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_J性格",
+    "status": "started",
+    "pid": "1719",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp"
+  },
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "Qwen2.5-7B P",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_P性格",
+    "status": "started",
+    "pid": "1719",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp"
+  },
+  {
+    "server": "s7_qwen3b_jp",
+    "model_variant": "Qwen2.5-3B Base",
+    "path": "/root/autodl-tmp/personality/qwen2.5-3B-Instruct",
+    "status": "started",
+    "pid": "1204",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s7_qwen3b_jp"
+  },
+  {
+    "server": "s7_qwen3b_jp",
+    "model_variant": "Qwen2.5-3B J",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-3B-Instruct_J性格",
+    "status": "started",
+    "pid": "1204",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s7_qwen3b_jp"
+  },
+  {
+    "server": "s7_qwen3b_jp",
+    "model_variant": "Qwen2.5-3B P",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-3B-Instruct_P性格",
+    "status": "started",
+    "pid": "1204",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s7_qwen3b_jp"
+  },
+  {
+    "server": "s8_qwen3b_ei",
+    "model_variant": "Qwen2.5-3B Base",
+    "path": "/root/autodl-tmp/personality/qwen2.5-3B-Instruct",
+    "status": "started",
+    "pid": "1292",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s8_qwen3b_ei"
+  },
+  {
+    "server": "s8_qwen3b_ei",
+    "model_variant": "Qwen2.5-3B E",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-3B-Instruct_E性格",
+    "status": "started",
+    "pid": "1292",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s8_qwen3b_ei"
+  },
+  {
+    "server": "s8_qwen3b_ei",
+    "model_variant": "Qwen2.5-3B I",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-3B-Instruct_I性格",
+    "status": "started",
+    "pid": "1292",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s8_qwen3b_ei"
+  }
+]

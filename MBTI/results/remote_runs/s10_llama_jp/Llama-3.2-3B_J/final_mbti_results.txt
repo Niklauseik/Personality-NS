@@ -1,0 +1,19 @@
+Model: Llama-3.2-3B J
+Path: /root/autodl-tmp/personality/dpo_outputs/model_j_3B
+Decode method: logit
+Trials completed: 1
+Items used per trial: 184
+Skipped invalid items: 2
+
+Dimension scores (summed across trials):
+- E/I: E=20, I=22 -> I (margin=2)
+- S/N: S=22, N=30 -> N (margin=8)
+- T/F: T=22, F=24 -> F (margin=2)
+- J/P: J=24, P=20 -> J (margin=4)
+
+Final MBTI by summed dimension scores: INFJ
+Most common per-trial MBTI: INFJ
+Per-trial MBTI counts: {'INFJ': 1}
+
+Per-trial scores:
+- trial 1: INFJ (E=20, I=22, S=22, N=30, T=22, F=24, J=24, P=20)

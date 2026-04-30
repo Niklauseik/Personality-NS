@@ -1,0 +1,50 @@
+[
+  {
+    "server": "s1_qwen3b_ft",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s2_llama_ei",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s3_llama_ft",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s4_qwen7b_sn",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s5_qwen7b_ei",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s7_qwen3b_jp",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  },
+  {
+    "server": "s8_qwen3b_ei",
+    "model_variant": "ALL",
+    "path": "",
+    "status": "restart_error: TimeoutError: "
+  }
+]

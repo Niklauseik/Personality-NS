@@ -98,8 +98,68 @@ def _expand_to_run_roots(target: Path) -> list[Path]:
     return run_roots
 
 
-def _run_stage2_for_root(results_root: Path) -> None:
+def _mbti_config_from_args(args, output_dir: Path):
+    from MBTI.code.mbti_eval import MBTIRunConfig, default_dataset_path
+
+    dataset_arg = getattr(args, "mbti_dataset", None)
+    dataset_path = Path(dataset_arg) if dataset_arg else default_dataset_path()
+    return MBTIRunConfig(
+        dataset_path=dataset_path,
+        output_dir=output_dir,
+        num_trials=int(getattr(args, "mbti_trials", 1)),
+        decode_method=str(getattr(args, "mbti_decode_method", "logit")),
+        skip_invalid_pairs=not bool(getattr(args, "mbti_include_invalid_pairs", False)),
+        force=bool(getattr(args, "mbti_force", False)),
+        torch_dtype=str(getattr(args, "mbti_torch_dtype", "auto")),
+        device_map=str(getattr(args, "mbti_device_map", "auto")),
+        trust_remote_code=bool(getattr(args, "mbti_trust_remote_code", False)),
+    )
+
+
+def _run_mbti_for_model_specs(model_specs: list[dict], output_dir: Path, args, context: str) -> None:
+    if bool(getattr(args, "skip_mbti", False)):
+        print(f"\n[Stage-2] Skipping MBTI validation for {context} (--skip-mbti).")
+        return
+    if not model_specs:
+        print(f"\n[Stage-2] No checkpoint-like model paths found for MBTI validation in {context}; skipping.")
+        return
+
+    print(f"\n[Stage-2] Running MBTI personality validation for {context}...")
+    from MBTI.code.mbti_eval import run_mbti_for_model_specs
+
+    config = _mbti_config_from_args(args, output_dir=output_dir)
+    run_mbti_for_model_specs(model_specs, config)
+
+
+def _legacy_mbti_model_specs(results_root: Path) -> list[dict]:
+    from common.pipeline_utils import ordered_model_entries
+
+    specs: list[dict] = []
+    for entry in ordered_model_entries(results_root):
+        specs.append(
+            {
+                "display_name": entry.get("display_name", entry.get("code", "model")),
+                "checkpoint_path": entry.get("checkpoint_path", ""),
+            }
+        )
+    return specs
+
+
+def _newlayout_mbti_model_specs(model_root: Path) -> list[dict]:
+    from MBTI.code.mbti_eval import discover_newlayout_checkpoint_specs
+
+    return discover_newlayout_checkpoint_specs(model_root)
+
+
+def _run_stage2_for_root(results_root: Path, args=None) -> None:
     print(f"\n========== [Stage-2] Processing: {results_root} ==========")
+    if args is not None:
+        _run_mbti_for_model_specs(
+            _legacy_mbti_model_specs(results_root),
+            output_dir=results_root / "mbti",
+            args=args,
+            context=str(results_root),
+        )
     print("\n[Stage-2] Collecting invalid sentiment predictions...")
     from .sentiment_get_invalid import collect_invalid_predictions
 
@@ -142,8 +202,15 @@ def _run_stage2_for_root(results_root: Path) -> None:
     print("\n[Stage-2] Completed all processing steps.")
 
 
-def _run_stage2_for_newlayout_model_root(model_root: Path) -> None:
+def _run_stage2_for_newlayout_model_root(model_root: Path, args=None) -> None:
     print(f"\n========== [Stage-2] Processing model root (new layout): {model_root} ==========")
+    if args is not None:
+        _run_mbti_for_model_specs(
+            _newlayout_mbti_model_specs(model_root),
+            output_dir=model_root / "mbti",
+            args=args,
+            context=str(model_root),
+        )
     from .newlayout import process_model_root
 
     process_model_root(model_root)
@@ -206,7 +273,7 @@ def run(args) -> None:
     failures = 0
     for root in newlayout_model_roots:
         try:
-            _run_stage2_for_newlayout_model_root(root)
+            _run_stage2_for_newlayout_model_root(root, args=args)
         except Exception as exc:
             failures += 1
             print(f"\n[Stage-2] ERROR while processing new layout {root}: {exc}")
@@ -217,7 +284,7 @@ def run(args) -> None:
         if not _is_run_root(root):
             raise FileNotFoundError(f"Run root missing pipeline_state.json: {root}")
         try:
-            _run_stage2_for_root(root)
+            _run_stage2_for_root(root, args=args)
         except Exception as exc:
             failures += 1
             print(f"\n[Stage-2] ERROR while processing legacy run root {root}: {exc}")

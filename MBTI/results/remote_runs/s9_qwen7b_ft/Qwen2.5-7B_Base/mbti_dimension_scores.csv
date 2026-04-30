@@ -1,0 +1,5 @@
+﻿model,dimension,left_letter,right_letter,left_score,right_score,left_ratio,right_ratio,winner,margin,total
+Qwen2.5-7B Base,E/I,E,I,20,22,0.47619047619047616,0.5238095238095238,I,2,42
+Qwen2.5-7B Base,S/N,S,N,27,25,0.5192307692307693,0.4807692307692308,S,2,52
+Qwen2.5-7B Base,T/F,T,F,24,22,0.5217391304347826,0.4782608695652174,T,2,46
+Qwen2.5-7B Base,J/P,J,P,26,18,0.5909090909090909,0.4090909090909091,J,8,44

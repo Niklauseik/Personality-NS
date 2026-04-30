@@ -1,0 +1,14 @@
+[MBTI] WARNING: Skipping 2 cross-dimension MBTI items from MBTI/data/MBTI_doubled_93.json.
+
+[MBTI] Evaluating Llama-3.2-3B Base: /root/autodl-tmp/personality/llama-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:25<00:25, 25.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 15.03s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 16.63s/it]
+[MBTI] Llama-3.2-3B Base trial 1/1: INFJ
+
+[MBTI] Evaluating Llama-3.2-3B J: /root/autodl-tmp/personality/dpo_outputs/model_j_3B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:25<00:25, 25.58s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 15.03s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 16.61s/it]
+[MBTI] Llama-3.2-3B J trial 1/1: INFJ
+
+[MBTI] Evaluating Llama-3.2-3B P: /root/autodl-tmp/personality/dpo_outputs/model_p_3B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:25<00:25, 25.71s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 15.05s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 16.65s/it]
+[MBTI] Llama-3.2-3B P trial 1/1: INFJ
+[MBTI] Completed. Wrote 3 model summaries to /root/autodl-tmp/personality/MBTI/results/remote_runs/s10_llama_jp.

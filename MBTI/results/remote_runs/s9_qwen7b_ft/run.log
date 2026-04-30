@@ -1,0 +1,14 @@
+[MBTI] WARNING: Skipping 2 cross-dimension MBTI items from MBTI/data/MBTI_doubled_93.json.
+
+[MBTI] Evaluating Qwen2.5-7B Base: /root/autodl-tmp/personality/qwen2.5-7B-Instruct
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:13,  4.39s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:08<00:07,  3.99s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:10<00:03,  3.41s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.79s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.17s/it]
+[MBTI] Qwen2.5-7B Base trial 1/1: ISTJ
+
+[MBTI] Evaluating Qwen2.5-7B F: /root/autodl-tmp/personality/dpo_outputs/model_f_3B
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.34s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:07,  3.51s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.04s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.04s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.41s/it]
+[MBTI] Qwen2.5-7B F trial 1/1: INFJ
+
+[MBTI] Evaluating Qwen2.5-7B T: /root/autodl-tmp/personality/dpo_outputs/model_t_3B
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.42s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:08<00:02,  2.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  1.92s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  2.16s/it]
+[MBTI] Qwen2.5-7B T trial 1/1: ISTJ
+[MBTI] Completed. Wrote 3 model summaries to /root/autodl-tmp/personality/MBTI/results/remote_runs/s9_qwen7b_ft.

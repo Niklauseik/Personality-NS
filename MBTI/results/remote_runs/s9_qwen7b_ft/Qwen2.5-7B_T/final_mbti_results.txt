@@ -1,0 +1,19 @@
+Model: Qwen2.5-7B T
+Path: /root/autodl-tmp/personality/dpo_outputs/model_t_3B
+Decode method: logit
+Trials completed: 1
+Items used per trial: 184
+Skipped invalid items: 2
+
+Dimension scores (summed across trials):
+- E/I: E=20, I=22 -> I (margin=2)
+- S/N: S=26, N=26 -> S (margin=0)
+- T/F: T=27, F=19 -> T (margin=8)
+- J/P: J=28, P=16 -> J (margin=12)
+
+Final MBTI by summed dimension scores: ISTJ
+Most common per-trial MBTI: ISTJ
+Per-trial MBTI counts: {'ISTJ': 1}
+
+Per-trial scores:
+- trial 1: ISTJ (E=20, I=22, S=26, N=26, T=27, F=19, J=28, P=16)

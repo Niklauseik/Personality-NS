@@ -1,0 +1,4 @@
+﻿server,model,type,E,I,S,N,T,F,J,P,EI_winner,EI_margin,SN_winner,SN_margin,TF_winner,TF_margin,JP_winner,JP_margin,items_used,items_skipped,valid_predictions,decode_method,path,remote_output_dir
+s9_qwen7b_ft,Qwen2.5-7B Base,ISTJ,20,22,27,25,24,22,26,18,I,2,S,2,T,2,J,8,184,2,184,logit,/root/autodl-tmp/personality/qwen2.5-7B-Instruct,/root/autodl-tmp/personality/MBTI/results/remote_runs/s9_qwen7b_ft
+s9_qwen7b_ft,Qwen2.5-7B F,INFJ,19,23,25,27,20,26,24,20,I,4,N,2,F,6,J,4,184,2,184,logit,/root/autodl-tmp/personality/dpo_outputs/model_f_3B,/root/autodl-tmp/personality/MBTI/results/remote_runs/s9_qwen7b_ft
+s9_qwen7b_ft,Qwen2.5-7B T,ISTJ,20,22,26,26,27,19,28,16,I,2,S,0,T,8,J,12,184,2,184,logit,/root/autodl-tmp/personality/dpo_outputs/model_t_3B,/root/autodl-tmp/personality/MBTI/results/remote_runs/s9_qwen7b_ft

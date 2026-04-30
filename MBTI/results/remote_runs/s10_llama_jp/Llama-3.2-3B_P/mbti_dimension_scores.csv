@@ -1,0 +1,5 @@
+﻿model,dimension,left_letter,right_letter,left_score,right_score,left_ratio,right_ratio,winner,margin,total
+Llama-3.2-3B P,E/I,E,I,20,22,0.47619047619047616,0.5238095238095238,I,2,42
+Llama-3.2-3B P,S/N,S,N,17,35,0.3269230769230769,0.6730769230769231,N,18,52
+Llama-3.2-3B P,T/F,T,F,14,32,0.30434782608695654,0.6956521739130435,F,18,46
+Llama-3.2-3B P,J/P,J,P,22,22,0.5,0.5,J,0,44

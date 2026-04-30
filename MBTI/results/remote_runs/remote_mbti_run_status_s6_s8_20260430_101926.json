@@ -1,0 +1,26 @@
+[
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "Qwen2.5-7B Base",
+    "path": "/root/autodl-tmp/personality/qwen2.5-7B-Instruct",
+    "status": "started",
+    "pid": "2065",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp"
+  },
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "Qwen2.5-7B J",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_J性格",
+    "status": "started",
+    "pid": "2065",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp"
+  },
+  {
+    "server": "s6_qwen7b_jp",
+    "model_variant": "Qwen2.5-7B P",
+    "path": "/root/autodl-tmp/personality/dpo_outputs/qwen2.5-7B-Instruct_P性格",
+    "status": "started",
+    "pid": "2065",
+    "output_dir": "/root/autodl-tmp/personality/mbti_results_remote/s6_qwen7b_jp"
+  }
+]

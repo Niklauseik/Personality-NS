@@ -1,0 +1,19 @@
+Model: Qwen2.5-7B F
+Path: /root/autodl-tmp/personality/dpo_outputs/model_f_3B
+Decode method: logit
+Trials completed: 1
+Items used per trial: 184
+Skipped invalid items: 2
+
+Dimension scores (summed across trials):
+- E/I: E=19, I=23 -> I (margin=4)
+- S/N: S=25, N=27 -> N (margin=2)
+- T/F: T=20, F=26 -> F (margin=6)
+- J/P: J=24, P=20 -> J (margin=4)
+
+Final MBTI by summed dimension scores: INFJ
+Most common per-trial MBTI: INFJ
+Per-trial MBTI counts: {'INFJ': 1}
+
+Per-trial scores:
+- trial 1: INFJ (E=19, I=23, S=25, N=27, T=20, F=26, J=24, P=20)
