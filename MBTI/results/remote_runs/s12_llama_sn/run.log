@@ -1,0 +1,14 @@
+[MBTI] WARNING: Skipping 2 cross-dimension MBTI items from MBTI/data/MBTI_doubled_93.json.
+
+[MBTI] Evaluating Llama-3.2-3B Base: llama-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:31<00:31, 31.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.36s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.45s/it]
+[MBTI] Llama-3.2-3B Base trial 1/1: INFJ
+
+[MBTI] Evaluating Llama-3.2-3B S: dpo_outputs/model_s_3B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:25<00:25, 25.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 15.03s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:33<00:00, 16.63s/it]
+[MBTI] Llama-3.2-3B S trial 1/1: INFJ
+
+[MBTI] Evaluating Llama-3.2-3B N: dpo_outputs/model_n_3B
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:31<00:31, 31.23s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 17.32s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:38<00:00, 19.40s/it]
+[MBTI] Llama-3.2-3B N trial 1/1: ENFJ
+[MBTI] Completed. Wrote 3 model summaries to MBTI/results/remote_runs/s12_llama_sn.

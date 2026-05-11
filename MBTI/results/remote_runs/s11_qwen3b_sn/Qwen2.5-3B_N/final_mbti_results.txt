@@ -1,0 +1,19 @@
+Model: Qwen2.5-3B N
+Path: dpo_outputs/qwen2.5-3B-Instruct_N性格
+Decode method: logit
+Trials completed: 1
+Items used per trial: 184
+Skipped invalid items: 2
+
+Dimension scores (summed across trials):
+- E/I: E=25, I=17 -> E (margin=8)
+- S/N: S=15, N=37 -> N (margin=22)
+- T/F: T=25, F=21 -> T (margin=4)
+- J/P: J=23, P=21 -> J (margin=2)
+
+Final MBTI by summed dimension scores: ENTJ
+Most common per-trial MBTI: ENTJ
+Per-trial MBTI counts: {'ENTJ': 1}
+
+Per-trial scores:
+- trial 1: ENTJ (E=25, I=17, S=15, N=37, T=25, F=21, J=23, P=21)

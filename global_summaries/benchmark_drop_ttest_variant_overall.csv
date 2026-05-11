@@ -19,5 +19,5 @@ Qwen2.5-7B,Information,N,Overall,mean_delta_across_datasets,0.0016,0.16,3
 Qwen2.5-7B,Information,S,Overall,mean_delta_across_datasets,0.0038333333333333327,0.3833333333333333,3
 Qwen2.5-7B,Decision,F,Overall,mean_delta_across_datasets,0.0013,0.13,3
 Qwen2.5-7B,Decision,T,Overall,mean_delta_across_datasets,-9.999999999999998e-05,-0.01,3
-Qwen2.5-7B,Execution,J,Overall,mean_delta_across_datasets,0.0185,1.8499999999999999,3
-Qwen2.5-7B,Execution,P,Overall,mean_delta_across_datasets,0.0183,1.83,3
+Qwen2.5-7B,Execution,J,Overall,mean_delta_across_datasets,-0.0012,-0.12,3
+Qwen2.5-7B,Execution,P,Overall,mean_delta_across_datasets,-0.0014,-0.13999999999999999,3

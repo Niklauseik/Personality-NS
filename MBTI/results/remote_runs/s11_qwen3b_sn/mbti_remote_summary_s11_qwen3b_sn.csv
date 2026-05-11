@@ -1,0 +1,4 @@
+﻿server,model,type,E,I,S,N,T,F,J,P,EI_winner,EI_margin,SN_winner,SN_margin,TF_winner,TF_margin,JP_winner,JP_margin,items_used,items_skipped,valid_predictions,decode_method,path,remote_output_dir
+s11_qwen3b_sn,Qwen2.5-3B Base,ENTJ,23,19,20,32,28,18,26,18,E,4,N,12,T,10,J,8,184,2,184,logit,/root/autodl-tmp/personality/qwen2.5-3B-Instruct,/root/autodl-tmp/personality/MBTI/results/remote_runs/s11_qwen3b_sn
+s11_qwen3b_sn,Qwen2.5-3B S,ESTJ,21,21,28,24,29,17,29,15,E,0,S,4,T,12,J,14,184,2,184,logit,/root/autodl-tmp/personality/dpo_outputs/qwen2.5-3B-Instruct_S性格,/root/autodl-tmp/personality/MBTI/results/remote_runs/s11_qwen3b_sn
+s11_qwen3b_sn,Qwen2.5-3B N,ENTJ,25,17,15,37,25,21,23,21,E,8,N,22,T,4,J,2,184,2,184,logit,/root/autodl-tmp/personality/dpo_outputs/qwen2.5-3B-Instruct_N性格,/root/autodl-tmp/personality/MBTI/results/remote_runs/s11_qwen3b_sn

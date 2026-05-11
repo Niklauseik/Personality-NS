@@ -37,6 +37,19 @@
 - `p_min` / `p_median` / `p_max`：p 值统计量
 - `effect_*_median`：效应量中位数（更稳健，减少极端值影响）
 
+## `behavioural_shift_reliability_binomial_table.*` 是什么？
+
+论文表格用的 behavioural-shift reliability 聚合表。它不使用 t-test；每个原 pass-count cell 若有 `k/n` 个 paired tests 达到 `p < 0.05`，则计算 exact one-sided binomial p-value：
+
+- H0: pass rate <= 0.5
+- H1: pass rate > 0.5
+
+输出文件：
+
+- `behavioural_shift_reliability_binomial_table.csv`：包含格式化 p-value 以及对应的 `k`/`n` 追溯列。
+- `behavioural_shift_reliability_binomial_table.md`：Markdown 报告表。
+- `behavioural_shift_reliability_binomial_table.tex`：LaTeX 论文表。
+
 ## 图表输出（可选）
 
 当使用 `--plot` 时，会按 `model_root` 分别生成图表，避免不同模型根目录的数据混在一起：
@@ -58,3 +71,5 @@ Files:
 - `benchmark_drop_ttest_group_stats.csv`: one-sided drop t-test statistics for each model/dataset and overall group.
 - `benchmark_drop_ttest_table.csv`: wide table with formatted values and full overall p-drop values.
 - `benchmark_drop_ttest_table.md`: Markdown table for reporting.
+- `knowledge_preservation_table.csv/.md/.tex`: compact paper table with only benchmark-level `p_drop` values and the pooled `Drop?` decision.
+- `knowledge_preservation_text.md`: updated paper text matching the compact table.

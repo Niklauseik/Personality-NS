@@ -4,7 +4,7 @@ Values are reported as tuned minus base.
 
 Update note:
 On 2026-04-03, the Llama-3.2-3B Energy and Information benchmark rows were replaced with greedy-decoding reruns from the IE and NS AutoDL machines. Earlier sampling-based values were discarded.
-On 2026-04-04, the Qwen2.5-7B Execution rows were filled with the newly downloaded J/P benchmark reruns.
+On 2026-05-02, the Qwen2.5-7B Execution rows were updated with the paired base/J/P benchmark rerun from the remote `results-J-P` output. The earlier 2026-04-04 execution deltas used an older base and were discarded.
 On 2026-04-04, the Llama-3.2-3B Execution rows were replaced with a same-batch base/J/P rerun from the new AutoDL machine.
 On 2026-04-21, the Llama-3.2-3B Decision rows were replaced with the latest benchmark summary provided for the same base/F/T comparison. The earlier 2026-04-07 and same-day interim rerun decision numbers were discarded.
 
@@ -35,5 +35,5 @@ Raw downloaded archives and rerun base-model CSV files are stored under `A paper
 |              |             | S    |           -0.0004 |          -0.0004 |         -0.0048 |        -0.0042 |         +0.0169 |
 |              | Decision    | F    |           -0.0005 |          -0.0005 |         +0.0028 |        +0.0025 |         +0.0016 |
 |              |             | T    |           +0.0001 |          +0.0001 |         -0.0019 |        -0.0016 |         +0.0015 |
-|              | Execution   | J    |           -0.0023 |          -0.0023 |         -0.0014 |        -0.0012 |         +0.0592 |
-|              |             | P    |           -0.0024 |          -0.0024 |         -0.0050 |        -0.0047 |         +0.0623 |
+|              | Execution   | J    |           +0.0000 |          +0.0000 |         +0.0026 |        +0.0026 |         -0.0062 |
+|              |             | P    |           -0.0001 |          -0.0001 |         -0.0010 |        -0.0009 |         -0.0031 |

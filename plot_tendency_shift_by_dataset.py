@@ -41,33 +41,45 @@ VARIANT_ALIASES = {
     "original-base": "Base",
 }
 
-DATASET_ORDER = ["FiQA-SA", "IMDb", "IMDb-Sklearn", "SST-2", "News", "Mental"]
+DATASET_ORDER = [
+    "FiQA-SA",
+    "Large Movie Review Dataset (IMDb)",
+    "scikit-learn IMDb",
+    "Stanford Sentiment Treebank v2 (SST-2)",
+    "Twitter Financial News Sentiment",
+    "Mental Health Multilabel Classification",
+]
 DATASET_ALIASES = {
     "fiqa-sa": "FiQA-SA",
     "fiqa_sa": "FiQA-SA",
     "fiqasa": "FiQA-SA",
     "fiqasa_sentiment": "FiQA-SA",
-    "imdb": "IMDb",
-    "imdb_sentiment": "IMDb",
-    "imdb-sklearn": "IMDb-Sklearn",
-    "imdb_sklearn": "IMDb-Sklearn",
-    "sst-2": "SST-2",
-    "sst2": "SST-2",
-    "news": "News",
-    "news_sentiment": "News",
-    "mental": "Mental",
-    "mental_sentiment": "Mental",
+    "imdb": "Large Movie Review Dataset (IMDb)",
+    "imdb_sentiment": "Large Movie Review Dataset (IMDb)",
+    "large movie review dataset (imdb)": "Large Movie Review Dataset (IMDb)",
+    "imdb-sklearn": "scikit-learn IMDb",
+    "imdb_sklearn": "scikit-learn IMDb",
+    "scikit-learn imdb": "scikit-learn IMDb",
+    "sst-2": "Stanford Sentiment Treebank v2 (SST-2)",
+    "sst2": "Stanford Sentiment Treebank v2 (SST-2)",
+    "stanford sentiment treebank v2 (sst-2)": "Stanford Sentiment Treebank v2 (SST-2)",
+    "news": "Twitter Financial News Sentiment",
+    "news_sentiment": "Twitter Financial News Sentiment",
+    "twitter financial news sentiment": "Twitter Financial News Sentiment",
+    "mental": "Mental Health Multilabel Classification",
+    "mental_sentiment": "Mental Health Multilabel Classification",
+    "mental health multilabel classification": "Mental Health Multilabel Classification",
 }
 
 # Edit this mapping when a dataset needs a specific class order.
 # For datasets not listed here, labels are taken from their first appearance in the CSV.
 DATASET_LABEL_ORDER = {
     "FiQA-SA": ["positive", "negative"],
-    "IMDb": ["positive", "negative"],
-    "IMDb-Sklearn": ["positive", "negative"],
-    "SST-2": ["positive", "negative"],
-    "News": ["bullish", "neutral", "bearish"],
-    "Mental": ["normal", "depression"],
+    "Large Movie Review Dataset (IMDb)": ["positive", "negative"],
+    "scikit-learn IMDb": ["positive", "negative"],
+    "Stanford Sentiment Treebank v2 (SST-2)": ["positive", "negative"],
+    "Twitter Financial News Sentiment": ["bullish", "neutral", "bearish"],
+    "Mental Health Multilabel Classification": ["normal", "depression"],
 }
 
 LABEL_DISPLAY = {
@@ -86,6 +98,8 @@ PROPORTION_TOL = 1e-3
 
 BAR_HEIGHT = 0.66
 BASE_HATCH = "////"
+F1_ABOVE_BASE_LINE_COLOR = "#059669"
+F1_ABOVE_BASE_LINEWIDTH = 0.95
 ROW_BAND_COLOR = "#F8FAFC"
 GRID_COLOR = "#E5E7EB"
 TEXT_COLOR = "#111827"
@@ -376,7 +390,7 @@ def choose_label_colors(label_order: list[str]) -> dict[str, str]:
     else:
         cmap = mpl.colormaps["tab20"]
         colors = [to_hex(cmap(i / max(1, len(label_order) - 1))) for i in range(len(label_order))]
-    return dict(zip(label_order, colors, strict=True))
+    return dict(zip(label_order, colors))
 
 
 def relative_luminance(color: str) -> float:
@@ -419,6 +433,31 @@ def format_f1(value: float | None) -> str:
     if value is None or math.isnan(value):
         return ""
     return f"{value:.2f}"
+
+
+def base_f1_for_rows(rows: list[PlotRow]) -> float | None:
+    base_row = next((row for row in rows if row.variant == "Base"), None)
+    if base_row is None or base_row.f1 is None or math.isnan(base_row.f1):
+        return None
+    return base_row.f1
+
+
+def f1_exceeds_base(row: PlotRow, base_f1: float | None) -> bool:
+    if row.variant == "Base" or base_f1 is None or row.f1 is None or math.isnan(row.f1):
+        return False
+    return row.f1 > base_f1
+
+
+def draw_f1_above_base_line(ax: plt.Axes, y_pos: int) -> None:
+    ax.hlines(
+        y=y_pos + 0.27,
+        xmin=0.22,
+        xmax=0.78,
+        color=F1_ABOVE_BASE_LINE_COLOR,
+        linewidth=F1_ABOVE_BASE_LINEWIDTH,
+        zorder=5,
+        clip_on=False,
+    )
 
 
 def draw_row_background(ax: plt.Axes, n_rows: int) -> None:
@@ -533,6 +572,7 @@ def draw_model_panel(
     n_rows = len(rows)
     draw_row_background(bar_ax, n_rows)
     draw_row_background(f1_ax, n_rows)
+    base_f1 = base_f1_for_rows(rows)
 
     for y_pos, row in enumerate(rows):
         draw_stacked_row(bar_ax, row, y_pos, label_order, label_colors)
@@ -547,6 +587,8 @@ def draw_model_panel(
             fontweight="semibold",
             zorder=4,
         )
+        if f1_exceeds_base(row, base_f1):
+            draw_f1_above_base_line(f1_ax, y_pos)
 
     for boundary in base_reference_boundaries(rows, label_order):
         bar_ax.axvline(
@@ -586,8 +628,8 @@ def draw_dataset_figure(
         len(MODEL_ORDER),
         left=0.06,
         right=0.988,
-        top=0.755,
-        bottom=0.15,
+        top=0.805,
+        bottom=0.095,
         wspace=0.045,
     )
 
@@ -625,24 +667,13 @@ def draw_dataset_figure(
     fig.legend(
         handles=legend_handles,
         loc="upper center",
-        bbox_to_anchor=(0.5, 0.900),
+        bbox_to_anchor=(0.5, 0.945),
         ncol=min(len(legend_handles), 5),
         frameon=False,
         handlelength=1.55,
         handletextpad=0.45,
         columnspacing=1.0,
         labelcolor=MUTED_TEXT_COLOR,
-    )
-
-    fig.suptitle(dataset, y=0.982, fontweight="semibold", color=TEXT_COLOR)
-    fig.text(
-        0.5,
-        0.047,
-        "Prediction proportion",
-        ha="center",
-        va="center",
-        fontsize=7.4,
-        color=MUTED_TEXT_COLOR,
     )
 
     output_dir.mkdir(parents=True, exist_ok=True)

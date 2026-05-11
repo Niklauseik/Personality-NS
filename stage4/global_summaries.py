@@ -7,9 +7,6 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import median
 
-import matplotlib.pyplot as plt
-import numpy as np
-
 
 def _clean_fieldname(name: str) -> str:
     return name.lstrip("\ufeff").strip()
@@ -35,6 +32,21 @@ def _to_float(value: str | None) -> float | None:
         return float(value)
     except (TypeError, ValueError):
         return None
+
+
+def _binomial_p_greater_half(k: int, n: int) -> float:
+    """Exact one-sided binomial test: H0 pass rate <= 0.5, H1 pass rate > 0.5."""
+    if n <= 0:
+        return math.nan
+    if k < 0 or k > n:
+        raise ValueError(f"Invalid binomial count k={k}, n={n}")
+    return sum(math.comb(n, i) for i in range(k, n + 1)) / (2**n)
+
+
+def _format_p_value(value: float) -> str:
+    if math.isnan(value):
+        return "NA"
+    return f"{value:.3g}"
 
 
 def collect_significance_rows(root: Path) -> list[dict[str, str]]:
@@ -123,11 +135,139 @@ def write_global_csvs(root: Path, output_dir: Path) -> tuple[Path, Path, int, in
     return long_path, summary_path, len(rows), len(summary_rows)
 
 
+def write_behavioural_shift_reliability_table(root: Path, output_dir: Path) -> tuple[Path, Path, Path]:
+    rows = collect_significance_rows(root)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    model_labels = {
+        "llama-3b_newlayout": "Llama-3.2-3B",
+        "qwen-3b_newlayout": "Qwen2.5-3B",
+        "qwen-7b_newlayout": "Qwen2.5-7B",
+    }
+    model_order = ["llama-3b_newlayout", "qwen-3b_newlayout", "qwen-7b_newlayout"]
+    dimension_labels = {
+        "energy": "Energy",
+        "information": "Info.",
+        "decision": "Decision",
+        "execution": "Exec.",
+    }
+    dimension_order = ["energy", "information", "decision", "execution"]
+
+    counts: dict[tuple[str, str], dict[str, int]] = defaultdict(lambda: {"k": 0, "n": 0})
+    for row in rows:
+        model_root = row.get("model_root", "")
+        pair = row.get("pair", "")
+        if model_root not in model_labels or pair not in dimension_labels:
+            continue
+        p_value = _to_float(row.get("p_value"))
+        if p_value is None:
+            continue
+        counts[(model_root, pair)]["n"] += 1
+        if p_value < 0.05:
+            counts[(model_root, pair)]["k"] += 1
+
+    table_rows: list[dict[str, str | int]] = []
+    for model_root in model_order:
+        row: dict[str, str | int] = {
+            "model": model_labels[model_root],
+            "overall_k": 0,
+            "overall_n": 0,
+        }
+        for pair in dimension_order:
+            k = counts[(model_root, pair)]["k"]
+            n = counts[(model_root, pair)]["n"]
+            row[f"{pair}_k"] = k
+            row[f"{pair}_n"] = n
+            row[pair] = _format_p_value(_binomial_p_greater_half(k, n))
+            row["overall_k"] = int(row["overall_k"]) + k
+            row["overall_n"] = int(row["overall_n"]) + n
+        row["overall"] = _format_p_value(_binomial_p_greater_half(int(row["overall_k"]), int(row["overall_n"])))
+        table_rows.append(row)
+
+    overall_row: dict[str, str | int] = {"model": "Overall", "overall_k": 0, "overall_n": 0}
+    for pair in dimension_order:
+        k = sum(counts[(model_root, pair)]["k"] for model_root in model_order)
+        n = sum(counts[(model_root, pair)]["n"] for model_root in model_order)
+        overall_row[f"{pair}_k"] = k
+        overall_row[f"{pair}_n"] = n
+        overall_row[pair] = _format_p_value(_binomial_p_greater_half(k, n))
+        overall_row["overall_k"] = int(overall_row["overall_k"]) + k
+        overall_row["overall_n"] = int(overall_row["overall_n"]) + n
+    overall_row["overall"] = _format_p_value(
+        _binomial_p_greater_half(int(overall_row["overall_k"]), int(overall_row["overall_n"]))
+    )
+    table_rows.append(overall_row)
+
+    csv_path = output_dir / "behavioural_shift_reliability_binomial_table.csv"
+    fieldnames = ["model"]
+    for pair in dimension_order:
+        fieldnames.extend([pair, f"{pair}_k", f"{pair}_n"])
+    fieldnames.extend(["overall", "overall_k", "overall_n"])
+    with csv_path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(table_rows)
+
+    md_path = output_dir / "behavioural_shift_reliability_binomial_table.md"
+    headers = ["Model", "Energy", "Info.", "Decision", "Exec.", "Overall"]
+    with md_path.open("w", encoding="utf-8") as handle:
+        handle.write(
+            "Each cell reports the exact one-sided binomial p-value for the count of significant paired tests "
+            "at p < 0.05, testing H0: pass rate <= 0.5 against H1: pass rate > 0.5.\n\n"
+        )
+        handle.write("| " + " | ".join(headers) + " |\n")
+        handle.write("| " + " | ".join(["---"] + ["---:"] * (len(headers) - 1)) + " |\n")
+        for row in table_rows:
+            handle.write(
+                "| "
+                + " | ".join(
+                    [
+                        str(row["model"]),
+                        str(row["energy"]),
+                        str(row["information"]),
+                        str(row["decision"]),
+                        str(row["execution"]),
+                        str(row["overall"]),
+                    ]
+                )
+                + " |\n"
+            )
+
+    tex_path = output_dir / "behavioural_shift_reliability_binomial_table.tex"
+    with tex_path.open("w", encoding="utf-8") as handle:
+        handle.write("\\begin{table}[t]\n")
+        handle.write("\\centering\n")
+        handle.write("\\caption{Statistical reliability of behavioural shifts. Each cell reports the exact one-sided binomial p-value for the count of significant paired tests at $p<0.05$, testing $H_0$: pass rate $\\leq 0.5$ against $H_1$: pass rate $>0.5$.}\n")
+        handle.write("\\begin{tabular}{lrrrrr}\n")
+        handle.write("\\toprule\n")
+        handle.write("Model & Energy & Info. & Decision & Exec. & Overall \\\\\n")
+        handle.write("\\midrule\n")
+        for row in table_rows[:-1]:
+            handle.write(
+                f"{row['model']} & {row['energy']} & {row['information']} & {row['decision']} & "
+                f"{row['execution']} & {row['overall']} \\\\\n"
+            )
+        handle.write("\\midrule\n")
+        row = table_rows[-1]
+        handle.write(
+            f"{row['model']} & {row['energy']} & {row['information']} & {row['decision']} & "
+            f"{row['execution']} & {row['overall']} \\\\\n"
+        )
+        handle.write("\\bottomrule\n")
+        handle.write("\\end{tabular}\n")
+        handle.write("\\end{table}\n")
+
+    return csv_path, md_path, tex_path
+
+
 def _median(values: list[float]) -> float:
     return median(values) if values else math.nan
 
 
 def _build_heatmap(rows: list[dict[str, str]], out_path: Path) -> None:
+    import matplotlib.pyplot as plt
+    import numpy as np
+
     grouped: dict[tuple[str, str, str], list[dict[str, str]]] = defaultdict(list)
     for row in rows:
         key = (row.get("pair", ""), row.get("model", ""), row.get("dataset", ""))
@@ -164,6 +304,8 @@ def _build_heatmap(rows: list[dict[str, str]], out_path: Path) -> None:
 
 
 def _build_effect_plot(rows: list[dict[str, str]], out_path: Path, metric: str) -> None:
+    import matplotlib.pyplot as plt
+
     grouped: dict[tuple[str, str], list[float]] = defaultdict(list)
     for row in rows:
         value = _to_float(row.get(metric))
@@ -207,4 +349,3 @@ def write_global_plots(
         _build_effect_plot(model_rows, effect_path, effect_metric)
         written.append((model_root, heatmap_path, effect_path))
     return written
-

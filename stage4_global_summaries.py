@@ -10,7 +10,11 @@ import argparse
 from pathlib import Path
 from typing import Sequence
 
-from stage4.global_summaries import write_global_csvs, write_global_plots
+from stage4.global_summaries import (
+    write_behavioural_shift_reliability_table,
+    write_global_csvs,
+    write_global_plots,
+)
 
 
 def build_arg_parser() -> argparse.ArgumentParser:
@@ -37,6 +41,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
         help="Whether to generate plots (heatmap + effect plot per model_root).",
     )
     parser.add_argument(
+        "--reliability-table",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Whether to write behavioural-shift reliability binomial p-value tables (default: enabled).",
+    )
+    parser.add_argument(
         "--effect-metric",
         default="effect_cramers_v",
         choices=["effect_cramers_v", "effect_tv", "effect_js"],
@@ -56,6 +66,12 @@ def main(argv: Sequence[str] | None = None) -> None:
         print(f"[Stage-4/global] Wrote {long_path} ({n_rows} rows)")
         print(f"[Stage-4/global] Wrote {summary_path} ({n_groups} groups)")
 
+    if args.reliability_table:
+        csv_path, md_path, tex_path = write_behavioural_shift_reliability_table(root, out_dir)
+        print(f"[Stage-4/global] Wrote {csv_path}")
+        print(f"[Stage-4/global] Wrote {md_path}")
+        print(f"[Stage-4/global] Wrote {tex_path}")
+
     if args.plot:
         written = write_global_plots(root, out_dir, effect_metric=args.effect_metric)
         for model_root, heatmap_path, effect_path in written:
@@ -66,4 +82,3 @@ def main(argv: Sequence[str] | None = None) -> None:
 
 if __name__ == "__main__":
     main()
-

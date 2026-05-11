@@ -1,0 +1,2 @@
+﻿model,trial,mbti_type,valid_predictions,invalid_predictions,score_E,score_I,score_S,score_N,score_T,score_F,score_J,score_P,EI_winner,EI_margin,SN_winner,SN_margin,TF_winner,TF_margin,JP_winner,JP_margin
+Llama-3.2-3B Base,1,INFJ,184,0,20,22,20,32,17,29,24,20,I,2,N,12,F,12,J,4

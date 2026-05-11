@@ -1,0 +1,2 @@
+﻿model,trial,mbti_type,valid_predictions,invalid_predictions,score_E,score_I,score_S,score_N,score_T,score_F,score_J,score_P,EI_winner,EI_margin,SN_winner,SN_margin,TF_winner,TF_margin,JP_winner,JP_margin
+Qwen2.5-3B S,1,ESTJ,184,0,21,21,28,24,29,17,29,15,E,0,S,4,T,12,J,14

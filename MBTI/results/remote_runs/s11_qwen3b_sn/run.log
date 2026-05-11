@@ -1,0 +1,14 @@
+[MBTI] WARNING: Skipping 2 cross-dimension MBTI items from MBTI/data/MBTI_doubled_93.json.
+
+[MBTI] Evaluating Qwen2.5-3B Base: qwen2.5-3B-Instruct
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:20<00:20, 20.30s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:31<00:00, 15.20s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:31<00:00, 15.96s/it]
+[MBTI] Qwen2.5-3B Base trial 1/1: ENTJ
+
+[MBTI] Evaluating Qwen2.5-3B S: dpo_outputs/qwen2.5-3B-Instruct_S性格
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:25<00:25, 25.57s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:31<00:00, 14.24s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:31<00:00, 15.94s/it]
+[MBTI] Qwen2.5-3B S trial 1/1: ESTJ
+
+[MBTI] Evaluating Qwen2.5-3B N: dpo_outputs/qwen2.5-3B-Instruct_N性格
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:25<00:25, 25.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:31<00:00, 14.24s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:31<00:00, 15.94s/it]
+[MBTI] Qwen2.5-3B N trial 1/1: ENTJ
+[MBTI] Completed. Wrote 3 model summaries to MBTI/results/remote_runs/s11_qwen3b_sn.

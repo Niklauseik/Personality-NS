@@ -1,0 +1,185 @@
+﻿model,trial,item_index,dimension,question,choice_a_value,choice_a_text,choice_b_value,choice_b_text,answer,chosen_value,valid,a_score,b_score,score_margin_a_minus_b
+Llama-3.2-3B Base,1,0,J/P,"When you're going out all day, you will",J,Plan what you're going to do and when,P,Just go,a,J,True,31.515625,28.4375,3.078125
+Llama-3.2-3B Base,1,1,J/P,"When you're going out all day, you will",P,Just go,J,Plan what you're going to do and when,a,P,True,31.46875,29.3125,2.15625
+Llama-3.2-3B Base,1,2,J/P,You think you're one,P,People who are more spontaneous,J,More organized people,a,P,True,31.34375,27.40625,3.9375
+Llama-3.2-3B Base,1,3,J/P,You think you're one,J,More organized people,P,People who are more spontaneous,a,J,True,31.421875,27.046875,4.375
+Llama-3.2-3B Base,1,4,S/N,"If you were a teacher, you would teach",S,Fact-based courses,N,Courses that involve theory,a,S,True,31.0625,26.34375,4.71875
+Llama-3.2-3B Base,1,5,S/N,"If you were a teacher, you would teach",N,Courses that involve theory,S,Fact-based courses,a,N,True,30.578125,28.640625,1.9375
+Llama-3.2-3B Base,1,6,E/I,You usually,E,It's easy to get along with people,I,Relatively quiet or reserved,a,E,True,31.609375,29.359375,2.25
+Llama-3.2-3B Base,1,7,E/I,You usually,I,Relatively quiet or reserved,E,It's easy to get along with people,a,I,True,31.625,27.765625,3.859375
+Llama-3.2-3B Base,1,8,S/N,"In general, who do you fit in with?",N,Imaginative people,S,Realistic people,a,N,True,31.390625,29.03125,2.359375
+Llama-3.2-3B Base,1,9,S/N,"In general, who do you fit in with?",S,Realistic people,N,Imaginative people,b,N,True,30.015625,30.5625,-0.546875
+Llama-3.2-3B Base,1,10,T/F,Do you often make,F,Your emotions dominate your intellect,T,Your intellect dominates your emotions,a,F,True,30.78125,30.3125,0.46875
+Llama-3.2-3B Base,1,11,T/F,Do you often make,T,Your intellect dominates your emotions,F,Your emotions dominate your intellect,a,T,True,31.796875,28.140625,3.65625
+Llama-3.2-3B Base,1,12,J/P,Handle many things that you will enjoy,P,Do what you want,J,Do what you planned,a,P,True,31.5,27.71875,3.78125
+Llama-3.2-3B Base,1,13,J/P,Handle many things that you will enjoy,J,Do what you planned,P,Do what you want,a,J,True,30.96875,29.859375,1.109375
+Llama-3.2-3B Base,1,14,E/I,Do you,E,Easy to understand,I,It's hard to understand,a,E,True,30.78125,23.484375,7.296875
+Llama-3.2-3B Base,1,15,E/I,Do you,I,It's hard to understand,E,Easy to understand,b,E,True,27.859375,30.28125,-2.421875
+Llama-3.2-3B Base,1,16,J/P,Follow the schedule,J,To your liking,P,It makes you feel constrained,a,J,True,31.578125,26.921875,4.65625
+Llama-3.2-3B Base,1,17,J/P,Follow the schedule,P,It makes you feel constrained,J,To your liking,a,P,True,32.0,29.375,2.625
+Llama-3.2-3B Base,1,18,J/P,"When you have a special task, you will love",J,Organize your plan carefully before you start,P,Find out what to do as you go,a,J,True,33.21875,23.65625,9.5625
+Llama-3.2-3B Base,1,19,J/P,"When you have a special task, you will love",P,Find out what to do as you go,J,Organize your plan carefully before you start,a,P,True,32.0625,29.015625,3.046875
+Llama-3.2-3B Base,1,20,J/P,"In most cases, you will choose:",P,Go with the flow,J,Do things according to the schedule,a,P,True,31.59375,27.375,4.21875
+Llama-3.2-3B Base,1,21,J/P,"In most cases, you will choose:",J,Do things according to the schedule,P,Go with the flow,a,J,True,31.71875,29.078125,2.640625
+Llama-3.2-3B Base,1,22,E/I,Most people will say you're one,I,People who value their privacy,E,Very frank and open people,a,I,True,32.59375,26.453125,6.140625
+Llama-3.2-3B Base,1,23,E/I,Most people will say you're one,E,Very frank and open people,I,People who value their privacy,a,E,True,30.984375,29.96875,1.015625
+Llama-3.2-3B Base,1,24,S/N,You'd rather be considered one,S,People who seek truth from facts,N,Clever people,a,S,True,31.6875,25.3125,6.375
+Llama-3.2-3B Base,1,25,S/N,You'd rather be considered one,N,Clever people,S,People who seek truth from facts,a,N,True,30.875,29.421875,1.453125
+Llama-3.2-3B Base,1,26,E/I,"In a large group of people, usually",E,You introduce everyone to each other,I,Someone else introduces you,a,E,True,31.15625,29.640625,1.515625
+Llama-3.2-3B Base,1,27,E/I,"In a large group of people, usually",I,Someone else introduces you,E,You introduce everyone to each other,a,I,True,31.171875,29.546875,1.625
+Llama-3.2-3B Base,1,28,S/N,Who would you be friends with?,N,often come up with new ideas,S,Down-to-earth,a,N,True,30.859375,28.734375,2.125
+Llama-3.2-3B Base,1,29,S/N,Who would you be friends with?,S,Down-to-earth,N,often come up with new ideas,a,S,True,30.4375,28.25,2.1875
+Llama-3.2-3B Base,1,30,T/F,You incline,F,Emphasis is placed on emotion over logic,T,Emphasis on logic over emotion,a,F,True,31.46875,29.703125,1.765625
+Llama-3.2-3B Base,1,31,T/F,You incline,T,Emphasis on logic over emotion,F,Emphasis is placed on emotion over logic,a,T,True,32.25,26.984375,5.265625
+Llama-3.2-3B Base,1,32,J/P,You like it better,P,Sit back and see how things unfold before making a plan,J,Plan early,a,P,True,32.3125,27.71875,4.59375
+Llama-3.2-3B Base,1,33,J/P,You like it better,J,Plan early,P,Sit back and see how things unfold before making a plan,a,J,True,32.15625,26.515625,5.640625
+Llama-3.2-3B Base,1,34,E/I,You like to spend a lot of time,I,Alone,E,Spend time with others,a,I,True,31.609375,28.71875,2.890625
+Llama-3.2-3B Base,1,35,E/I,You like to spend a lot of time,E,Spend time with others,I,Alone,a,E,True,31.203125,27.765625,3.4375
+Llama-3.2-3B Base,1,36,E/I,With a lot of people will be,E,Energizes you,I,It's often exhausting,a,E,True,31.234375,26.0625,5.171875
+Llama-3.2-3B Base,1,37,E/I,With a lot of people will be,I,It's often exhausting,E,Energizes you,a,I,True,31.34375,30.015625,1.328125
+Llama-3.2-3B Base,1,38,J/P,You like it better,J,"Arrange appointments, social gatherings, etc. early on",P,"Uninhibited, do whatever you want to do when it's fun",a,J,True,32.4375,27.3125,5.125
+Llama-3.2-3B Base,1,39,J/P,You like it better,P,"Uninhibited, do whatever you want to do when it's fun",J,"Arrange appointments, social gatherings, etc. early on",a,P,True,32.40625,26.09375,6.3125
+Llama-3.2-3B Base,1,40,J/P,"When planning a trip, you prefer it",P,Most of the time it's about acting on the feeling of the day,J,Know beforehand what you'll be doing most of the day,a,P,True,32.34375,27.53125,4.8125
+Llama-3.2-3B Base,1,41,J/P,"When planning a trip, you prefer it",J,Know beforehand what you'll be doing most of the day,P,Most of the time it's about acting on the feeling of the day,a,J,True,32.78125,27.78125,5.0
+Llama-3.2-3B Base,1,42,E/I,"In social gatherings, you",I,Sometimes I feel depressed,E,Always have fun,a,I,True,30.703125,26.875,3.828125
+Llama-3.2-3B Base,1,43,E/I,"In social gatherings, you",E,Always have fun,I,Sometimes I feel depressed,a,E,True,30.09375,26.421875,3.671875
+Llama-3.2-3B Base,1,44,E/I,You usually,E,It's easy to get along with others,I,Tend to be in a corner,a,E,True,31.3125,26.296875,5.015625
+Llama-3.2-3B Base,1,45,E/I,You usually,I,Tend to be in a corner,E,It's easy to get along with others,a,I,True,31.15625,27.96875,3.1875
+Llama-3.2-3B Base,1,46,S/N,Who will appeal to you more?,N,A quick thinking and very intelligent person,S,A person who seeks truth from facts and has a wealth of common sense,b,S,True,28.890625,29.9375,-1.046875
+Llama-3.2-3B Base,1,47,S/N,Who will appeal to you more?,S,A person who seeks truth from facts and has a wealth of common sense,N,A quick thinking and very intelligent person,a,S,True,31.703125,24.125,7.578125
+Llama-3.2-3B Base,1,48,J/P,"In your day-to-day work, you will:",P,Quite like to deal with bursts that force you to race against the clock,J,It's usually planned in advance so that you don't have to work under pressure,a,P,True,31.8125,27.546875,4.265625
+Llama-3.2-3B Base,1,49,J/P,"In your day-to-day work, you will:",J,It's usually planned in advance so that you don't have to work under pressure,P,Quite like to deal with bursts that force you to race against the clock,a,J,True,32.75,26.96875,5.78125
+Llama-3.2-3B Base,1,50,E/I,You think others are average,I,It will take a long time to get to know you,E,It took a short time to get to know you,a,I,True,31.4375,29.484375,1.953125
+Llama-3.2-3B Base,1,51,E/I,You think others are average,E,It took a short time to get to know you,I,It will take a long time to get to know you,a,E,True,31.59375,28.25,3.34375
+Llama-3.2-3B Base,1,52,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",I,Focus on privacy,E,Be frank and open,a,I,True,30.484375,28.5,1.984375
+Llama-3.2-3B Base,1,53,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",E,Be frank and open,I,Focus on privacy,a,E,True,30.640625,27.203125,3.4375
+Llama-3.2-3B Base,1,54,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",J,Pre-arranged,P,Unplanned,a,J,True,30.1875,27.96875,2.21875
+Llama-3.2-3B Base,1,55,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",P,Unplanned,J,Pre-arranged,a,P,True,29.8125,27.8125,2.0
+Llama-3.2-3B Base,1,56,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,abstract,S,Specific,a,N,True,30.25,28.90625,1.34375
+Llama-3.2-3B Base,1,57,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,Specific,N,abstract,a,S,True,30.390625,28.53125,1.859375
+Llama-3.2-3B Base,1,58,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,gentle,T,firmness,a,F,True,29.6875,27.765625,1.921875
+Llama-3.2-3B Base,1,59,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,firmness,F,gentle,b,F,True,28.375,29.6875,-1.3125
+Llama-3.2-3B Base,1,60,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,ponder,F,feel,a,T,True,29.453125,28.921875,0.53125
+Llama-3.2-3B Base,1,61,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,feel,T,ponder,b,T,True,29.28125,29.296875,-0.015625
+Llama-3.2-3B Base,1,62,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,fact,N,thought,b,N,True,28.671875,29.171875,-0.5
+Llama-3.2-3B Base,1,63,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,thought,S,fact,a,N,True,29.609375,28.28125,1.328125
+Llama-3.2-3B Base,1,64,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",P,impulse,J,decision,a,P,True,29.484375,28.84375,0.640625
+Llama-3.2-3B Base,1,65,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",J,decision,P,impulse,a,J,True,29.8125,28.859375,0.953125
+Llama-3.2-3B Base,1,66,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",E,obsession,I,Quiet,a,E,True,29.25,28.46875,0.78125
+Llama-3.2-3B Base,1,67,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",I,Quiet,E,obsession,a,I,True,29.625,28.3125,1.3125
+Llama-3.2-3B Base,1,68,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",I,Quiet,E,extroversion,a,I,True,29.796875,27.21875,2.578125
+Llama-3.2-3B Base,1,69,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",E,extroversion,I,Quiet,a,E,True,29.8125,27.3125,2.5
+Llama-3.2-3B Base,1,70,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",J,There is a system,P,random,a,J,True,30.359375,25.96875,4.390625
+Llama-3.2-3B Base,1,71,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",P,random,J,There is a system,b,J,True,28.75,29.421875,-0.671875
+Llama-3.2-3B Base,1,72,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,theory,S,Sure,a,N,True,29.28125,27.15625,2.125
+Llama-3.2-3B Base,1,73,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,Sure,N,theory,a,S,True,29.40625,28.90625,0.5
+Llama-3.2-3B Base,1,74,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,susceptible,T,fair,a,F,True,29.015625,28.890625,0.125
+Llama-3.2-3B Base,1,75,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,fair,F,susceptible,a,T,True,29.21875,28.578125,0.640625
+Llama-3.2-3B Base,1,76,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,Convincing,F,Touching,a,T,True,29.6875,28.4375,1.25
+Llama-3.2-3B Base,1,77,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,Touching,T,Convincing,a,F,True,29.484375,28.203125,1.28125
+Llama-3.2-3B Base,1,78,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,statement,N,conception,b,N,True,28.78125,29.5625,-0.78125
+Llama-3.2-3B Base,1,79,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,conception,S,statement,a,N,True,30.0,28.328125,1.671875
+Llama-3.2-3B Base,1,80,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",P,Unconstrained,J,prearrange,a,P,True,29.4375,26.75,2.6875
+Llama-3.2-3B Base,1,81,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",J,prearrange,P,Unconstrained,a,J,True,29.40625,28.671875,0.734375
+Llama-3.2-3B Base,1,82,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",I,reserved,E,talkative,a,I,True,30.703125,26.875,3.828125
+Llama-3.2-3B Base,1,83,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",E,talkative,I,reserved,a,E,True,30.140625,28.625,1.515625
+Llama-3.2-3B Base,1,84,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",J,methodical,P,Informal,a,J,True,30.796875,27.34375,3.453125
+Llama-3.2-3B Base,1,85,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",P,Informal,J,methodical,a,P,True,29.71875,29.078125,0.640625
+Llama-3.2-3B Base,1,86,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,thought,S,Live,a,N,True,29.0625,27.859375,1.203125
+Llama-3.2-3B Base,1,87,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,Live,N,thought,a,S,True,28.40625,28.0,0.40625
+Llama-3.2-3B Base,1,88,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,"Sympathy, mercy",T,visionary,a,F,True,29.9375,28.546875,1.390625
+Llama-3.2-3B Base,1,89,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,visionary,F,"Sympathy, mercy",a,T,True,29.75,29.125,0.625
+Llama-3.2-3B Base,1,90,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,benefit,F,blessing,b,F,True,28.921875,29.328125,-0.40625
+Llama-3.2-3B Base,1,91,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,blessing,T,benefit,a,F,True,30.09375,29.0625,1.03125
+Llama-3.2-3B Base,1,92,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,practical,N,Theoretical,a,S,True,30.609375,27.953125,2.65625
+Llama-3.2-3B Base,1,93,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,Theoretical,S,practical,a,N,True,29.75,29.5625,0.1875
+Llama-3.2-3B Base,1,94,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",I,Not many friends,E,Lots of friends,a,I,True,29.25,27.59375,1.65625
+Llama-3.2-3B Base,1,95,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",E,Lots of friends,I,Not many friends,a,E,True,29.34375,26.5625,2.78125
+Llama-3.2-3B Base,1,96,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",J,There is a system,P,improvisation,a,J,True,29.90625,28.953125,0.953125
+Llama-3.2-3B Base,1,97,J/P,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",P,improvisation,J,There is a system,a,P,True,29.859375,27.703125,2.15625
+Llama-3.2-3B Base,1,98,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,Imaginative enough,S,Matter-by-facts,a,N,True,29.765625,25.625,4.140625
+Llama-3.2-3B Base,1,99,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,Matter-by-facts,N,Imaginative enough,a,S,True,29.84375,28.109375,1.734375
+Llama-3.2-3B Base,1,100,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,Kindly,T,Objectively,a,F,True,30.171875,28.515625,1.65625
+Llama-3.2-3B Base,1,101,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,Objectively,F,Kindly,a,T,True,29.109375,29.046875,0.0625
+Llama-3.2-3B Base,1,102,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,Objectively,F,Passionately,a,T,True,29.546875,28.859375,0.6875
+Llama-3.2-3B Base,1,103,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,Passionately,T,Objectively,a,F,True,30.21875,28.234375,1.984375
+Llama-3.2-3B Base,1,104,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,build,N,invent,b,N,True,28.875,29.34375,-0.46875
+Llama-3.2-3B Base,1,105,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,invent,S,build,a,N,True,29.328125,28.8125,0.515625
+Llama-3.2-3B Base,1,106,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",I,Quiet,E,Love to be gregarious,a,I,True,30.125,27.46875,2.65625
+Llama-3.2-3B Base,1,107,E/I,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",E,Love to be gregarious,I,Quiet,a,E,True,30.296875,28.234375,2.0625
+Llama-3.2-3B Base,1,108,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,theory,S,fact,a,N,True,29.96875,28.671875,1.296875
+Llama-3.2-3B Base,1,109,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,fact,N,theory,a,S,True,29.71875,28.734375,0.984375
+Llama-3.2-3B Base,1,110,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,Sympathetic,T,Logical,a,F,True,30.1875,27.71875,2.46875
+Llama-3.2-3B Base,1,111,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,Logical,F,Sympathetic,b,F,True,28.5,29.03125,-0.53125
+Llama-3.2-3B Base,1,112,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",T,Analytical,F,sentimentality,a,T,True,30.265625,28.0,2.265625
+Llama-3.2-3B Base,1,113,T/F,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",F,sentimentality,T,Analytical,a,F,True,29.78125,29.453125,0.328125
+Llama-3.2-3B Base,1,114,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",S,fair and reasonable,N,Fascinating,a,S,True,29.9375,26.46875,3.46875
+Llama-3.2-3B Base,1,115,S/N,"Which of the following pairs of words is more relevant to you? Think carefully about the meaning of these words, and ignore their shapes or pronunciations.",N,Fascinating,S,fair and reasonable,a,N,True,29.515625,28.90625,0.609375
+Llama-3.2-3B Base,1,116,J/P,"When you're going to finish a big project in a week, you will at the beginning",J,Make a list of the different tasks to be done in order,P,Start now,a,J,True,30.859375,26.234375,4.625
+Llama-3.2-3B Base,1,117,J/P,"When you're going to finish a big project in a week, you will at the beginning",P,Start now,J,Make a list of the different tasks to be done in order,a,P,True,30.421875,28.984375,1.4375
+Llama-3.2-3B Base,1,118,E/I,"In social situations, you often feel:",I,It's hard to open up a conversation and maintain a conversation with some people,E,You can have a long conversation with most people,a,I,True,32.5625,28.25,4.3125
+Llama-3.2-3B Base,1,119,E/I,"In social situations, you often feel:",E,You can have a long conversation with most people,I,It's hard to open up a conversation and maintain a conversation with some people,a,E,True,31.75,30.203125,1.546875
+Llama-3.2-3B Base,1,120,S/N,"Do what many people do too, and you prefer",S,Follow the generally accepted method,N,Conceive an idea of your own,a,S,True,31.59375,29.546875,2.046875
+Llama-3.2-3B Base,1,121,S/N,"Do what many people do too, and you prefer",N,Conceive an idea of your own,S,Follow the generally accepted method,a,N,True,31.53125,27.578125,3.953125
+Llama-3.2-3B Base,1,122,E/I,Can a friend you just met tell us about your interests?,E,Right away,I,Wait until they really get to know you,b,I,True,30.03125,30.3125,-0.28125
+Llama-3.2-3B Base,1,123,E/I,Can a friend you just met tell us about your interests?,I,Wait until they really get to know you,E,Right away,a,I,True,31.875,28.265625,3.609375
+Llama-3.2-3B Base,1,124,S/N,Your usual preferred subjects are:,N,Teach concepts and principles,S,Lecture on facts and figures,a,N,True,31.921875,26.09375,5.828125
+Llama-3.2-3B Base,1,125,S/N,Your usual preferred subjects are:,S,Lecture on facts and figures,N,Teach concepts and principles,b,N,True,30.0625,30.71875,-0.65625
+Llama-3.2-3B Base,1,126,T/F,Which is the higher praise?,F,A person who has always been sensual,T,Consistently rational people,a,F,True,28.765625,27.828125,0.9375
+Llama-3.2-3B Base,1,127,T/F,Which is the higher praise?,T,Consistently rational people,F,A person who has always been sensual,a,T,True,30.015625,24.09375,5.921875
+Llama-3.2-3B Base,1,128,J/P,You think you're doing things according to the schedule,P,"Sometimes it is needed, but generally you don't like it",J,Most of the time it's helpful and it's something you love to do,a,P,True,31.515625,29.953125,1.5625
+Llama-3.2-3B Base,1,129,J/P,You think you're doing things according to the schedule,J,Most of the time it's helpful and it's something you love to do,P,"Sometimes it is needed, but generally you don't like it",a,J,True,31.71875,28.734375,2.984375
+Llama-3.2-3B Base,1,130,E/I,"With a group of people, you usually choose",I,Talk to someone you know well,E,Participate in the conversation,a,I,True,30.9375,29.65625,1.28125
+Llama-3.2-3B Base,1,131,E/I,"With a group of people, you usually choose",E,Participate in the conversation,I,Talk to someone you know well,a,E,True,31.375,27.53125,3.84375
+Llama-3.2-3B Base,1,132,E/I,"At social gatherings, you will:",E,It's the one that talks a lot,I,Let others talk more,b,I,True,29.28125,30.109375,-0.828125
+Llama-3.2-3B Base,1,133,E/I,"At social gatherings, you will:",I,Let others talk more,E,It's the one that talks a lot,a,I,True,30.5625,26.09375,4.46875
+Llama-3.2-3B Base,1,134,J/P,"Make a list of things to do over the weekend, and the idea will be",J,To your liking,P,Makes you unmotivated,a,J,True,29.6875,25.859375,3.828125
+Llama-3.2-3B Base,1,135,J/P,"Make a list of things to do over the weekend, and the idea will be",P,Makes you unmotivated,J,To your liking,a,P,True,29.578125,29.25,0.328125
+Llama-3.2-3B Base,1,136,T/F,Which is the higher praise,T,Competent,F,Be compassionate,b,F,True,28.9375,29.09375,-0.15625
+Llama-3.2-3B Base,1,137,T/F,Which is the higher praise,F,Be compassionate,T,Competent,a,F,True,30.40625,26.640625,3.765625
+Llama-3.2-3B Base,1,138,J/P,You usually like,J,Schedule your social appointments beforehand,P,Do whatever you want,a,J,True,31.953125,25.984375,5.96875
+Llama-3.2-3B Base,1,139,J/P,You usually like,P,Do whatever you want,J,Schedule your social appointments beforehand,a,P,True,31.203125,27.828125,3.375
+Llama-3.2-3B Base,1,140,J/P,"In general, when you have to do a big job, you will choose",P,Think about what to do as you go,J,Start by breaking down the work step by step,b,J,True,30.0625,31.21875,-1.15625
+Llama-3.2-3B Base,1,141,J/P,"In general, when you have to do a big job, you will choose",J,Start by breaking down the work step by step,P,Think about what to do as you go,a,J,True,32.84375,23.46875,9.375
+Llama-3.2-3B Base,1,142,E/I,Can you talk to people endlessly,I,Only for people who share your interests,E,Pretty much anyone,a,I,True,31.515625,30.515625,1.0
+Llama-3.2-3B Base,1,143,E/I,Can you talk to people endlessly,E,Pretty much anyone,I,Only for people who share your interests,a,E,True,31.328125,28.15625,3.171875
+Llama-3.2-3B Base,1,144,S/N,You will,S,Follow some proven methods,N,Pretty much anyone,a,S,True,31.0,27.375,3.625
+Llama-3.2-3B Base,1,145,S/N,You will,N,Pretty much anyone,S,Follow some proven methods,a,N,True,30.796875,29.71875,1.078125
+Llama-3.2-3B Base,1,146,S/N,"When reading for fun, you will:",N,Likes quirky or innovative expressions,S,I like the author to be straightforward,a,N,True,31.875,27.25,4.625
+Llama-3.2-3B Base,1,147,S/N,"When reading for fun, you will:",S,I like the author to be straightforward,N,Likes quirky or innovative expressions,a,S,True,31.15625,30.40625,0.75
+Llama-3.2-3B Base,1,150,J/P,You do most things,P,Do what you feel like that day,J,Follow the prepared schedule,a,P,True,31.890625,27.625,4.265625
+Llama-3.2-3B Base,1,151,J/P,You do most things,J,Follow the prepared schedule,P,Do what you feel like that day,a,J,True,32.34375,26.859375,5.484375
+Llama-3.2-3B Base,1,152,E/I,Do you,E,You can talk to anyone you want,I,It's only okay to speak up to certain people or situations,a,E,True,31.46875,29.703125,1.765625
+Llama-3.2-3B Base,1,153,E/I,Do you,I,It's only okay to speak up to certain people or situations,E,You can talk to anyone you want,a,I,True,31.9375,29.109375,2.828125
+Llama-3.2-3B Base,1,154,T/F,"When making a decision, you think it's more important",T,Measured by facts,F,Consider the feelings and opinions of others,a,T,True,32.03125,25.734375,6.296875
+Llama-3.2-3B Base,1,155,T/F,"When making a decision, you think it's more important",F,Consider the feelings and opinions of others,T,Measured by facts,a,F,True,30.9375,30.40625,0.53125
+Llama-3.2-3B Base,1,156,S/N,Which of the following pairs of words is more relevant to you?,N,Imagined,S,true,a,N,True,30.25,26.6875,3.5625
+Llama-3.2-3B Base,1,157,S/N,Which of the following pairs of words is more relevant to you?,S,true,N,Imagined,a,S,True,29.609375,28.734375,0.875
+Llama-3.2-3B Base,1,158,T/F,Which of the following pairs of words is more relevant to you?,F,Kind and generous,T,Strong-willed,a,F,True,30.15625,26.359375,3.796875
+Llama-3.2-3B Base,1,159,T/F,Which of the following pairs of words is more relevant to you?,T,Strong-willed,F,Kind and generous,b,F,True,29.140625,29.203125,-0.0625
+Llama-3.2-3B Base,1,160,T/F,Which of the following pairs of words is more relevant to you?,T,just,F,Caring,b,F,True,28.765625,29.015625,-0.25
+Llama-3.2-3B Base,1,161,T/F,Which of the following pairs of words is more relevant to you?,F,Caring,T,just,a,F,True,30.0,25.171875,4.828125
+Llama-3.2-3B Base,1,162,S/N,Which of the following pairs of words is more relevant to you?,S,make,N,devise,a,S,True,29.859375,28.84375,1.015625
+Llama-3.2-3B Base,1,163,S/N,Which of the following pairs of words is more relevant to you?,N,devise,S,make,a,N,True,30.453125,27.828125,2.625
+Llama-3.2-3B Base,1,164,S/N,Which of the following pairs of words is more relevant to you?,N,possibility,S,inevitability,a,N,True,30.640625,26.9375,3.703125
+Llama-3.2-3B Base,1,165,S/N,Which of the following pairs of words is more relevant to you?,S,inevitability,N,possibility,a,S,True,30.484375,28.546875,1.9375
+Llama-3.2-3B Base,1,166,T/F,Which of the following pairs of words is more relevant to you?,F,gentle,T,strength,a,F,True,30.359375,27.78125,2.578125
+Llama-3.2-3B Base,1,167,T/F,Which of the following pairs of words is more relevant to you?,T,strength,F,gentle,a,T,True,29.734375,28.515625,1.21875
+Llama-3.2-3B Base,1,168,T/F,Which of the following pairs of words is more relevant to you?,T,actual,F,sentimentality,a,T,True,29.8125,29.140625,0.671875
+Llama-3.2-3B Base,1,169,T/F,Which of the following pairs of words is more relevant to you?,F,sentimentality,T,actual,a,F,True,30.609375,26.421875,4.1875
+Llama-3.2-3B Base,1,170,S/N,Which of the following pairs of words is more relevant to you?,S,fabricate,N,create,b,N,True,28.78125,30.0,-1.21875
+Llama-3.2-3B Base,1,171,S/N,Which of the following pairs of words is more relevant to you?,N,create,S,fabricate,a,N,True,30.875,25.828125,5.046875
+Llama-3.2-3B Base,1,172,S/N,Which of the following pairs of words is more relevant to you?,N,Novelty,S,Known,a,N,True,30.375,27.59375,2.78125
+Llama-3.2-3B Base,1,173,S/N,Which of the following pairs of words is more relevant to you?,S,Known,N,Novelty,a,S,True,30.609375,28.890625,1.71875
+Llama-3.2-3B Base,1,174,T/F,Which of the following pairs of words is more relevant to you?,F,sympathize,T,analyse,a,F,True,30.546875,27.578125,2.96875
+Llama-3.2-3B Base,1,175,T/F,Which of the following pairs of words is more relevant to you?,T,analyse,F,sympathize,a,T,True,30.046875,29.1875,0.859375
+Llama-3.2-3B Base,1,176,T/F,Which of the following pairs of words is more relevant to you?,T,Stick to your guns,F,Gentle and loving,a,T,True,30.28125,28.0625,2.21875
+Llama-3.2-3B Base,1,177,T/F,Which of the following pairs of words is more relevant to you?,F,Gentle and loving,T,Stick to your guns,a,F,True,30.5625,25.59375,4.96875
+Llama-3.2-3B Base,1,178,S/N,Which of the following pairs of words is more relevant to you?,S,concrete,N,Abstractly,a,S,True,29.21875,26.90625,2.3125
+Llama-3.2-3B Base,1,179,S/N,Which of the following pairs of words is more relevant to you?,N,Abstractly,S,concrete,a,N,True,30.1875,29.09375,1.09375
+Llama-3.2-3B Base,1,180,T/F,Which of the following pairs of words is more relevant to you?,F,Wholeheartedly,T,Determinedly,a,F,True,30.03125,26.109375,3.921875
+Llama-3.2-3B Base,1,181,T/F,Which of the following pairs of words is more relevant to you?,T,Determinedly,F,Wholeheartedly,b,F,True,28.984375,29.75,-0.765625
+Llama-3.2-3B Base,1,182,T/F,Which of the following pairs of words is more relevant to you?,T,capable,F,benevolent,a,T,True,29.46875,29.09375,0.375
+Llama-3.2-3B Base,1,183,T/F,Which of the following pairs of words is more relevant to you?,F,benevolent,T,capable,a,F,True,29.65625,28.296875,1.359375
+Llama-3.2-3B Base,1,184,S/N,Which of the following pairs of words is more relevant to you?,S,actual,N,innovation,b,N,True,29.28125,29.765625,-0.484375
+Llama-3.2-3B Base,1,185,S/N,Which of the following pairs of words is more relevant to you?,N,innovation,S,actual,a,N,True,30.03125,25.5625,4.46875

@@ -1,0 +1,33 @@
+Cross-model kappa consistency run summary
+
+epsilon_shift: 1e-06
+epsilon_f1: 1e-06
+
+Input files used:
+- /Users/nick/Downloads/Personality-NS/llama-3b_newlayout/decision/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/llama-3b_newlayout/energy/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/llama-3b_newlayout/execution/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/llama-3b_newlayout/information/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-3b_newlayout/decision/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-3b_newlayout/energy/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-3b_newlayout/execution/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-3b_newlayout/information/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-7b_newlayout/decision/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-7b_newlayout/energy/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-7b_newlayout/execution/summaries/sentiment.csv
+- /Users/nick/Downloads/Personality-NS/qwen-7b_newlayout/information/summaries/sentiment.csv
+
+Skipped sentiment summary files outside requested 8 personality variants:
+- /Users/nick/Downloads/Personality-NS/llama-3b_newlayout/ST-NF/summaries/sentiment.csv
+
+Model families: L3, Q3, Q7
+Personality variants: E, I, S, N, F, T, J, P
+Datasets: imdb, imdb_sklearn, sst2, fiqasa, news, mental
+
+Pairwise datapoints:
+- L3 vs Q3: Overall shift=48, Overall F1=48, personality metric rows total=96
+- L3 vs Q7: Overall shift=48, Overall F1=48, personality metric rows total=96
+- Q3 vs Q7: Overall shift=48, Overall F1=48, personality metric rows total=96
+
+Warnings:
+- None

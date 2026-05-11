@@ -1,0 +1,11 @@
+# Knowledge Preservation Table
+
+Entries report one-sided \(p_{\mathrm{drop}}\) values for performance drop.
+
+| Model | ARC-Easy | BoolQ | GSM8K | Drop? |
+| --- | ---: | ---: | ---: | --- |
+| Llama-3.2-3B | 0.714 | 0.249 | 0.182 | No |
+| Qwen2.5-3B | 0.695 | 0.722 | 0.900 | No |
+| Qwen2.5-7B | 0.227 | 0.146 | 0.960 | No |
+
+The decision threshold is \(\alpha = 0.05\). \(p_{\mathrm{drop}} < 0.05\) indicates significant evidence of degradation.

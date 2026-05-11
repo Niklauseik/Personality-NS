@@ -9,3 +9,5 @@ s7_qwen3b_jp,,3,/root/autodl-tmp/personality/mbti_results_remote/s7_qwen3b_jp
 s8_qwen3b_ei,,3,/root/autodl-tmp/personality/mbti_results_remote/s8_qwen3b_ei
 s9_qwen7b_ft,,3,/root/autodl-tmp/personality/MBTI/results/remote_runs/s9_qwen7b_ft
 s10_llama_jp,,3,/root/autodl-tmp/personality/MBTI/results/remote_runs/s10_llama_jp
+s11_qwen3b_sn,,3,/root/autodl-tmp/personality/MBTI/results/remote_runs/s11_qwen3b_sn
+s12_llama_sn,,3,/root/autodl-tmp/personality/MBTI/results/remote_runs/s12_llama_sn

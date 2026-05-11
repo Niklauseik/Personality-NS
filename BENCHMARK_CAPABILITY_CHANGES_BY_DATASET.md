@@ -8,6 +8,7 @@ Notes:
 - `Llama-3.2-3B / Decision` uses the accepted summary at [cluster_results/llama-3b/decision/first_run/benchmark/benchmark_metrics_summary.txt](C:/Users/BiaoPuYun/Personality-NS/cluster_results/llama-3b/decision/first_run/benchmark/benchmark_metrics_summary.txt), because the local raw `F/T` benchmark folders were later overwritten by another rerun.
 - `Qwen2.5-3B / Energy / E,I` benchmark raw files are not present locally under `qwen-3b_newlayout/energy/*/benchmark`, so those rows are marked `NA`.
 - `Llama-3.2-3B` uses dimension-specific accepted base sources: energy base rerun `2026-04-03`, information base rerun `2026-04-03`, execution base rerun `2026-04-04`, and decision accepted summary source above.
+- `Qwen2.5-7B / Execution / J,P` uses the paired base benchmark from the remote `results-J-P` rerun downloaded on `2026-05-02`.
 
 | Model | Dimension | Type | Dataset | Base Acc | Tuned Acc | Delta Acc | Base F1 | Tuned F1 | Delta F1 |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -77,9 +78,9 @@ Notes:
 | Qwen2.5-7B | Decision | T | ARC (easy) | 0.9579 | 0.9580 | +0.0001 | 0.9579 | 0.9580 | +0.0001 |
 | Qwen2.5-7B | Decision | T | BoolQ | 0.8702 | 0.8683 | -0.0019 | 0.8662 | 0.8646 | -0.0016 |
 | Qwen2.5-7B | Decision | T | GSM8K | 0.0923 | 0.0938 | +0.0015 | NA | NA | NA |
-| Qwen2.5-7B | Execution | J | ARC (easy) | 0.9579 | 0.9556 | -0.0023 | 0.9579 | 0.9556 | -0.0023 |
-| Qwen2.5-7B | Execution | J | BoolQ | 0.8702 | 0.8688 | -0.0014 | 0.8662 | 0.8650 | -0.0012 |
-| Qwen2.5-7B | Execution | J | GSM8K | 0.0923 | 0.1515 | +0.0592 | NA | NA | NA |
-| Qwen2.5-7B | Execution | P | ARC (easy) | 0.9579 | 0.9555 | -0.0024 | 0.9579 | 0.9555 | -0.0024 |
-| Qwen2.5-7B | Execution | P | BoolQ | 0.8702 | 0.8652 | -0.0050 | 0.8662 | 0.8615 | -0.0047 |
-| Qwen2.5-7B | Execution | P | GSM8K | 0.0923 | 0.1546 | +0.0623 | NA | NA | NA |
+| Qwen2.5-7B | Execution | J | ARC (easy) | 0.9556 | 0.9556 | +0.0000 | 0.9556 | 0.9556 | +0.0000 |
+| Qwen2.5-7B | Execution | J | BoolQ | 0.8661 | 0.8688 | +0.0026 | 0.8624 | 0.8650 | +0.0026 |
+| Qwen2.5-7B | Execution | J | GSM8K | 0.1577 | 0.1515 | -0.0062 | NA | NA | NA |
+| Qwen2.5-7B | Execution | P | ARC (easy) | 0.9556 | 0.9555 | -0.0001 | 0.9556 | 0.9555 | -0.0001 |
+| Qwen2.5-7B | Execution | P | BoolQ | 0.8661 | 0.8652 | -0.0010 | 0.8624 | 0.8615 | -0.0009 |
+| Qwen2.5-7B | Execution | P | GSM8K | 0.1577 | 0.1546 | -0.0031 | NA | NA | NA |

@@ -1,0 +1,12 @@
+.DS_Store
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+dpo_outputs/
+results*/
+*_newlayout/
+analysis_outputs/
+datasets/
+MBTI/data/

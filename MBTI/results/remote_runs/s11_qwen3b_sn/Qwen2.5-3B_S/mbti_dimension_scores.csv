@@ -1,0 +1,5 @@
+﻿model,dimension,left_letter,right_letter,left_score,right_score,left_ratio,right_ratio,winner,margin,total
+Qwen2.5-3B S,E/I,E,I,21,21,0.5,0.5,E,0,42
+Qwen2.5-3B S,S/N,S,N,28,24,0.5384615384615384,0.46153846153846156,S,4,52
+Qwen2.5-3B S,T/F,T,F,29,17,0.6304347826086957,0.3695652173913043,T,12,46
+Qwen2.5-3B S,J/P,J,P,29,15,0.6590909090909091,0.3409090909090909,J,14,44

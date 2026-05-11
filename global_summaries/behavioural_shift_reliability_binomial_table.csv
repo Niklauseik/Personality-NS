@@ -1,0 +1,5 @@
+model,energy,energy_k,energy_n,information,information_k,information_n,decision,decision_k,decision_n,execution,execution_k,execution_n,overall,overall_k,overall_n
+Llama-3.2-3B,5.96e-08,24,24,5.96e-08,24,24,5.96e-08,24,24,5.96e-08,24,24,1.26e-29,96,96
+Qwen2.5-3B,1.79e-05,22,24,1.79e-05,22,24,5.96e-08,24,24,1.79e-05,22,24,1.25e-20,90,96
+Qwen2.5-7B,5.96e-08,24,24,1.79e-05,22,24,5.96e-08,24,24,5.96e-08,24,24,5.88e-26,94,96
+Overall,5.57e-19,70,72,2.31e-16,68,72,2.12e-22,72,72,5.57e-19,70,72,2.2e-72,280,288
